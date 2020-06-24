@@ -6,8 +6,7 @@ output:
 ---
 
 ### Load packages
-
-```r
+```{r setup, results = 'hide', message = FALSE}
 library(meta)
 library(metafor)
 library(tidyverse)
@@ -15,15 +14,13 @@ library(tidyverse)
 
 ### Data import
 Import data (.csv) 
-
-```r
+```{r data import, results = 'hide', warning = FALSE, message = FALSE, cache = TRUE}
 library(readr)
 Copy_of_Copy_of_Anticholinergic_Medication_R_17062020 <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Copy of Copy of Anticholinergic Medication_R_17062020.csv")
 ```
 
 Assign data to `dat`
-
-```r
+```{r assign dat}
 dat <- Copy_of_Copy_of_Anticholinergic_Medication_R_17062020
 ```
 
@@ -36,8 +33,7 @@ In all cases of studies which included outcomes for different medications, all m
 
 Averaged results are assigned to `dat_study`
 
-
-```r
+```{r study average}
 dat_study <- dat %>%
   group_by(study) %>% #group by study so future calculations are done within each study
   mutate(g = mean(g, na.rm = T),
@@ -52,8 +48,7 @@ dat_study <- dat %>%
 * Use the Sidik-Jonkman method to estimate tau
 * Use the Knapp-Hartung method
 
-
-```r
+```{r model 1, results = 'hide'}
 meta_all_mod1 <- metagen(g,
                     st_err,
                     data = dat_study,
@@ -67,8 +62,7 @@ meta_all_mod1 <- metagen(g,
 ```
 
 **Model 2**
-
-```r
+```{r model 2, results = 'hide'}
 meta_all_mod2 <- metagen(g,
                           st_err,
                           data = dat_study,
@@ -84,5 +78,5 @@ Compare the models:
 
 Model | SMD | LL | UL
 ------ | ------ | ------ | ------
-1 | 0.0399374 |-0.0299174 | 0.1097921
-2 | 0.0604699 | -0.0074851 | 0.1097921
+1 | `r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]`
+2 | `r meta_all_mod2[["TE.random"]]` | `r meta_all_mod2[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]`
