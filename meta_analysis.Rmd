@@ -62,6 +62,10 @@ meta_all_mod1 <- metagen(g,
 ```
 
 **Model 2**
+
+* Use the DerSimonian-Laird method (default) to estimate tau
+* Do not use Knapp-Hartung method
+
 ```{r model 2, results = 'hide'}
 meta_all_mod2 <- metagen(g,
                           st_err,
@@ -76,7 +80,40 @@ meta_all_mod2 <- metagen(g,
 
 Compare the models:
 
-Model | SMD | LL | UL
------- | ------ | ------ | ------
-1 | `r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]`
-2 | `r meta_all_mod2[["TE.random"]]` | `r meta_all_mod2[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]`
+Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
+------ | ------ | ------ | ------ | ------ | ------
+1 | `r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["zval.random"]]` | `r meta_all_mod1[["pval.random"]]`
+2 | `r meta_all_mod2[["TE.random"]]` | `r meta_all_mod2[["lower.random"]]` | `r meta_all_mod2[["upper.random"]]` | `r meta_all_mod2[["zval.random"]]` | `r meta_all_mod2[["pval.random"]]`
+
+#### Step 3: Run subgroups analysis
+##### Potency (low/high)
+Run sub-analyses by medication potency (low/high) for each model
+
+```{r potency subanalysis}
+potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
+                             byvar=Potency, 
+                             comb.random = TRUE, 
+                             comb.fixed = FALSE)
+potency_subgroup_mod2 <- update.meta(meta_all_mod2, 
+                                   byvar=Potency, 
+                                   comb.random = TRUE, 
+                                   comb.fixed = FALSE)
+```
+
+Potency = **low**
+
+Model | k | SMD | LL | UL | p-value | tau^2 | Q
+------ | ------ | ------ | ------ | ------ | ------| ------ | ------
+1 | `r potency_subgroup_mod1[["k.w"]][[1]]` | `r potency_subgroup_mod1[["TE.random.w"]][[1]]` | `r potency_subgroup_mod1[["lower.random.w"]][[1]]` | `r potency_subgroup_mod1[["upper.random.w"]][[1]]` | `r potency_subgroup_mod1[["pval.random.w"]][[1]]` | `r potency_subgroup_mod1[["tau2.w"]][[1]]` | `r potency_subgroup_mod1[["Q.w"]][[1]]`
+2 | `r potency_subgroup_mod2[["k.w"]][[1]]` | `r potency_subgroup_mod2[["TE.random.w"]][[1]]` | `r potency_subgroup_mod2[["lower.random.w"]][[1]]` | `r potency_subgroup_mod2[["upper.random.w"]][[1]]` | `r potency_subgroup_mod2[["pval.random.w"]][[1]]` | `r potency_subgroup_mod2[["tau2.w"]][[1]]` | `r potency_subgroup_mod2[["Q.w"]][[1]]`
+
+Potency = **high**
+
+Model | k | SMD | LL | UL | p-value | tau^2 | Q
+------ | ------ | ------ | ------ | ------ | ------| ------ | ------
+1 | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` | `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["Q.w"]][[2]]`
+2 | `r potency_subgroup_mod2[["k.w"]][[2]]` | `r potency_subgroup_mod2[["TE.random.w"]][[2]]` | `r potency_subgroup_mod2[["lower.random.w"]][[2]]` | `r potency_subgroup_mod2[["upper.random.w"]][[2]]` | `r potency_subgroup_mod2[["pval.random.w"]][[2]]` | `r potency_subgroup_mod2[["tau2.w"]][[2]]` | `r potency_subgroup_mod2[["Q.w"]][[2]]`
+
+### Sub-group meta-analysis
+#### Cognitive domain analyses
+##### Step 1: Average across domains within studies

@@ -68,6 +68,10 @@ meta_all_mod1 <- metagen(g,
 
 **Model 2**
 
+* Use the DerSimonian-Laird method (default) to estimate tau
+* Do not use Knapp-Hartung method
+
+
 ```r
 meta_all_mod2 <- metagen(g,
                           st_err,
@@ -82,7 +86,37 @@ meta_all_mod2 <- metagen(g,
 
 Compare the models:
 
-Model | SMD | LL | UL
------- | ------ | ------ | ------
-1 | 0.0399374 |-0.0299174 | 0.1097921
-2 | 0.0604699 | -0.0074851 | 0.1097921
+Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
+------ | ------ | ------ | ------ | ------ | ------
+1 | 0.0399374 |-0.0299174 | 0.1097921 | 1.1508125 | 0.2557565
+2 | 0.0604699 | -0.0074851 | 0.1284249 | 1.7440775 | 0.0811456
+
+#### Step 3: Run subgroups analysis
+##### Potency (low/high)
+Run sub-analyses by medication potency (low/high) for each model
+
+
+```r
+potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
+                             byvar=Potency, 
+                             comb.random = TRUE, 
+                             comb.fixed = FALSE)
+potency_subgroup_mod2 <- update.meta(meta_all_mod2, 
+                                   byvar=Potency, 
+                                   comb.random = TRUE, 
+                                   comb.fixed = FALSE)
+```
+
+Potency = **low**
+
+Model | k | SMD | LL | UL | p-value | tau^2 | Q
+------ | ------ | ------ | ------ | ------ | ------| ------ | ------
+1 | 37 | 0.0268455 | -0.0491769 | 0.1028679 | 0.4785041 | 0.0270949 | 28.0324573
+2 | 37 | 0.0326629 | -0.0424046 | 0.1077303 | 0.3937664 | 0 | 28.0324573
+
+Potency = **high**
+
+Model | k | SMD | LL | UL | p-value | tau^2 | Q
+------ | ------ | ------ | ------ | ------ | ------| ------ | ------
+1 | 10 | 0.0942258 | -0.1087058 | 0.2971574 | 0.3209322 | 0.0299876 | 11.1168868
+2 | 10 | 0.1148865 | -0.0840702 | 0.3138432 | 0.2577307 | 0.0187628 | 11.1168868
