@@ -120,3 +120,7 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 ------ | ------ | ------ | ------ | ------ | ------| ------ | ------
 1 | 10 | 0.0942258 | -0.1087058 | 0.2971574 | 0.3209322 | 0.0299876 | 11.1168868
 2 | 10 | 0.1148865 | -0.0840702 | 0.3138432 | 0.2577307 | 0.0187628 | 11.1168868
+
+### Sub-group meta-analysis
+#### Cognitive domain analyses
+##### Step 1: Average across domains within studies
