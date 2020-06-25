@@ -9,7 +9,6 @@ output:
 
 ```r
 library(meta)
-library(metafor)
 library(tidyverse)
 ```
 
@@ -43,7 +42,7 @@ dat_study <- dat %>%
   mutate(g = mean(g, na.rm = T),
           st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study, removing NAs from calculation
   filter(row_number()==1) %>% #make each study only appear on one row
-  select(study, Potency, g, st_err) #select relevant data for analysis
+  select(study, author, year, Potency, g, st_err) #select relevant data for analysis
 ```
 
 #### Step 2: Run random effects model of all data
@@ -57,7 +56,7 @@ dat_study <- dat %>%
 meta_all_mod1 <- metagen(g,
                     st_err,
                     data = dat_study,
-                    studlab = paste(study),
+                    studlab = paste(author, year),
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "SJ", #use Sidik-Jonkman method
@@ -65,6 +64,19 @@ meta_all_mod1 <- metagen(g,
                     prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
 ```
+
+
+```r
+meta::forest(meta_all_mod1,
+             sortvar = TE,
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightcols = c("TE", "ci"),
+             rightlabs = c("SMD", "95% CI"),
+             text.random = "Overall effect") #found this here: https://rdrr.io/cran/meta/man/forest.html
+```
+
+![](meta_analysis_files/figure-html/forest mod1-1.png)<!-- -->
 
 **Model 2**
 
@@ -76,13 +88,23 @@ meta_all_mod1 <- metagen(g,
 meta_all_mod2 <- metagen(g,
                           st_err,
                           data = dat_study,
-                          studlab = paste(study),
+                          studlab = paste(author, year),
                           comb.fixed = F,
                           comb.random = T,
                           hakn = F, # not using the Knapp-Hartung method
                           prediction = T, #True = print prediction interval for future studies based on present evidence
                           sm = "SMD")
 ```
+
+
+```r
+meta::forest(meta_all_mod2,
+             sortvar = TE,
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab") #found this here: https://rdrr.io/cran/meta/man/forest.html
+```
+
+![](meta_analysis_files/figure-html/forest mod2-1.png)<!-- -->
 
 Compare the models:
 
@@ -146,7 +168,7 @@ dat_study_domain <- dat %>%
          st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
   filter(row_number()==1) %>% #make each study/domain only appear on one row
   filter(cog_domain_lezak != "Not Subdomain") %>% #remove outcomes based on cognitive composite scores
-  select(study, Potency, cog_domain_lezak, g, st_err) #select relevant data
+  select(study, author, year, Potency, cog_domain_lezak, g, st_err) #select relevant data
 ```
 
 Then run random effects model by subgroup (cognitive domain).
@@ -161,7 +183,7 @@ Then run random effects model by subgroup (cognitive domain).
 meta_domain_mod1 <- metagen(g,
                     st_err,
                     data = dat_study_domain,
-                    studlab = paste(study),
+                    studlab = paste(author, year),
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "SJ", #use Sidik-Jonkman method
@@ -185,6 +207,13 @@ Executive Function | 15 | -0.0255449 | -0.2899779 | 0.2388882 | 0.8388438
 General | 15 | 0.0744954 | -0.1600963 | 0.3090871 | 0.5069277
 Language | 6 | 0.1144948 | -0.0524442 | 0.2814338 | 0.138183
 
+
+```r
+meta::forest(domain_subgroup_mod1)
+```
+
+![](meta_analysis_files/figure-html/model 1 domain forest-1.png)<!-- -->
+
 **Model 2**
 
 
@@ -192,7 +221,7 @@ Language | 6 | 0.1144948 | -0.0524442 | 0.2814338 | 0.138183
 meta_domain_mod2 <- metagen(g,
                        st_err,
                        data = dat_study_domain,
-                       studlab = paste(study),
+                       studlab = paste(author, year),
                        comb.fixed = F,
                        comb.random = T,
                        hakn = F, # not using the Knapp-Hartung method
