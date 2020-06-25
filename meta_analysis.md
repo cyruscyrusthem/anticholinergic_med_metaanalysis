@@ -126,6 +126,18 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 
 Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
 
+Cognitive domains were defined using domains outlined by Lezak (2012): 
+
+* Memory
+* Executive function
+* Attention
+* Psychomotor functioning
+* Concept formation & reasoning
+* Language
+* Intelligence
+
+Effect sizes based on cognitive composite scores (reported by Stevenson, Robles, Operto) were not included in the cognitive domain sub analysis. 
+
 
 ```r
 dat_study_domain <- dat %>%
@@ -133,6 +145,7 @@ dat_study_domain <- dat %>%
   mutate(g = mean(g, na.rm = T),
          st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
   filter(row_number()==1) %>% #make each study/domain only appear on one row
+  filter(cog_domain_lezak != "Not Subdomain") %>% #remove outcomes based on cognitive composite scores
   select(study, Potency, cog_domain_lezak, g, st_err) #select relevant data
 ```
 
