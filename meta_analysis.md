@@ -39,7 +39,7 @@ Averaged results are assigned to `dat_study`
 
 ```r
 dat_study <- dat %>%
-  group_by(study) %>% #group by study so future calculations are done within each study
+  group_by(study) %>% #group by study so further calculations are done within each study
   mutate(g = mean(g, na.rm = T),
           st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study, removing NAs from calculation
   filter(row_number()==1) %>% #make each study only appear on one row
@@ -124,3 +124,148 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 ### Sub-group meta-analysis
 #### Cognitive domain analyses
 ##### Step 1: Average across domains within studies
+Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
+
+
+```r
+dat_study_domain <- dat %>%
+  group_by(study, cog_domain_lezak) %>% #group by study and cognitive domains (based on Lezak) within studies
+  mutate(g = mean(g, na.rm = T),
+         st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
+  filter(row_number()==1) %>% #make each study/domain only appear on one row
+  select(study, Potency, cog_domain_lezak, g, st_err) #select relevant data
+```
+
+Then, create a data set for each cognitive domain (+ general/global cognitive tests)
+
+
+```r
+dat_att <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Attention")
+dat_psych <-  dat_study_domain %>%
+  filter(cog_domain_lezak == "Psychomotor Functioning")
+dat_concept <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Concept Formation & Reasoning")
+dat_mem <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Memory")
+dat_exec <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Executive Function")
+dat_lang <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Language")
+dat_perc <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Perception")
+dat_general <- dat_study_domain %>%
+  filter(cog_domain_lezak == "General")
+```
+
+##### Step 2: Run random effects model for each cognitive domain
+**Model 1**
+
+* Use the Sidik-Jonkman method to estimate tau
+* Use the Knapp-Hartung method
+
+
+```r
+meta_att_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_att,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_psych_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_psych,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_concept_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_concept,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_mem_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_mem,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_exec_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_exec,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_lang_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_lang,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_perc_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_perc,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+
+meta_general_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_general,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "SJ", #use Sidik-Jonkman method
+                    hakn = T, #using the Knapp-Hartung method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+```
+
+Compare the models:
+
+**Model 1**
+
+Cognitive domain | k | SMD | LL | UL | p
+---- | ---- | ---- | ---- | ---- | ---- 
+Attention | meta_att_mod1[["k"]] | meta_att_mod1[["TE.random"]] | meta_att_mod1[["lower.random"]] | meta_att_mod1[["upper.random"]] | meta_att_mod1[["pval.random"]]
+Psychomotor Functioning | meta_psych_mod1[["k"]] | meta_psych_mod1[["TE.random"]] | meta_psych_mod1[["lower.random"]] | meta_psych_mod1[["upper.random"]] | meta_psych_mod1[["pval.random"]]
+Concept Formation & Reasoning | meta_concept_mod1[["k"]] | meta_concept_mod1[["TE.random"]] | meta_concept_mod1[["lower.random"]] | meta_concept_mod1[["upper.random"]] | meta_concept_mod1[["pval.random"]]
+Memory | meta_mem_mod1[["k"]] | meta_mem_mod1[["TE.random"]] | meta_mem_mod1[["lower.random"]] | meta_mem_mod1[["upper.random"]] | meta_mem_mod1[["pval.random"]]
+Executive Function | meta_exec_mod1[["k"]] | meta_exec_mod1[["TE.random"]] | meta_exec_mod1[["lower.random"]] | meta_exec_mod1[["upper.random"]] | meta_exec_mod1[["pval.random"]]
+Language | meta_lang_mod1[["k"]] | meta_lang_mod1[["TE.random"]] | meta_lang_mod1[["lower.random"]] | meta_lang_mod1[["upper.random"]] | meta_lang_mod1[["pval.random"]]
+Perception | meta_perc_mod1[["k"]] | meta_perc_mod1[["TE.random"]] | meta_perc_mod1[["lower.random"]] | meta_perc_mod1[["upper.random"]] | meta_perc_mod1[["pval.random"]]
+General | meta_general_mod1[["k"]] | meta_general_mod1[["TE.random"]] | meta_general_mod1[["lower.random"]] | meta_general_mod1[["upper.random"]] | meta_general_mod1[["pval.random"]]
