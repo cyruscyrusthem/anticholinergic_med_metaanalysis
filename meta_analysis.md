@@ -18,13 +18,13 @@ Import data (.csv)
 
 ```r
 library(readr)
-Copy_of_Copy_of_Anticholinergic_Medication_R_17062020 <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Copy of Copy of Anticholinergic Medication_R_17062020.csv")
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Anticholinergic_Medication_R_data.csv")
 ```
 
 Assign data to `dat`
 
 ```r
-dat <- Copy_of_Copy_of_Anticholinergic_Medication_R_17062020
+dat <- Anticholinergic_Medication_R_data
 ```
 
 ### Whole meta-analysis
@@ -91,7 +91,8 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 1 | 0.0399374 |-0.0299174 | 0.1097921 | 1.1508125 | 0.2557565
 2 | 0.0604699 | -0.0074851 | 0.1284249 | 1.7440775 | 0.0811456
 
-#### Step 3: Run subgroups analysis
+
+#### Step 3: Run subgroup analyses
 ##### Potency (low/high)
 Run sub-analyses by medication potency (low/high) for each model
 
@@ -121,9 +122,8 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 1 | 10 | 0.0942258 | -0.1087058 | 0.2971574 | 0.3209322 | 0.0299876 | 11.1168868
 2 | 10 | 0.1148865 | -0.0840702 | 0.3138432 | 0.2577307 | 0.0187628 | 11.1168868
 
-### Sub-group meta-analysis
-#### Cognitive domain analyses
-##### Step 1: Average across domains within studies
+##### Cognitive domain analyses
+
 Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
 
 
@@ -136,29 +136,8 @@ dat_study_domain <- dat %>%
   select(study, Potency, cog_domain_lezak, g, st_err) #select relevant data
 ```
 
-Then, create a data set for each cognitive domain (+ general/global cognitive tests)
+Then run random effects model by subgroup (cognitive domain).
 
-
-```r
-dat_att <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Attention")
-dat_psych <-  dat_study_domain %>%
-  filter(cog_domain_lezak == "Psychomotor Functioning")
-dat_concept <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Concept Formation & Reasoning")
-dat_mem <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Memory")
-dat_exec <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Executive Function")
-dat_lang <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Language")
-dat_perc <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Perception")
-dat_general <- dat_study_domain %>%
-  filter(cog_domain_lezak == "General")
-```
-
-##### Step 2: Run random effects model for each cognitive domain
 **Model 1**
 
 * Use the Sidik-Jonkman method to estimate tau
@@ -166,9 +145,9 @@ dat_general <- dat_study_domain %>%
 
 
 ```r
-meta_att_mod1 <- metagen(g,
+meta_domain_mod1 <- metagen(g,
                     st_err,
-                    data = dat_att,
+                    data = dat_study_domain,
                     studlab = paste(study),
                     comb.fixed = F,
                     comb.random = T,
@@ -176,96 +155,49 @@ meta_att_mod1 <- metagen(g,
                     hakn = T, #using the Knapp-Hartung method
                     prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
-
-meta_psych_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_psych,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_concept_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_concept,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_mem_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_mem,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_exec_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_exec,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_lang_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_lang,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_perc_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_perc,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_general_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_general,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
+domain_subgroup_mod1 <- update.meta(meta_domain_mod1, 
+                                byvar=cog_domain_lezak, 
+                                comb.random = TRUE, 
+                                comb.fixed = FALSE)
 ```
 
-Compare the models:
-
-**Model 1**
-
-Cognitive domain | k | SMD | LL | UL | p
+Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
-Attention | meta_att_mod1[["k"]] | meta_att_mod1[["TE.random"]] | meta_att_mod1[["lower.random"]] | meta_att_mod1[["upper.random"]] | meta_att_mod1[["pval.random"]]
-Psychomotor Functioning | meta_psych_mod1[["k"]] | meta_psych_mod1[["TE.random"]] | meta_psych_mod1[["lower.random"]] | meta_psych_mod1[["upper.random"]] | meta_psych_mod1[["pval.random"]]
-Concept Formation & Reasoning | meta_concept_mod1[["k"]] | meta_concept_mod1[["TE.random"]] | meta_concept_mod1[["lower.random"]] | meta_concept_mod1[["upper.random"]] | meta_concept_mod1[["pval.random"]]
-Memory | meta_mem_mod1[["k"]] | meta_mem_mod1[["TE.random"]] | meta_mem_mod1[["lower.random"]] | meta_mem_mod1[["upper.random"]] | meta_mem_mod1[["pval.random"]]
-Executive Function | meta_exec_mod1[["k"]] | meta_exec_mod1[["TE.random"]] | meta_exec_mod1[["lower.random"]] | meta_exec_mod1[["upper.random"]] | meta_exec_mod1[["pval.random"]]
-Language | meta_lang_mod1[["k"]] | meta_lang_mod1[["TE.random"]] | meta_lang_mod1[["lower.random"]] | meta_lang_mod1[["upper.random"]] | meta_lang_mod1[["pval.random"]]
-Perception | meta_perc_mod1[["k"]] | meta_perc_mod1[["TE.random"]] | meta_perc_mod1[["lower.random"]] | meta_perc_mod1[["upper.random"]] | meta_perc_mod1[["pval.random"]]
-General | meta_general_mod1[["k"]] | meta_general_mod1[["TE.random"]] | meta_general_mod1[["lower.random"]] | meta_general_mod1[["upper.random"]] | meta_general_mod1[["pval.random"]]
+Attention | 38 | 0.0463823 | -0.0348533 | 0.1276178 | 0.2547381
+Psychomotor Functioning | 17 | -0.1126038 | -0.3399906 | 0.114783 | 0.3094116
+Concept Formation & Reasoning | 13 | 0.1135531 | -0.0506499 | 0.2777562 | 0.1577423
+Perception | 3 | 0.2500101 | -0.900842 | 1.4008621 | 0.4486141
+Memory | 16 | 0.0610615 | -0.0604692 | 0.1825923 | 0.3011356
+Executive Function | 15 | -0.0255449 | -0.2899779 | 0.2388882 | 0.8388438
+General | 15 | 0.0744954 | -0.1600963 | 0.3090871 | 0.5069277
+Language | 6 | 0.1144948 | -0.0524442 | 0.2814338 | 0.138183
+
+**Model 2**
+
+
+```r
+meta_domain_mod2 <- metagen(g,
+                       st_err,
+                       data = dat_study_domain,
+                       studlab = paste(study),
+                       comb.fixed = F,
+                       comb.random = T,
+                       hakn = F, # not using the Knapp-Hartung method
+                       prediction = T, #True = print prediction interval for future studies based on present evidence
+                       sm = "SMD") # says we want to calculate SMD
+domain_subgroup_mod2 <- update.meta(meta_domain_mod2, 
+                               byvar=cog_domain_lezak, 
+                               comb.random = TRUE, 
+                               comb.fixed = FALSE)
+```
+
+Domain | k | SMD | LL | UL | p
+---- | ---- | ---- | ---- | ---- | ---- 
+Attention | 38 | 0.0602792 | -0.0185533 | 0.1391118 | 0.1339554
+Psychomotor Functioning | 17 | -0.0975502 | -0.2987649 | 0.1036645 | 0.3420089
+Concept Formation & Reasoning | 13 | 0.1533006 | 0.0078964 | 0.2987048 | 0.0387905
+Perception | 3 | 0.2436719 | -0.2697523 | 0.7570961 | 0.3522666
+Memory | 16 | 0.0824155 | -0.0411404 | 0.2059715 | 0.1910921
+Executive Function | 15 | -0.0094805 | -0.2121213 | 0.1931603 | 0.9269392
+General | 15 | 0.0737153 | -0.152454 | 0.2998847 | 0.5229461
+Language | 6 | 0.1339417 | -0.0198242 | 0.2877075 | 0.0877706

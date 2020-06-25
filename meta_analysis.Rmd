@@ -14,14 +14,14 @@ library(tidyverse)
 
 ### Data import
 Import data (.csv) 
-```{r data import, results = 'hide', warning = FALSE, message = FALSE, cache = TRUE}
+```{r data import, results = 'hide', warning = FALSE, message = FALSE}
 library(readr)
-Copy_of_Copy_of_Anticholinergic_Medication_R_17062020 <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Copy of Copy of Anticholinergic Medication_R_17062020.csv")
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Anticholinergic_Medication_R_data.csv")
 ```
 
 Assign data to `dat`
 ```{r assign dat}
-dat <- Copy_of_Copy_of_Anticholinergic_Medication_R_17062020
+dat <- Anticholinergic_Medication_R_data
 ```
 
 ### Whole meta-analysis
@@ -85,7 +85,8 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 1 | `r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["zval.random"]]` | `r meta_all_mod1[["pval.random"]]`
 2 | `r meta_all_mod2[["TE.random"]]` | `r meta_all_mod2[["lower.random"]]` | `r meta_all_mod2[["upper.random"]]` | `r meta_all_mod2[["zval.random"]]` | `r meta_all_mod2[["pval.random"]]`
 
-#### Step 3: Run subgroups analysis
+
+#### Step 3: Run subgroup analyses
 ##### Potency (low/high)
 Run sub-analyses by medication potency (low/high) for each model
 
@@ -114,9 +115,8 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 1 | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` | `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["Q.w"]][[2]]`
 2 | `r potency_subgroup_mod2[["k.w"]][[2]]` | `r potency_subgroup_mod2[["TE.random.w"]][[2]]` | `r potency_subgroup_mod2[["lower.random.w"]][[2]]` | `r potency_subgroup_mod2[["upper.random.w"]][[2]]` | `r potency_subgroup_mod2[["pval.random.w"]][[2]]` | `r potency_subgroup_mod2[["tau2.w"]][[2]]` | `r potency_subgroup_mod2[["Q.w"]][[2]]`
 
-### Sub-group meta-analysis
-#### Cognitive domain analyses
-##### Step 1: Average across domains within studies
+##### Cognitive domain analyses
+
 Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
 
 ```{r domain average}
@@ -128,37 +128,17 @@ dat_study_domain <- dat %>%
   select(study, Potency, cog_domain_lezak, g, st_err) #select relevant data
 ```
 
-Then, create a data set for each cognitive domain (+ general/global cognitive tests)
+Then run random effects model by subgroup (cognitive domain).
 
-```{r domain individual}
-dat_att <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Attention")
-dat_psych <-  dat_study_domain %>%
-  filter(cog_domain_lezak == "Psychomotor Functioning")
-dat_concept <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Concept Formation & Reasoning")
-dat_mem <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Memory")
-dat_exec <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Executive Function")
-dat_lang <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Language")
-dat_perc <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Perception")
-dat_general <- dat_study_domain %>%
-  filter(cog_domain_lezak == "General")
-```
-
-##### Step 2: Run random effects model for each cognitive domain
 **Model 1**
 
 * Use the Sidik-Jonkman method to estimate tau
 * Use the Knapp-Hartung method
 
 ```{r model 1 domain, results = 'hide'}
-meta_att_mod1 <- metagen(g,
+meta_domain_mod1 <- metagen(g,
                     st_err,
-                    data = dat_att,
+                    data = dat_study_domain,
                     studlab = paste(study),
                     comb.fixed = F,
                     comb.random = T,
@@ -166,96 +146,48 @@ meta_att_mod1 <- metagen(g,
                     hakn = T, #using the Knapp-Hartung method
                     prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
-
-meta_psych_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_psych,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_concept_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_concept,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_mem_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_mem,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_exec_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_exec,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_lang_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_lang,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_perc_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_perc,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
-
-meta_general_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_general,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "SJ", #use Sidik-Jonkman method
-                    hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
+domain_subgroup_mod1 <- update.meta(meta_domain_mod1, 
+                                byvar=cog_domain_lezak, 
+                                comb.random = TRUE, 
+                                comb.fixed = FALSE)
 ```
 
-Compare the models:
-
-**Model 1**
-
-Cognitive domain | k | SMD | LL | UL | p
+Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
-Attention | meta_att_mod1[["k"]] | meta_att_mod1[["TE.random"]] | meta_att_mod1[["lower.random"]] | meta_att_mod1[["upper.random"]] | meta_att_mod1[["pval.random"]]
-Psychomotor Functioning | meta_psych_mod1[["k"]] | meta_psych_mod1[["TE.random"]] | meta_psych_mod1[["lower.random"]] | meta_psych_mod1[["upper.random"]] | meta_psych_mod1[["pval.random"]]
-Concept Formation & Reasoning | meta_concept_mod1[["k"]] | meta_concept_mod1[["TE.random"]] | meta_concept_mod1[["lower.random"]] | meta_concept_mod1[["upper.random"]] | meta_concept_mod1[["pval.random"]]
-Memory | meta_mem_mod1[["k"]] | meta_mem_mod1[["TE.random"]] | meta_mem_mod1[["lower.random"]] | meta_mem_mod1[["upper.random"]] | meta_mem_mod1[["pval.random"]]
-Executive Function | meta_exec_mod1[["k"]] | meta_exec_mod1[["TE.random"]] | meta_exec_mod1[["lower.random"]] | meta_exec_mod1[["upper.random"]] | meta_exec_mod1[["pval.random"]]
-Language | meta_lang_mod1[["k"]] | meta_lang_mod1[["TE.random"]] | meta_lang_mod1[["lower.random"]] | meta_lang_mod1[["upper.random"]] | meta_lang_mod1[["pval.random"]]
-Perception | meta_perc_mod1[["k"]] | meta_perc_mod1[["TE.random"]] | meta_perc_mod1[["lower.random"]] | meta_perc_mod1[["upper.random"]] | meta_perc_mod1[["pval.random"]]
-General | meta_general_mod1[["k"]] | meta_general_mod1[["TE.random"]] | meta_general_mod1[["lower.random"]] | meta_general_mod1[["upper.random"]] | meta_general_mod1[["pval.random"]]
+`r domain_subgroup_mod1[["bylevs"]][[1]]` | `r domain_subgroup_mod1[["k.w"]][[1]]` | `r domain_subgroup_mod1[["TE.random.w"]][[1]]` | `r domain_subgroup_mod1[["lower.random.w"]][[1]]` | `r domain_subgroup_mod1[["upper.random.w"]][[1]]` | `r domain_subgroup_mod1[["pval.random.w"]][[1]]`
+`r domain_subgroup_mod1[["bylevs"]][[2]]` | `r domain_subgroup_mod1[["k.w"]][[2]]` | `r domain_subgroup_mod1[["TE.random.w"]][[2]]` | `r domain_subgroup_mod1[["lower.random.w"]][[2]]` | `r domain_subgroup_mod1[["upper.random.w"]][[2]]` | `r domain_subgroup_mod1[["pval.random.w"]][[2]]`
+`r domain_subgroup_mod1[["bylevs"]][[3]]` | `r domain_subgroup_mod1[["k.w"]][[3]]` | `r domain_subgroup_mod1[["TE.random.w"]][[3]]` | `r domain_subgroup_mod1[["lower.random.w"]][[3]]` | `r domain_subgroup_mod1[["upper.random.w"]][[3]]` | `r domain_subgroup_mod1[["pval.random.w"]][[3]]`
+`r domain_subgroup_mod1[["bylevs"]][[4]]` | `r domain_subgroup_mod1[["k.w"]][[4]]` | `r domain_subgroup_mod1[["TE.random.w"]][[4]]` | `r domain_subgroup_mod1[["lower.random.w"]][[4]]` | `r domain_subgroup_mod1[["upper.random.w"]][[4]]` | `r domain_subgroup_mod1[["pval.random.w"]][[4]]`
+`r domain_subgroup_mod1[["bylevs"]][[5]]` | `r domain_subgroup_mod1[["k.w"]][[5]]` | `r domain_subgroup_mod1[["TE.random.w"]][[5]]` | `r domain_subgroup_mod1[["lower.random.w"]][[5]]` | `r domain_subgroup_mod1[["upper.random.w"]][[5]]` | `r domain_subgroup_mod1[["pval.random.w"]][[5]]`
+`r domain_subgroup_mod1[["bylevs"]][[6]]` | `r domain_subgroup_mod1[["k.w"]][[6]]` | `r domain_subgroup_mod1[["TE.random.w"]][[6]]` | `r domain_subgroup_mod1[["lower.random.w"]][[6]]` | `r domain_subgroup_mod1[["upper.random.w"]][[6]]` | `r domain_subgroup_mod1[["pval.random.w"]][[6]]`
+`r domain_subgroup_mod1[["bylevs"]][[7]]` | `r domain_subgroup_mod1[["k.w"]][[7]]` | `r domain_subgroup_mod1[["TE.random.w"]][[7]]` | `r domain_subgroup_mod1[["lower.random.w"]][[7]]` | `r domain_subgroup_mod1[["upper.random.w"]][[7]]` | `r domain_subgroup_mod1[["pval.random.w"]][[7]]`
+`r domain_subgroup_mod1[["bylevs"]][[8]]` | `r domain_subgroup_mod1[["k.w"]][[8]]` | `r domain_subgroup_mod1[["TE.random.w"]][[8]]` | `r domain_subgroup_mod1[["lower.random.w"]][[8]]` | `r domain_subgroup_mod1[["upper.random.w"]][[8]]` | `r domain_subgroup_mod1[["pval.random.w"]][[8]]`
+
+**Model 2**
+
+```{r model 2 domain}
+meta_domain_mod2 <- metagen(g,
+                       st_err,
+                       data = dat_study_domain,
+                       studlab = paste(study),
+                       comb.fixed = F,
+                       comb.random = T,
+                       hakn = F, # not using the Knapp-Hartung method
+                       prediction = T, #True = print prediction interval for future studies based on present evidence
+                       sm = "SMD") # says we want to calculate SMD
+domain_subgroup_mod2 <- update.meta(meta_domain_mod2, 
+                               byvar=cog_domain_lezak, 
+                               comb.random = TRUE, 
+                               comb.fixed = FALSE)
+```
+
+Domain | k | SMD | LL | UL | p
+---- | ---- | ---- | ---- | ---- | ---- 
+`r domain_subgroup_mod2[["bylevs"]][[1]]` | `r domain_subgroup_mod2[["k.w"]][[1]]` | `r domain_subgroup_mod2[["TE.random.w"]][[1]]` | `r domain_subgroup_mod2[["lower.random.w"]][[1]]` | `r domain_subgroup_mod2[["upper.random.w"]][[1]]` | `r domain_subgroup_mod2[["pval.random.w"]][[1]]`
+`r domain_subgroup_mod2[["bylevs"]][[2]]` | `r domain_subgroup_mod2[["k.w"]][[2]]` | `r domain_subgroup_mod2[["TE.random.w"]][[2]]` | `r domain_subgroup_mod2[["lower.random.w"]][[2]]` | `r domain_subgroup_mod2[["upper.random.w"]][[2]]` | `r domain_subgroup_mod2[["pval.random.w"]][[2]]`
+`r domain_subgroup_mod2[["bylevs"]][[3]]` | `r domain_subgroup_mod2[["k.w"]][[3]]` | `r domain_subgroup_mod2[["TE.random.w"]][[3]]` | `r domain_subgroup_mod2[["lower.random.w"]][[3]]` | `r domain_subgroup_mod2[["upper.random.w"]][[3]]` | `r domain_subgroup_mod2[["pval.random.w"]][[3]]`
+`r domain_subgroup_mod2[["bylevs"]][[4]]` | `r domain_subgroup_mod2[["k.w"]][[4]]` | `r domain_subgroup_mod2[["TE.random.w"]][[4]]` | `r domain_subgroup_mod2[["lower.random.w"]][[4]]` | `r domain_subgroup_mod2[["upper.random.w"]][[4]]` | `r domain_subgroup_mod2[["pval.random.w"]][[4]]`
+`r domain_subgroup_mod2[["bylevs"]][[5]]` | `r domain_subgroup_mod2[["k.w"]][[5]]` | `r domain_subgroup_mod2[["TE.random.w"]][[5]]` | `r domain_subgroup_mod2[["lower.random.w"]][[5]]` | `r domain_subgroup_mod2[["upper.random.w"]][[5]]` | `r domain_subgroup_mod2[["pval.random.w"]][[5]]`
+`r domain_subgroup_mod2[["bylevs"]][[6]]` | `r domain_subgroup_mod2[["k.w"]][[6]]` | `r domain_subgroup_mod2[["TE.random.w"]][[6]]` | `r domain_subgroup_mod2[["lower.random.w"]][[6]]` | `r domain_subgroup_mod2[["upper.random.w"]][[6]]` | `r domain_subgroup_mod2[["pval.random.w"]][[6]]`
+`r domain_subgroup_mod2[["bylevs"]][[7]]` | `r domain_subgroup_mod2[["k.w"]][[7]]` | `r domain_subgroup_mod2[["TE.random.w"]][[7]]` | `r domain_subgroup_mod2[["lower.random.w"]][[7]]` | `r domain_subgroup_mod2[["upper.random.w"]][[7]]` | `r domain_subgroup_mod2[["pval.random.w"]][[7]]`
+`r domain_subgroup_mod2[["bylevs"]][[8]]` | `r domain_subgroup_mod2[["k.w"]][[8]]` | `r domain_subgroup_mod2[["TE.random.w"]][[8]]` | `r domain_subgroup_mod2[["lower.random.w"]][[8]]` | `r domain_subgroup_mod2[["upper.random.w"]][[8]]` | `r domain_subgroup_mod2[["pval.random.w"]][[8]]`
