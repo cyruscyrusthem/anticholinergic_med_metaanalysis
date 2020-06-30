@@ -20,7 +20,9 @@ Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_
 
 Assign data to `dat`
 ```{r assign dat}
-dat <- Anticholinergic_Medication_R_data
+dat <- Anticholinergic_Medication_R_data %>%
+  filter(include == 1) #%>% #this currently filters out the 2 Stevenson outcomes where px were no longer on medication. This decision does need to be checked, though. 
+  #filter(quality > 4) # this removes all studies with quality below the median (5)
 ```
 
 ### Meta-analysis
@@ -57,13 +59,14 @@ meta_all_mod1 <- metagen(g,
                     method.tau = "SJ", #use Sidik-Jonkman method
                     hakn = T, #using the Knapp-Hartung method
                     prediction = T, #True = print prediction interval for future studies based on present evidence
-                    sm = "SMD") # says we want to calculate SMD
+                    sm = "SMD") #calculate SMD
 ```
+
 
 Code for forest plot:
 ```{r forest mod1, fig.width=8, fig.height=12}
 meta::forest(meta_all_mod1,
-             sortvar = TE,
+             sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightcols = c("TE", "ci"),
@@ -74,7 +77,7 @@ meta::forest(meta_all_mod1,
 **Model 2**
 
 * Use the DerSimonian-Laird method (default) to estimate tau
-* Do not use Knapp-Hartung method
+* Not using Knapp-Hartung method
 
 ```{r model 2, results = 'hide'}
 meta_all_mod2 <- metagen(g,
@@ -132,21 +135,23 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 
 
 #### Step 3: Run subgroup analyses
-*##### Potency (low/high)*
+##### *Potency (low/high)*
 Run sub-analyses by medication potency (low/high) for each model
 
 ```{r potency subanalysis}
+#Model 1
 potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
                              byvar=Potency, 
                              comb.random = TRUE, 
                              comb.fixed = FALSE)
+#Model 2
 potency_subgroup_mod2 <- update.meta(meta_all_mod2, 
                                    byvar=Potency, 
                                    comb.random = TRUE, 
                                    comb.fixed = FALSE)
 ```
 Does not seem to be able to run sub-analysis using REML method:
-Error = Error in rma.uni(yi = TE[sel], sei = seTE[sel], method = method.tau, control = control) : Fisher scoring algorithm did not converge. See 'help(rma)' for possible remedies.
+`Error = Error in rma.uni(yi = TE[sel], sei = seTE[sel], method = method.tau, control = control) :Fisher scoring algorithm did not converge. See 'help(rma)' for possible remedies.`
 
 Code for forest plot (not shown):
 ```{r model 1 potency forest, fig.width = 8, fig.height = 13, fig.show = 'hide'}
@@ -169,7 +174,7 @@ Model | k | SMD | LL | UL | p-value | tau^2 | Q
 1 | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` | `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["Q.w"]][[2]]`
 2 | `r potency_subgroup_mod2[["k.w"]][[2]]` | `r potency_subgroup_mod2[["TE.random.w"]][[2]]` | `r potency_subgroup_mod2[["lower.random.w"]][[2]]` | `r potency_subgroup_mod2[["upper.random.w"]][[2]]` | `r potency_subgroup_mod2[["pval.random.w"]][[2]]` | `r potency_subgroup_mod2[["tau2.w"]][[2]]` | `r potency_subgroup_mod2[["Q.w"]][[2]]`
 
-*##### Cognitive domain*
+##### *Cognitive domain*
 
 Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
 
@@ -397,7 +402,7 @@ eggers.test = function(x) {
 ```
 
 Note: it does not matter which meta-analysis model the funnel plot or Egger's test are conducted based on, as only the individual study effect sizes matter, not the pooled effect size.
-HOWEVER, models must be called separately for Trim and Fill.
+HOWEVER, models must be run separately for Trim and Fill.
 
 #### Whole meta-analysis
 ```{r funnel meta all}
