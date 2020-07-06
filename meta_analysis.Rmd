@@ -8,6 +8,7 @@ output:
 ### Load packages
 ```{r setup, results = 'hide', message = FALSE}
 library(meta)
+library(metafor) #As a technical note, with exception of the DerSimonian–Laird and the Paule–Mandel methods the rma.uni function of R package metafor is called internally in the metagen function. Thus, it is a good idea to install R package metafor to make all estimation methods available.
 library(tidyverse)
 ```
 
@@ -21,7 +22,7 @@ Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_
 Assign data to `dat`
 ```{r assign dat}
 dat <- Anticholinergic_Medication_R_data %>%
-  filter(include == 1) #%>% #this currently filters out the 2 Stevenson outcomes where px were no longer on medication. This decision does need to be checked, though. 
+  filter(include == 1) #%>% #this currently filters out the 2 Stevenson outcomes where participants were no longer on medication. This decision does need to be checked, though. 
   #filter(quality > 4) # this removes all studies with quality below the median (5)
 ```
 
@@ -44,12 +45,12 @@ dat_study <- dat %>%
 ```
 
 #### Step 2: Run random effects model of all data
-**Model 1**
+**Model 1: meta package**
 
 * Use the Sidik-Jonkman method to estimate tau
 * Use the Knapp-Hartung method
 
-```{r model 1, results = 'hide'}
+```{r meta whole mod1, results = 'hide'}
 meta_all_mod1 <- metagen(g,
                     st_err,
                     data = dat_study,
@@ -64,22 +65,24 @@ meta_all_mod1 <- metagen(g,
 
 
 Code for forest plot:
-```{r forest mod1, fig.width=8, fig.height=12}
+```{r meta forest whole mod1, fig.width=8, fig.height=12}
 meta::forest(meta_all_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightcols = c("TE", "ci"),
-             rightlabs = c("SMD", "95% CI"),
-             text.random = "Overall effect") #found this here: https://rdrr.io/cran/meta/man/forest.html
+             #rightlabs = c("SMD", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE)#
+             #pooled.totals = TRUE) #found this here: https://rdrr.io/cran/meta/man/forest.html
 ```
 
-**Model 2**
+**Model 2: meta package**
 
 * Use the DerSimonian-Laird method (default) to estimate tau
 * Not using Knapp-Hartung method
 
-```{r model 2, results = 'hide'}
+```{r meta whole mod2, results = 'hide'}
 meta_all_mod2 <- metagen(g,
                           st_err,
                           data = dat_study,
@@ -92,19 +95,19 @@ meta_all_mod2 <- metagen(g,
 ```
 
 Code for forest plot (not displayed):
-```{r forest mod2, fig.width=8, fig.height=12, fig.show = 'hide'}
+```{r meta forest whole mod2, fig.width=8, fig.height=12, fig.show = 'hide'}
 meta::forest(meta_all_mod2,
              sortvar = TE,
              xlim = c(-1.5, 1.5),
              leftcols = "studlab") #found this here: https://rdrr.io/cran/meta/man/forest.html
 ```
 
-**Model 3**
+**Model 3: meta package**
 
 * Use the Restricted Maximum-Likelihood method to estimate tau
 * Not using Knapp-Hartung method
 
-```{r model 3, results = 'hide'}
+```{r meta whole mod3, results = 'hide'}
 meta_all_mod3 <- metagen(g,
                           st_err,
                           data = dat_study,
@@ -118,7 +121,7 @@ meta_all_mod3 <- metagen(g,
 ```
 
 Code for forest plot (not displayed):
-```{r forest mod3, fig.width=8, fig.height=12, fig.show = 'hide'}
+```{r meta forest whole mod3, fig.width=8, fig.height=12, fig.show = 'hide'}
 meta::forest(meta_all_mod2,
              sortvar = TE,
              xlim = c(-1.5, 1.5),
@@ -138,7 +141,7 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ##### *Potency (low/high)*
 Run sub-analyses by medication potency (low/high) for each model
 
-```{r potency subanalysis}
+```{r meta potency subanalysis}
 #Model 1
 potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
                              byvar=Potency, 
@@ -154,7 +157,7 @@ Does not seem to be able to run sub-analysis using REML method:
 `Error = Error in rma.uni(yi = TE[sel], sei = seTE[sel], method = method.tau, control = control) :Fisher scoring algorithm did not converge. See 'help(rma)' for possible remedies.`
 
 Code for forest plot (not shown):
-```{r model 1 potency forest, fig.width = 8, fig.height = 13, fig.show = 'hide'}
+```{r meta forest potency mod1, fig.width = 8, fig.height = 13, fig.show = 'hide'}
 meta::forest(potency_subgroup_mod1,
              sortvar = TE,
              leftcols = "studlab")
@@ -208,7 +211,7 @@ Then run random effects model by subgroup (cognitive domain).
 * Use the Sidik-Jonkman method to estimate tau
 * Use the Knapp-Hartung method
 
-```{r model 1 domain, results = 'hide'}
+```{r meta domain mod1, results = 'hide'}
 meta_domain_mod1 <- metagen(g,
                     st_err,
                     data = dat_study_domain,
@@ -238,7 +241,7 @@ Domain | k | SMD | LL | UL | p
 
 
 Code for forest plot (not shown):
-```{r model 1 domain forest, fig.width = 8, fig.height = 33, fig.show = 'hide'}
+```{r meta forest domain mod1, fig.width = 8, fig.height = 33, fig.show = 'hide'}
 meta::forest(domain_subgroup_mod1,
              sortvar = TE,
              leftcols = "studlab")
@@ -246,7 +249,7 @@ meta::forest(domain_subgroup_mod1,
 
 **Model 2**
 
-```{r model 2 domain}
+```{r meta domain mod2}
 meta_domain_mod2 <- metagen(g,
                        st_err,
                        data = dat_study_domain,
@@ -263,7 +266,7 @@ domain_subgroup_mod2 <- update.meta(meta_domain_mod2,
 ```
 
 Code for forest plot (not shown):
-```{r model 2 domain forest, fig.width = 8, fig.height = 33, fig.show = 'hide'}
+```{r meta forest domain mod2, fig.width = 8, fig.height = 33, fig.show = 'hide'}
 meta::forest(domain_subgroup_mod2,
              sortvar = TE,
              leftcols = "studlab")
@@ -286,7 +289,7 @@ Steps (based on Amit's paper):
 
 1. Visually inspect funnel plots (effect size vs standard error) for bias
 2. **If 10 or more studies**, use Egger's Test to test for small-study effect
-    + If statistically significant asymmetry found (1-sided P<0.1), use Duval and Tweedie's Trima nd Fill method to quantify magnitude of bias
+    + If statistically significant asymmetry found (1-sided P<0.1), use Duval and Tweedie's Trim and Fill method to quantify magnitude of bias
 3. **If <10 studies**, locate outliers in funnel plot and recalculate effect sizes after their removal
 
 To run Egger's, load Egger's function (found [here](https://raw.githubusercontent.com/MathiasHarrer/dmetar/master/R/eggers.test.R))
@@ -405,22 +408,22 @@ Note: it does not matter which meta-analysis model the funnel plot or Egger's te
 HOWEVER, models must be run separately for Trim and Fill.
 
 #### Whole meta-analysis
-```{r funnel meta all}
+```{r meta funnel whole}
 funnel.meta(meta_all_mod1)
 ```
 
-```{r eggers whole meta}
+```{r meta eggers whole}
 eggers.test(x = meta_all_mod1)
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
 
-```{r duval full meta, results = 'hide'}
+```{r meta trimfill whole, results = 'hide'}
 meta_all_mod1_trim <- trimfill.meta(meta_all_mod1)
 meta_all_mod2_trim <- trimfill.meta(meta_all_mod2)
 ```
 
-```{r funnel trim full meta}
+```{r meta funnel trimfill whole}
 funnel.meta(meta_all_mod1_trim)
 funnel.meta(meta_all_mod2_trim)
 ```
@@ -435,7 +438,7 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 #### Potency
 Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
 
-```{r potency sub analysis, include = FALSE}
+```{r potency subanalysis, include = FALSE}
 dat_pot_low <-dat_study %>%
   filter(Potency == "Low")
 
@@ -486,12 +489,12 @@ meta_high_mod2 <- metagen(g,
 ```
 
 **Low potency**
-```{r funnel low pot}
+```{r meta funnel low potency}
 funnel.meta(meta_low_mod1)
 ```
 
 Egger's:
-```{r eggers low pot}
+```{r meta eggers low potency}
 eggers.test(x = meta_low_mod1)
 ```
 
@@ -500,23 +503,23 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 
 
 **High potency**
-```{r funnel high pot}
+```{r meta funnel high potency}
 funnel.meta(meta_high_mod1)
 ```
 
 Egger's:
-```{r eggers high pot}
+```{r meta eggers high potency}
 eggers.test(x = meta_high_mod1)
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
 
-```{r duval high pot, results = 'hide'}
+```{r meta trimfill high potency, results = 'hide'}
 meta_high_mod1_trim <- trimfill.meta(meta_high_mod1)
 meta_high_mod2_trim <- trimfill.meta(meta_high_mod2)
 ```
 
-```{r funnel trim high pot}
+```{r meta funnel trimfill high potency}
 funnel.meta(meta_high_mod1_trim)
 funnel.meta(meta_high_mod2_trim)
 ```
@@ -713,12 +716,12 @@ meta_perc_mod2 <- metagen(g,
 ```
 
 **Attention**
-```{r funnel att}
+```{r meta funnel attention}
 funnel.meta(meta_att_mod1)
 ```
 
 Egger's:
-```{r eggers att}
+```{r meta eggers attention}
 eggers.test(x = meta_att_mod1)
 ```
 
@@ -727,12 +730,12 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 
 
 **Memory**
-```{r funnel mem}
+```{r meta funnel memory}
 funnel.meta(meta_mem_mod1)
 ```
 
 Egger's:
-```{r eggers mem}
+```{r meta eggers memory}
 eggers.test(x = meta_mem_mod1)
 ```
 
@@ -741,12 +744,12 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 
 
 **Executive function**
-```{r funnel exec}
+```{r meta funnel executive}
 funnel.meta(meta_exec_mod1)
 ```
 
 Egger's:
-```{r eggers exec}
+```{r meta eggers executive}
 eggers.test(x = meta_exec_mod1)
 ```
 
@@ -755,23 +758,23 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 
 
 **Psychomotor functioning**
-```{r funnel psych}
+```{r meta funnel psychomotor}
 funnel.meta(meta_psych_mod1)
 ```
 
 Egger's:
-```{r eggers psych}
+```{r meta eggers psychomotor}
 eggers.test(x = meta_psych_mod1)
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
 
-```{r duval psych, results = 'hide'}
+```{r meta trimfill psychomotor, results = 'hide'}
 meta_psych_mod1_trim <- trimfill.meta(meta_psych_mod1)
 meta_psych_mod2_trim <- trimfill.meta(meta_psych_mod2)
 ```
 
-```{r funnel trim psych}
+```{r meta funnel trimfill psychomotor}
 funnel.meta(meta_psych_mod1_trim)
 funnel.meta(meta_psych_mod2_trim)
 ```
@@ -788,12 +791,12 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 
 
 **Concept formation**
-```{r funnel conc}
+```{r meta funnel concept}
 funnel.meta(meta_conc_mod1)
 ```
 
 Egger's:
-```{r eggers conc}
+```{r meta eggers concept}
 eggers.test(x = meta_conc_mod1)
 ```
 
@@ -802,7 +805,7 @@ eggers.test(x = meta_conc_mod1)
 
 
 **Language**
-```{r funnel lang}
+```{r meta funnel language}
 funnel.meta(meta_lang_mod1)
 ```
 
@@ -813,12 +816,12 @@ funnel.meta(meta_lang_mod1)
 
 
 **General**
-```{r funnel gen}
+```{r meta funnel general}
 funnel.meta(meta_gen_mod1)
 ```
 
 Egger's:
-```{r eggers gen}
+```{r meta eggers general}
 eggers.test(x = meta_gen_mod1)
 ```
 
@@ -827,10 +830,134 @@ eggers.test(x = meta_gen_mod1)
 
 
 **Perception**
-```{r funnel perc}
+```{r meta funnel perception}
 funnel.meta(meta_perc_mod1)
 ```
 
 <10 studies so Egger's not done
 
 **FURTHER ACTION - assess visually for outliers**
+
+### Models in metafor
+To contrast with analyses in the `meta` package, we will now also run analyses in the `metafor` package. Upon initial inspection, I noticed the I^2 value was different early in conducting these analyses. I want to ensure we choose the correct package.
+
+Notes from the book: First, the amount of (residual) heterogeneity (i.e., τ2) is estimated with one of the various estimators that have been suggested in the literaturen (e.g. Hunter-Schmidt, Hedges estimator, DerSimonian-Laird estimator, Sidik-Jonkman estimator, maximum-likelihood or restricted maximum-likelihood estimator, empirical Bayes estimator)
+
+#### Step 1: Load the package
+```{r load metafor}
+library(metafor)
+```
+
+#### Step 2: Run the random-effects model
+`metafor` asks for the sampling variance via the `vi` argument. However, we have the standard error (square root of the variances), which can be supplied via the `sei` argument. When specifying the data in this way, we **must** set `measure = "GEN"` (Which is the default).
+
+REML estimator is the default t^2 estimator. The various (residual) heterogeneity measures that can be specified via the `method` argument are the:
+
+* "HS" = Hunter-Schmidt estimator
+* "HE" = Hedges estimator
+* "DL" = DerSimonian-Laird estimator
+* "SJ" = Sidik-Jonkman estimator
+* "ML" = Maximum-likelihood estimator
+* "REML" = Restricted maximum-likelihood estimator
+* "EB" = Empirical Bayes estimator
+
+*Knapp and Hartung adjustment*
+
+By default, the test statistics of the individual coefficients in the model (and the corresponding confidence intervals) are based on the normal distribution, while the omnibus test is based on a χ2 distribution with m degrees of freedom (m being the number of coefficients tested). The Knapp and Hartung (2003) method (`knha = TRUE`) is an adjustment to the standard errors of the estimated coefficients, which helps to account for the uncertainty in the estimate of τ2 and leads to different reference distributions. Individual coefficients and confidence intervals are then based on the t-distribution with k − p degrees of freedom, while the omnibus test statistic then uses an F-distribution with m and k − p degrees of freedom (p being the total number of model coefficients including the intercept if it is present). The Knapp and Hartung adjustment is only meant to be used in the context of random- or mixed-effects model.
+
+**Model 1**
+
+* Use the Sidik-Jonkman method to estimate tau
+* Use the Knapp-Hartung method
+
+```{r metafor whole mod1, fig.width = 4}
+metafor_whole_mod1 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "SJ",
+                          knha = TRUE)
+```
+
+**Model 2**
+
+* Use the DerSimonian-Laird estimator method to estimate tau
+* Not using the Knapp-Hartung method
+
+```{r metafor whole mod2}
+metafor_whole_mod2 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "DL",
+                          knha = FALSE)
+```
+
+**Model 3**
+
+* Use the DerSimonian-Laird estimator method to estimate tau
+* Use the Knapp-Hartung method
+
+```{r metafor whole mod3}
+metafor_whole_mod3 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "DL",
+                          knha = TRUE)
+```
+
+**Model 4**
+
+* Use the Restricted maximum-likelihood estimator method to estimate tau
+* Use the Knapp-Hartung method
+
+```{r metafor whole mod4}
+metafor_whole_mod4 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "REML",
+                          knha = TRUE)
+```
+**meta**
+
+Model | k | SMD | LL | UL | z or t val | p | I^2
+------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+1 | `r meta_all_mod1[["k"]]` |`r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["zval.random"]]` | `r meta_all_mod1[["pval.random"]]` | `r meta_all_mod1[["I2"]]`
+2 | `r meta_all_mod2[["k"]]` | `r meta_all_mod2[["TE.random"]]` | `r meta_all_mod2[["lower.random"]]` | `r meta_all_mod2[["upper.random"]]` | `r meta_all_mod2[["zval.random"]]` | `r meta_all_mod2[["pval.random"]]` | `r meta_all_mod2[["I2"]]`
+3 | `r meta_all_mod3[["k"]]` | `r meta_all_mod3[["TE.random"]]` | `r meta_all_mod3[["lower.random"]]` | `r meta_all_mod3[["upper.random"]]` | `r meta_all_mod3[["zval.random"]]` | `r meta_all_mod3[["pval.random"]]` | `r meta_all_mod3[["I2"]]`
+
+
+
+**metafor**
+
+Model | k | estimate | LL | UL | z or tval | p | I^2
+------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+1 | `r metafor_whole_mod1[["k"]]` | `r metafor_whole_mod1[["b"]]` |  `r metafor_whole_mod1[["ci.lb"]]` | `r metafor_whole_mod1[["ci.ub"]]` | `r metafor_whole_mod1[["zval"]]` | `r metafor_whole_mod1[["pval"]]` | `r metafor_whole_mod1[["I2"]]`
+2 | `r metafor_whole_mod2[["k"]]` | `r metafor_whole_mod2[["b"]]` |  `r metafor_whole_mod2[["ci.lb"]]` | `r metafor_whole_mod2[["ci.ub"]]` | `r metafor_whole_mod2[["zval"]]` | `r metafor_whole_mod2[["pval"]]` | `r metafor_whole_mod2[["I2"]]`
+3 | `r metafor_whole_mod3[["k"]]` | `r metafor_whole_mod3[["b"]]` |  `r metafor_whole_mod3[["ci.lb"]]` | `r metafor_whole_mod3[["ci.ub"]]` | `r metafor_whole_mod3[["zval"]]` | `r metafor_whole_mod3[["pval"]]` | `r metafor_whole_mod3[["I2"]]`
+4 | `r metafor_whole_mod4[["k"]]` | `r metafor_whole_mod4[["b"]]` |  `r metafor_whole_mod4[["ci.lb"]]` | `r metafor_whole_mod4[["ci.ub"]]` | `r metafor_whole_mod4[["zval"]]` | `r metafor_whole_mod4[["pval"]]` | `r metafor_whole_mod4[["I2"]]`
+
+##### Subgroup: Potency
+**Low**
+```{r metafor low potency mod1}
+metafor_lowpot_mod1 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "SJ",
+                          knha = TRUE,
+                          subset = (Potency=="Low"))
+```
+
+#### Step 3: Publication bias
+```{r metafor funnel whole}
+metafor::funnel(metafor_whole_mod1)
+```
+
+regression test (Eggers? but gave different results to one done through meta: Conducting meta-analyses in R with the metafor package)
+```{r metafor regtest whole mod1}
+regtest(metafor_whole_mod1)
+```
+
+Test trim and fill method
+```{r metafor trimfill whole}
+trim <- metafor::trimfill(metafor_whole_mod1, estimator = "R0", side = NULL)
+trim
+```
