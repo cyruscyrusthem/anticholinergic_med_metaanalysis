@@ -9,7 +9,23 @@ output:
 
 ```r
 library(meta)
+```
+
+```
+## Warning: package 'meta' was built under R version 4.0.2
+```
+
+```r
+library(metafor) #As a technical note, with exception of the DerSimonian–Laird and the Paule–Mandel methods the rma.uni function of R package metafor is called internally in the metagen function. Thus, it is a good idea to install R package metafor to make all estimation methods available.
 library(tidyverse)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 4.0.2
+```
+
+```
+## Warning: package 'tibble' was built under R version 4.0.2
 ```
 
 ### Data import
@@ -24,7 +40,7 @@ Assign data to `dat`
 
 ```r
 dat <- Anticholinergic_Medication_R_data %>%
-  filter(include == 1) #%>% #this currently filters out the 2 Stevenson outcomes where px were no longer on medication. This decision does need to be checked, though. 
+  filter(include == 1) #%>% #this currently filters out the 2 Stevenson outcomes where participants were no longer on medication. This decision does need to be checked, though. 
   #filter(quality > 4) # this removes all studies with quality below the median (5)
 ```
 
@@ -48,7 +64,7 @@ dat_study <- dat %>%
 ```
 
 #### Step 2: Run random effects model of all data
-**Model 1**
+**Model 1: meta package**
 
 * Use the Sidik-Jonkman method to estimate tau
 * Use the Knapp-Hartung method
@@ -76,13 +92,18 @@ meta::forest(meta_all_mod1,
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightcols = c("TE", "ci"),
-             rightlabs = c("SMD", "95% CI"),
-             text.random = "Overall effect") #found this here: https://rdrr.io/cran/meta/man/forest.html
+             #rightlabs = c("SMD", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE)#
 ```
 
-![](meta_analysis_files/figure-html/forest mod1-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta forest whole mod1-1.png)<!-- -->
 
-**Model 2**
+```r
+             #pooled.totals = TRUE) #found this here: https://rdrr.io/cran/meta/man/forest.html
+```
+
+**Model 2: meta package**
 
 * Use the DerSimonian-Laird method (default) to estimate tau
 * Not using Knapp-Hartung method
@@ -109,7 +130,7 @@ meta::forest(meta_all_mod2,
              leftcols = "studlab") #found this here: https://rdrr.io/cran/meta/man/forest.html
 ```
 
-**Model 3**
+**Model 3: meta package**
 
 * Use the Restricted Maximum-Likelihood method to estimate tau
 * Not using Knapp-Hartung method
@@ -141,9 +162,9 @@ Compare the models:
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
-1 | 0.0379123 |-0.0322658 | 0.1080904 | 1.087425 | 0.2825141
-2 | 0.0607255 | -0.0067365 | 0.1281875 | 1.7642485 | 0.0776902
-3 | 0.0481821 | -0.0288177 | 0.125182 | 1.2264337 | 0.2200355
+1 | 0.0295426 |-0.0416593 | 0.1007445 | 0.8356785 | 0.4077511
+2 | 0.0478343 | -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517
+3 | 0.0382413 | -0.0395047 | 0.1159873 | 0.964058 | 0.3350169
 
 
 #### Step 3: Run subgroup analyses
@@ -178,15 +199,15 @@ Potency = **low**
 
 Model | k | SMD | LL | UL | p-value | tau^2 | Q
 ------ | ------ | ------ | ------ | ------ | ------| ------ | ------
-1 | 37 | 0.031282 | -0.0447059 | 0.10727 | 0.4092767 | 0.0285213 | 28.3623326
-2 | 37 | 0.0387776 | -0.0354397 | 0.1129949 | 0.3058087 | 0 | 28.3623326
+1 | 36 | 0.0209325 | -0.0562785 | 0.0981435 | 0.5855559 | 0.0288946 | 27.339485
+2 | 36 | 0.0232165 | -0.050756 | 0.097189 | 0.5384621 | 0 | 27.339485
 
 Potency = **high**
 
 Model | k | SMD | LL | UL | p-value | tau^2 | Q
 ------ | ------ | ------ | ------ | ------ | ------| ------ | ------
-1 | 10 | 0.0650287 | -0.147939 | 0.2779964 | 0.5071516 | 0.0314259 | 12.4438199
-2 | 10 | 0.0646321 | -0.1559363 | 0.2852004 | 0.5657522 | 0.0316974 | 12.4438199
+1 | 10 | 0.0645153 | -0.1481803 | 0.2772108 | 0.5098995 | 0.0319191 | 12.5042251
+2 | 10 | 0.0646297 | -0.1550929 | 0.2843523 | 0.5642716 | 0.0318397 | 12.5042251
 
 ##### *Cognitive domain*
 
@@ -243,14 +264,14 @@ domain_subgroup_mod1 <- update.meta(meta_domain_mod1,
 
 Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
-Attention | 38 | 0.0331916 | -0.0461727 | 0.1125559 | 0.4022254
-Psychomotor Functioning | 17 | -0.1135276 | -0.3307731 | 0.1037179 | 0.2843183
-Concept Formation & Reasoning | 13 | 0.1062523 | -0.0569431 | 0.2694477 | 0.1814708
+Attention | 37 | 0.0256551 | -0.0555395 | 0.1068498 | 0.5256995
+Psychomotor Functioning | 17 | -0.1170568 | -0.3365868 | 0.1024733 | 0.2749827
+Concept Formation & Reasoning | 13 | 0.1021407 | -0.060555 | 0.2648364 | 0.1964251
 Perception | 3 | 0.2500101 | -0.900842 | 1.4008621 | 0.4486141
-Memory | 16 | 0.0688595 | -0.0530282 | 0.1907472 | 0.247191
+Memory | 16 | 0.0429447 | -0.0739579 | 0.1598474 | 0.4458151
 Executive Function | 15 | -0.0198762 | -0.2863981 | 0.2466458 | 0.8752055
-General | 14 | 0.0673139 | -0.1844095 | 0.3190373 | 0.5733312
-Language | 6 | 0.0778642 | -0.1204409 | 0.2761693 | 0.359135
+General | 14 | 0.0791189 | -0.174362 | 0.3325999 | 0.5119244
+Language | 6 | 0.082419 | -0.1117334 | 0.2765713 | 0.3249427
 
 
 Code for forest plot (not shown):
@@ -290,14 +311,14 @@ meta::forest(domain_subgroup_mod2,
 
 Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
-Attention | 38 | 0.0487378 | -0.0286072 | 0.1260827 | 0.2168151
-Psychomotor Functioning | 17 | -0.0965445 | -0.2877927 | 0.0947038 | 0.3224607
-Concept Formation & Reasoning | 13 | 0.1438694 | -0.0021101 | 0.2898488 | 0.0534047
+Attention | 37 | 0.0403285 | -0.0377531 | 0.1184102 | 0.3113922
+Psychomotor Functioning | 17 | -0.0996516 | -0.2919519 | 0.0926487 | 0.3097868
+Concept Formation & Reasoning | 13 | 0.1364551 | -0.0098462 | 0.2827565 | 0.0675411
 Perception | 3 | 0.2436719 | -0.2697523 | 0.7570961 | 0.3522666
-Memory | 16 | 0.0884569 | -0.0319845 | 0.2088983 | 0.150016
+Memory | 16 | 0.0393785 | -0.0750444 | 0.1538013 | 0.4999816
 Executive Function | 15 | -0.0036663 | -0.2055026 | 0.1981701 | 0.9715999
-General | 14 | 0.0679172 | -0.1679626 | 0.3037969 | 0.5725261
-Language | 6 | 0.1119348 | -0.0387519 | 0.2626215 | 0.1454141
+General | 14 | 0.0834596 | -0.1449501 | 0.3118694 | 0.4738926
+Language | 6 | 0.1141191 | -0.0311372 | 0.2593755 | 0.123603
 
 
 ### Assess publication bias
@@ -305,7 +326,7 @@ Steps (based on Amit's paper):
 
 1. Visually inspect funnel plots (effect size vs standard error) for bias
 2. **If 10 or more studies**, use Egger's Test to test for small-study effect
-    + If statistically significant asymmetry found (1-sided P<0.1), use Duval and Tweedie's Trima nd Fill method to quantify magnitude of bias
+    + If statistically significant asymmetry found (1-sided P<0.1), use Duval and Tweedie's Trim and Fill method to quantify magnitude of bias
 3. **If <10 studies**, locate outliers in funnel plot and recalculate effect sizes after their removal
 
 To run Egger's, load Egger's function (found [here](https://raw.githubusercontent.com/MathiasHarrer/dmetar/master/R/eggers.test.R))
@@ -320,7 +341,7 @@ HOWEVER, models must be run separately for Trim and Fill.
 funnel.meta(meta_all_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel meta all-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel whole-1.png)<!-- -->
 
 
 ```r
@@ -329,7 +350,7 @@ eggers.test(x = meta_all_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.621      -1.209--0.033 -1.891 0.06503
+## Egger's test     -0.48       -1.068-0.108 -1.477 0.14691
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
@@ -345,20 +366,20 @@ meta_all_mod2_trim <- trimfill.meta(meta_all_mod2)
 funnel.meta(meta_all_mod1_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim full meta-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill whole-1.png)<!-- -->
 
 ```r
 funnel.meta(meta_all_mod2_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim full meta-2.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill whole-2.png)<!-- -->
 
 Results of trim and fill analysis (with 12 studies imputed)
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
-1 | 0.1264678 |0.0447317 | 0.208204 | 3.0971962 | 0.003009
-2 | 0.1269536 | 0.050128 | 0.2037793 | 3.2388227 | 0.0012002
+1 | 0.107134 |0.0246426 | 0.1896254 | 2.6027129 | 0.0118641
+2 | 0.1069706 | 0.0295041 | 0.1844371 | 2.7064397 | 0.0068009
 
 #### Potency
 Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
@@ -371,7 +392,7 @@ Does not seem possible to plot (using funnel plots) the individual parts of the 
 funnel.meta(meta_low_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel low pot-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel low potency-1.png)<!-- -->
 
 Egger's:
 
@@ -380,8 +401,8 @@ eggers.test(x = meta_low_mod1)
 ```
 
 ```
-##              Intercept ConfidenceInterval      t     p
-## Egger's test    -0.237       -1.021-0.547 -0.639 0.527
+##              Intercept ConfidenceInterval      t       p
+## Egger's test     -0.09       -0.874-0.694 -0.253 0.80146
 ```
 
 P>0.1 so nothing further required, no indication of substantial publication bias.
@@ -394,7 +415,7 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 funnel.meta(meta_high_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel high pot-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel high potency-1.png)<!-- -->
 
 Egger's:
 
@@ -404,7 +425,7 @@ eggers.test(x = meta_high_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -1.704       -2.88--0.528 -3.076 0.01521
+## Egger's test    -1.734       -2.91--0.558 -3.136 0.01388
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
@@ -420,20 +441,20 @@ meta_high_mod2_trim <- trimfill.meta(meta_high_mod2)
 funnel.meta(meta_high_mod1_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim high pot-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill high potency-1.png)<!-- -->
 
 ```r
 funnel.meta(meta_high_mod2_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim high pot-2.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill high potency-2.png)<!-- -->
 
 Results of trim and fill analysis (with **XX** studies imputed)
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
-1 | 0.2663537 |0.0069972 | 0.5257102 | 2.2026512 | 0.0448767
-2 | 0.2697652 | 0.0428978 | 0.4966327 | 2.3305683 | 0.0197761
+1 | 0.2650632 |0.0056982 | 0.5244283 | 2.191907 | 0.0457893
+2 | 0.2684451 | 0.0424758 | 0.4944144 | 2.3283814 | 0.0198919
 
 
 
@@ -448,7 +469,7 @@ Again, run subgroup analyses individually first (code not displayed).
 funnel.meta(meta_att_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel att-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel attention-1.png)<!-- -->
 
 Egger's:
 
@@ -458,7 +479,7 @@ eggers.test(x = meta_att_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.364        -1.148-0.42 -0.988 0.32997
+## Egger's test    -0.317       -1.101-0.467 -0.859 0.39594
 ```
 
 P>0.1 so nothing further required, no indication of substantial publication bias
@@ -471,7 +492,7 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 funnel.meta(meta_mem_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel mem-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel memory-1.png)<!-- -->
 
 Egger's:
 
@@ -480,8 +501,8 @@ eggers.test(x = meta_mem_mod1)
 ```
 
 ```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.209       -0.993-0.575 -0.487 0.63406
+##              Intercept ConfidenceInterval     t       p
+## Egger's test     0.146        -0.638-0.93 0.393 0.70029
 ```
 
 P>0.1 so nothing further required, no indication of substantial publication bias
@@ -494,7 +515,7 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 funnel.meta(meta_exec_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel exec-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel executive-1.png)<!-- -->
 
 Egger's:
 
@@ -517,7 +538,7 @@ P>0.1 so nothing further required, no indication of substantial publication bias
 funnel.meta(meta_psych_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel psych-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel psychomotor-1.png)<!-- -->
 
 Egger's:
 
@@ -527,7 +548,7 @@ eggers.test(x = meta_psych_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -3.037      -4.605--1.469 -3.612 0.00256
+## Egger's test    -3.083      -4.651--1.515 -3.654 0.00235
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
@@ -543,20 +564,20 @@ meta_psych_mod2_trim <- trimfill.meta(meta_psych_mod2)
 funnel.meta(meta_psych_mod1_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim psych-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill psychomotor-1.png)<!-- -->
 
 ```r
 funnel.meta(meta_psych_mod2_trim)
 ```
 
-![](meta_analysis_files/figure-html/funnel trim psych-2.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel trimfill psychomotor-2.png)<!-- -->
 
 Results of trim and fill analysis (with **XX** studies imputed)
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
-1 | 0.1146356 |-0.1620447 | 0.391316 | 0.8592577 | 0.3994646
-2 | 0.1146823 | -0.0894536 | 0.3188182 | 1.1010958 | 0.270855
+1 | 0.1146913 |-0.1651765 | 0.394559 | 0.8498842 | 0.404544
+2 | 0.1147141 | -0.0907476 | 0.3201757 | 1.0942938 | 0.2738261
 
 **DECIDE WHETHER TO PRINT THE RESULTS PRE TRIM AND FILL NEXT TO THIS AS WELL**
 
@@ -568,7 +589,7 @@ Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 funnel.meta(meta_conc_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel conc-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel concept-1.png)<!-- -->
 
 Egger's:
 
@@ -578,7 +599,7 @@ eggers.test(x = meta_conc_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -1.465      -2.445--0.485 -2.791 0.01755
+## Egger's test    -1.386      -2.366--0.406 -2.566 0.02626
 ```
 
 **FURTHER ACTION REQUIRED**
@@ -591,7 +612,7 @@ eggers.test(x = meta_conc_mod1)
 funnel.meta(meta_lang_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel lang-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel language-1.png)<!-- -->
 
 <10 studies so Egger's not done
 
@@ -605,7 +626,7 @@ funnel.meta(meta_lang_mod1)
 funnel.meta(meta_gen_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel gen-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel general-1.png)<!-- -->
 
 Egger's:
 
@@ -620,7 +641,7 @@ eggers.test(x = meta_gen_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
-## Egger's test    -3.355      -6.099--0.611 -2.396 0.03376
+## Egger's test    -3.024      -5.572--0.476 -2.346 0.03701
 ```
 
 **FURTHER ACTION REQUIRED**
@@ -633,8 +654,186 @@ eggers.test(x = meta_gen_mod1)
 funnel.meta(meta_perc_mod1)
 ```
 
-![](meta_analysis_files/figure-html/funnel perc-1.png)<!-- -->
+![](meta_analysis_files/figure-html/meta funnel perception-1.png)<!-- -->
 
 <10 studies so Egger's not done
 
 **FURTHER ACTION - assess visually for outliers**
+
+### Models in metafor
+To contrast with analyses in the `meta` package, we will now also run analyses in the `metafor` package. Upon initial inspection, I noticed the I^2 value was different early in conducting these analyses. I want to ensure we choose the correct package.
+
+Notes from the book: First, the amount of (residual) heterogeneity (i.e., τ2) is estimated with one of the various estimators that have been suggested in the literaturen (e.g. Hunter-Schmidt, Hedges estimator, DerSimonian-Laird estimator, Sidik-Jonkman estimator, maximum-likelihood or restricted maximum-likelihood estimator, empirical Bayes estimator)
+
+#### Step 1: Load the package
+
+```r
+library(metafor)
+```
+
+#### Step 2: Run the random-effects model
+`metafor` asks for the sampling variance via the `vi` argument. However, we have the standard error (square root of the variances), which can be supplied via the `sei` argument. When specifying the data in this way, we **must** set `measure = "GEN"` (Which is the default).
+
+REML estimator is the default t^2 estimator. The various (residual) heterogeneity measures that can be specified via the `method` argument are the:
+
+* "HS" = Hunter-Schmidt estimator
+* "HE" = Hedges estimator
+* "DL" = DerSimonian-Laird estimator
+* "SJ" = Sidik-Jonkman estimator
+* "ML" = Maximum-likelihood estimator
+* "REML" = Restricted maximum-likelihood estimator
+* "EB" = Empirical Bayes estimator
+
+*Knapp and Hartung adjustment*
+
+By default, the test statistics of the individual coefficients in the model (and the corresponding confidence intervals) are based on the normal distribution, while the omnibus test is based on a χ2 distribution with m degrees of freedom (m being the number of coefficients tested). The Knapp and Hartung (2003) method (`knha = TRUE`) is an adjustment to the standard errors of the estimated coefficients, which helps to account for the uncertainty in the estimate of τ2 and leads to different reference distributions. Individual coefficients and confidence intervals are then based on the t-distribution with k − p degrees of freedom, while the omnibus test statistic then uses an F-distribution with m and k − p degrees of freedom (p being the total number of model coefficients including the intercept if it is present). The Knapp and Hartung adjustment is only meant to be used in the context of random- or mixed-effects model.
+
+**Model 1**
+
+* Use the Sidik-Jonkman method to estimate tau
+* Use the Knapp-Hartung method
+
+
+```r
+metafor_whole_mod1 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "SJ",
+                          knha = TRUE)
+```
+
+**Model 2**
+
+* Use the DerSimonian-Laird estimator method to estimate tau
+* Not using the Knapp-Hartung method
+
+
+```r
+metafor_whole_mod2 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "DL",
+                          knha = FALSE)
+```
+
+**Model 3**
+
+* Use the DerSimonian-Laird estimator method to estimate tau
+* Use the Knapp-Hartung method
+
+
+```r
+metafor_whole_mod3 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "DL",
+                          knha = TRUE)
+```
+
+**Model 4**
+
+* Use the Restricted maximum-likelihood estimator method to estimate tau
+* Use the Knapp-Hartung method
+
+
+```r
+metafor_whole_mod4 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "REML",
+                          knha = TRUE)
+```
+**meta**
+
+Model | k | SMD | LL | UL | z or t val | p | I^2
+------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+1 | 46 |0.0295426 |-0.0416593 | 0.1007445 | 0.8356785 | 0.4077511 | 0
+2 | 46 | 0.0478343 | -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517 | 0
+3 | 46 | 0.0382413 | -0.0395047 | 0.1159873 | 0.964058 | 0.3350169 | 0
+
+
+
+**metafor**
+
+Model | k | estimate | LL | UL | z or tval | p | I^2
+------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+1 | 46 | 0.0295426 |  -0.0416593 | 0.1007445 | 0.8356785 | 0.4077511 | 34.1571891
+2 | 46 | 0.0478343 |  -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517 | 0
+3 | 46 | 0.0478343 |  -0.0191375 | 0.1148061 | 1.438564 | 0.1571933 | 0
+4 | 46 | 0.0382413 |  -0.0310136 | 0.1074963 | 1.1121515 | 0.2719794 | 14.9845927
+
+##### Subgroup: Potency
+**Low**
+
+```r
+metafor_lowpot_mod1 <- rma(yi = g, 
+                          sei = st_err, 
+                          data = dat_study,
+                          method = "SJ",
+                          knha = TRUE,
+                          subset = (Potency=="Low"))
+```
+
+#### Step 3: Publication bias
+
+```r
+metafor::funnel(metafor_whole_mod1)
+```
+
+![](meta_analysis_files/figure-html/metafor funnel whole-1.png)<!-- -->
+
+regression test (Eggers? but gave different results to one done through meta: Conducting meta-analyses in R with the metafor package)
+
+```r
+regtest(metafor_whole_mod1)
+```
+
+```
+## 
+## Regression Test for Funnel Plot Asymmetry
+## 
+## model:     mixed-effects meta-regression model
+## predictor: standard error
+## 
+## test for funnel plot asymmetry: t = -1.3282, df = 44, p = 0.1910
+```
+
+Test trim and fill method
+
+```r
+trim <- metafor::trimfill(metafor_whole_mod1, estimator = "R0", side = NULL)
+trim
+```
+
+```
+## 
+## Estimated number of missing studies on the right side: 0 (SE = 1.4142)
+## Test of H0: no missing studies on the right side:      p-val = 0.5000
+## 
+## Random-Effects Model (k = 46; tau^2 estimator: SJ)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.0289 (SE = 0.0110)
+## tau (square root of estimated tau^2 value):      0.1700
+## I^2 (total heterogeneity / total variability):   34.16%
+## H^2 (total variability / sampling variability):  1.52
+## 
+## Test for Heterogeneity:
+## Q(df = 45) = 42.2885, p-val = 0.5875
+## 
+## Model Results:
+## 
+## estimate      se    tval    pval    ci.lb   ci.ub 
+##   0.0295  0.0354  0.8357  0.4078  -0.0417  0.1007    
+## 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Results section
+Based on metafor SJ knapp model
+
+**Overall cognition:**
+
+Overall, 46 studies reporting **x** effect sizes were available for analysis. The effect size of the difference between cognition “on” and “off” anticholinergic medication across the 46 studies was null (Hedges’ g = 0.0295426, 95% confidence interval (CI): -0.0416593 to 0.1007445, p = 0.4077511; see Figure X), with (null/low/mod/high) heterogeneity between studies (T2 = X, I2 = X%). The funnel plot did/did not reveal a potential small study effect (Egger’s intercept = X, one-tailed p=X; see Figure X).
+Subgroup analysis:
+Potency. The difference between “on” and “off” medication cognitive performance when considering attention (k=X, g= X, 95%CI: X to X), … , were not significantly different across these domains?
