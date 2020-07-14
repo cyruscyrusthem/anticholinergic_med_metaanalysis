@@ -960,6 +960,7 @@ Test trim and fill method
 ```{r metafor trimfill whole}
 trim <- metafor::trimfill(metafor_whole_mod1, estimator = "R0", side = NULL)
 trim
+
 ```
 
 ### Results section
@@ -970,3 +971,4 @@ Based on metafor SJ knapp model
 Overall, `r metafor_whole_mod1[["k"]]` studies reporting **x** effect sizes were available for analysis. The effect size of the difference between cognition “on” and “off” anticholinergic medication across the `r metafor_whole_mod1[["k"]]` studies was null (Hedges’ g = `r metafor_whole_mod1[["b"]]`, 95% confidence interval (CI): `r metafor_whole_mod1[["ci.lb"]]` to `r metafor_whole_mod1[["ci.ub"]]`, p = `r metafor_whole_mod1[["pval"]]`; see Figure X), with (null/low/mod/high) heterogeneity between studies (T2 = X, I2 = X%). The funnel plot did/did not reveal a potential small study effect (Egger’s intercept = X, one-tailed p=X; see Figure X).
 Subgroup analysis:
 Potency. The difference between “on” and “off” medication cognitive performance when considering attention (k=X, g= X, 95%CI: X to X), … , were not significantly different across these domains?
+

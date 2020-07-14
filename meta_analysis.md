@@ -9,6 +9,7 @@ output:
 
 ```r
 library(meta)
+<<<<<<< HEAD
 ```
 
 ```
@@ -16,6 +17,8 @@ library(meta)
 ```
 
 ```r
+=======
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 library(metafor) #As a technical note, with exception of the DerSimonian–Laird and the Paule–Mandel methods the rma.uni function of R package metafor is called internally in the metagen function. Thus, it is a good idea to install R package metafor to make all estimation methods available.
 library(tidyverse)
 ```
@@ -99,10 +102,13 @@ meta::forest(meta_all_mod1,
 
 ![](meta_analysis_files/figure-html/meta forest whole mod1-1.png)<!-- -->
 
+<<<<<<< HEAD
 ```r
              #pooled.totals = TRUE) #found this here: https://rdrr.io/cran/meta/man/forest.html
 ```
 
+=======
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 **Model 2: meta package**
 
 * Use the DerSimonian-Laird method (default) to estimate tau
@@ -162,9 +168,15 @@ Compare the models:
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
+<<<<<<< HEAD
 1 | 0.0295426 |-0.0416593 | 0.1007445 | 0.8356785 | 0.4077511
 2 | 0.0478343 | -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517
 3 | 0.0382413 | -0.0395047 | 0.1159873 | 0.964058 | 0.3350169
+=======
+1 | 0.0345117 |-0.035378 | 0.1044014 | 0.9939728 | 0.3254361
+2 | 0.051671 | -0.0147278 | 0.1180698 | 1.5252269 | 0.1272025
+3 | 0.0431682 | -0.0329675 | 0.119304 | 1.1112806 | 0.2664476
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 
 #### Step 3: Run subgroup analyses
@@ -199,8 +211,13 @@ Potency = **low**
 
 Model | k | SMD | LL | UL | p-value | tau^2 | Q
 ------ | ------ | ------ | ------ | ------ | ------| ------ | ------
+<<<<<<< HEAD
 1 | 36 | 0.0209325 | -0.0562785 | 0.0981435 | 0.5855559 | 0.0288946 | 27.339485
 2 | 36 | 0.0232165 | -0.050756 | 0.097189 | 0.5384621 | 0 | 27.339485
+=======
+1 | 37 | 0.0271271 | -0.0483943 | 0.1026485 | 0.4710284 | 0.0284255 | 28.0191867
+2 | 37 | 0.028565 | -0.0443065 | 0.1014365 | 0.4423155 | 0 | 28.0191867
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 Potency = **high**
 
@@ -264,7 +281,11 @@ domain_subgroup_mod1 <- update.meta(meta_domain_mod1,
 
 Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
+<<<<<<< HEAD
 Attention | 37 | 0.0256551 | -0.0555395 | 0.1068498 | 0.5256995
+=======
+Attention | 38 | 0.0322832 | -0.0470373 | 0.1116038 | 0.4148524
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 Psychomotor Functioning | 17 | -0.1170568 | -0.3365868 | 0.1024733 | 0.2749827
 Concept Formation & Reasoning | 13 | 0.1021407 | -0.060555 | 0.2648364 | 0.1964251
 Perception | 3 | 0.2500101 | -0.900842 | 1.4008621 | 0.4486141
@@ -311,7 +332,11 @@ meta::forest(domain_subgroup_mod2,
 
 Domain | k | SMD | LL | UL | p
 ---- | ---- | ---- | ---- | ---- | ---- 
+<<<<<<< HEAD
 Attention | 37 | 0.0403285 | -0.0377531 | 0.1184102 | 0.3113922
+=======
+Attention | 38 | 0.0457063 | -0.0310838 | 0.1224964 | 0.2433751
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 Psychomotor Functioning | 17 | -0.0996516 | -0.2919519 | 0.0926487 | 0.3097868
 Concept Formation & Reasoning | 13 | 0.1364551 | -0.0098462 | 0.2827565 | 0.0675411
 Perception | 3 | 0.2436719 | -0.2697523 | 0.7570961 | 0.3522666
@@ -349,8 +374,13 @@ eggers.test(x = meta_all_mod1)
 ```
 
 ```
+<<<<<<< HEAD
 ##              Intercept ConfidenceInterval      t       p
 ## Egger's test     -0.48       -1.068-0.108 -1.477 0.14691
+=======
+##              Intercept ConfidenceInterval      t     p
+## Egger's test    -0.478        -1.066-0.11 -1.476 0.147
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ```
 
 p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
@@ -378,8 +408,13 @@ Results of trim and fill analysis (with 12 studies imputed)
 
 Model | SMD | LL | UL | t (mod1)/z (mod 2) | p-value
 ------ | ------ | ------ | ------ | ------ | ------
+<<<<<<< HEAD
 1 | 0.107134 |0.0246426 | 0.1896254 | 2.6027129 | 0.0118641
 2 | 0.1069706 | 0.0295041 | 0.1844371 | 2.7064397 | 0.0068009
+=======
+1 | 0.1101953 |0.0290584 | 0.1913322 | 2.7206831 | 0.0086631
+2 | 0.1100384 | 0.0339308 | 0.1861461 | 2.8337681 | 0.0046003
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 #### Potency
 Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
@@ -402,7 +437,11 @@ eggers.test(x = meta_low_mod1)
 
 ```
 ##              Intercept ConfidenceInterval      t       p
+<<<<<<< HEAD
 ## Egger's test     -0.09       -0.874-0.694 -0.253 0.80146
+=======
+## Egger's test    -0.084         -0.868-0.7 -0.236 0.81469
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ```
 
 P>0.1 so nothing further required, no indication of substantial publication bias.
@@ -478,8 +517,13 @@ eggers.test(x = meta_att_mod1)
 ```
 
 ```
+<<<<<<< HEAD
 ##              Intercept ConfidenceInterval      t       p
 ## Egger's test    -0.317       -1.101-0.467 -0.859 0.39594
+=======
+##              Intercept ConfidenceInterval      t      p
+## Egger's test    -0.317       -1.101-0.467 -0.866 0.3923
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ```
 
 P>0.1 so nothing further required, no indication of substantial publication bias
@@ -747,9 +791,15 @@ metafor_whole_mod4 <- rma(yi = g,
 
 Model | k | SMD | LL | UL | z or t val | p | I^2
 ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+<<<<<<< HEAD
 1 | 46 |0.0295426 |-0.0416593 | 0.1007445 | 0.8356785 | 0.4077511 | 0
 2 | 46 | 0.0478343 | -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517 | 0
 3 | 46 | 0.0382413 | -0.0395047 | 0.1159873 | 0.964058 | 0.3350169 | 0
+=======
+1 | 47 |0.0345117 |-0.035378 | 0.1044014 | 0.9939728 | 0.3254361 | 0
+2 | 47 | 0.051671 | -0.0147278 | 0.1180698 | 1.5252269 | 0.1272025 | 0
+3 | 47 | 0.0431682 | -0.0329675 | 0.119304 | 1.1112806 | 0.2664476 | 0
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 
 
@@ -757,10 +807,17 @@ Model | k | SMD | LL | UL | z or t val | p | I^2
 
 Model | k | estimate | LL | UL | z or tval | p | I^2
 ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ 
+<<<<<<< HEAD
 1 | 46 | 0.0295426 |  -0.0416593 | 0.1007445 | 0.8356785 | 0.4077511 | 34.1571891
 2 | 46 | 0.0478343 |  -0.0193942 | 0.1150628 | 1.3945497 | 0.1631517 | 0
 3 | 46 | 0.0478343 |  -0.0191375 | 0.1148061 | 1.438564 | 0.1571933 | 0
 4 | 46 | 0.0382413 |  -0.0310136 | 0.1074963 | 1.1121515 | 0.2719794 | 14.9845927
+=======
+1 | 47 | 0.0345117 |  -0.035378 | 0.1044014 | 0.9939728 | 0.3254361 | 33.9942459
+2 | 47 | 0.051671 |  -0.0147278 | 0.1180698 | 1.5252269 | 0.1272025 | 0
+3 | 47 | 0.051671 |  -0.0141052 | 0.1174472 | 1.5812446 | 0.1206745 | 0
+4 | 47 | 0.0431682 |  -0.0247359 | 0.1110724 | 1.2796443 | 0.2070869 | 14.1995619
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 ##### Subgroup: Potency
 **Low**
@@ -774,13 +831,21 @@ metafor_lowpot_mod1 <- rma(yi = g,
                           subset = (Potency=="Low"))
 ```
 
+<<<<<<< HEAD
 #### Step 3: Publication bias
+=======
+##### Publication bias (metafor)
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 ```r
 metafor::funnel(metafor_whole_mod1)
 ```
 
+<<<<<<< HEAD
 ![](meta_analysis_files/figure-html/metafor funnel whole-1.png)<!-- -->
+=======
+![](meta_analysis_files/figure-html/funnel metafor whole-1.png)<!-- -->
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 
 regression test (Eggers? but gave different results to one done through meta: Conducting meta-analyses in R with the metafor package)
 
@@ -795,7 +860,11 @@ regtest(metafor_whole_mod1)
 ## model:     mixed-effects meta-regression model
 ## predictor: standard error
 ## 
+<<<<<<< HEAD
 ## test for funnel plot asymmetry: t = -1.3282, df = 44, p = 0.1910
+=======
+## test for funnel plot asymmetry: t = -1.3705, df = 45, p = 0.1773
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ```
 
 Test trim and fill method
@@ -810,6 +879,7 @@ trim
 ## Estimated number of missing studies on the right side: 0 (SE = 1.4142)
 ## Test of H0: no missing studies on the right side:      p-val = 0.5000
 ## 
+<<<<<<< HEAD
 ## Random-Effects Model (k = 46; tau^2 estimator: SJ)
 ## 
 ## tau^2 (estimated amount of total heterogeneity): 0.0289 (SE = 0.0110)
@@ -819,15 +889,31 @@ trim
 ## 
 ## Test for Heterogeneity:
 ## Q(df = 45) = 42.2885, p-val = 0.5875
+=======
+## Random-Effects Model (k = 47; tau^2 estimator: SJ)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.0286 (SE = 0.0108)
+## tau (square root of estimated tau^2 value):      0.1690
+## I^2 (total heterogeneity / total variability):   33.99%
+## H^2 (total variability / sampling variability):  1.52
+## 
+## Test for Heterogeneity:
+## Q(df = 46) = 42.7985, p-val = 0.6071
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ## 
 ## Model Results:
 ## 
 ## estimate      se    tval    pval    ci.lb   ci.ub 
+<<<<<<< HEAD
 ##   0.0295  0.0354  0.8357  0.4078  -0.0417  0.1007    
+=======
+##   0.0345  0.0347  0.9940  0.3254  -0.0354  0.1044    
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
 ## 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+<<<<<<< HEAD
 
 ### Results section
 Based on metafor SJ knapp model
@@ -837,3 +923,5 @@ Based on metafor SJ knapp model
 Overall, 46 studies reporting **x** effect sizes were available for analysis. The effect size of the difference between cognition “on” and “off” anticholinergic medication across the 46 studies was null (Hedges’ g = 0.0295426, 95% confidence interval (CI): -0.0416593 to 0.1007445, p = 0.4077511; see Figure X), with (null/low/mod/high) heterogeneity between studies (T2 = X, I2 = X%). The funnel plot did/did not reveal a potential small study effect (Egger’s intercept = X, one-tailed p=X; see Figure X).
 Subgroup analysis:
 Potency. The difference between “on” and “off” medication cognitive performance when considering attention (k=X, g= X, 95%CI: X to X), … , were not significantly different across these domains?
+=======
+>>>>>>> ac0d42259459b746b4c6e15f82f0c84e1f30ece1
