@@ -48,7 +48,7 @@ dat_study <- dat %>%
   mutate(g = mean(g, na.rm = T),
           st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study, removing NAs from calculation
   filter(row_number()==1) %>% #make each study only appear on one row
-  select(study, author, year, Potency, g, st_err) #select relevant data for analysis
+  select(study, author, year, potency, g, st_err) #select relevant data for analysis
 ```
 
 ___
@@ -96,7 +96,7 @@ Run sub-analyses by medication potency (low/high) for each model.
 
 ```r
 potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
-                             byvar=Potency, 
+                             byvar=potency, 
                              comb.random = TRUE, 
                              comb.fixed = FALSE)
 ```
@@ -149,7 +149,7 @@ dat_study_domain <- dat %>%
          st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
   filter(row_number()==1) %>% #make each study/domain only appear on one row
   filter(cog_domain_lezak != "Not Subdomain") %>% #remove outcomes based on cognitive composite scores
-  select(study, author, year, Potency, cog_domain_lezak, g, st_err) #select relevant data
+  select(study, author, year, potency, cog_domain_lezak, g, st_err) #select relevant data
 ```
 
 Then, run random effects model by subgroup (cognitive domain):
