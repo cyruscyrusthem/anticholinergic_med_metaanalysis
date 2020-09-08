@@ -13,12 +13,14 @@ library(metafor)
 library(tidyverse)
 ```
 
+___
+
 ### Data import
-Import data (.csv) 
+Import data (.csv) and assign to `dat`
 
 ```r
 library(readr)
-Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Anticholinergic_Medication_R_data.csv")
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/dat_antichol.csv")
 ```
 
 Assign data to `dat`
@@ -27,6 +29,8 @@ Assign data to `dat`
 dat <- Anticholinergic_Medication_R_data %>%
   filter(!is.na(study)) #a blank row keeps being added in the .csv file. This removes it
 ```
+
+____
 
 ### Meta-analysis
 #### Step 1: Average across studies
@@ -47,6 +51,8 @@ dat_study <- dat %>%
   select(study, author, year, Potency, g, st_err) #select relevant data for analysis
 ```
 
+___
+
 #### Step 2: Run random effects model of all data
 
 * Using the Paule-Mandel method
@@ -60,7 +66,6 @@ meta_all_mod1 <- metagen(g,
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
-                    #prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") #calculate SMD
 ```
 
@@ -82,6 +87,7 @@ meta::forest(meta_all_mod1,
 dev.off()
 ```
 
+___
 
 #### Step 3: Run subgroup analyses
 ##### *Potency (low/high)*
@@ -120,6 +126,7 @@ meta::forest(potency_subgroup_mod1,
 dev.off()
 ```
 
+___
 
 ##### *Cognitive domain*
 
@@ -273,6 +280,8 @@ meta::forest(domain_subgroup_group2,
 dev.off()
 ```
 
+____
+
 ##### *Drug class*
 
 Create data set (`dat_study_class`) which has the average effect size by drug class within each study.
@@ -343,6 +352,8 @@ meta::forest(class_subgroup_mod1,
 dev.off()
 ```
 
+_____
+
 ##### *Length of administration*
 
 Create data set (`dat_study_duration`) which has the average effect size by length of administration within each study.
@@ -406,6 +417,8 @@ meta::forest(duration_subgroup_mod1,
 dev.off()
 ```
 
+____
+
 ### Assess publication bias
 Steps:
 
@@ -416,6 +429,8 @@ Steps:
 
 To run Egger's, load Egger's function (found [here](https://raw.githubusercontent.com/MathiasHarrer/dmetar/master/R/eggers.test.R))
 
+
+____
 
 #### Whole meta-analysis
 
@@ -437,6 +452,8 @@ eggers_whole
 ```
 
 p>0.1, so no further action required.
+
+____
 
 #### Potency
 Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
@@ -509,6 +526,8 @@ png(file='figS4_meta_trimfunnel_high_1.png', width = 8, height = 6, units = "in"
 funnel.meta(meta_high_mod1_trim, xlab = "Hedges' g")
 dev.off()
 ```
+
+____
 
 #### Cognitive domains
 Again, run subgroup analyses individually first (code not displayed).
@@ -743,6 +762,7 @@ funnel.meta(meta_perc_sens, xlab = "Hedges' g")
 dev.off()
 ```
 
+____
 
 #### Drug class
 
@@ -841,6 +861,7 @@ funnel.meta(meta_uro_mod1, xlab = "Hedges' g")
 dev.off()
 ```
 
+____
 
 #### Length of administration
 
@@ -906,58 +927,9 @@ funnel.meta(meta_hist_mod1, xlab = "Hedges' g")
 dev.off()
 ```
 
-### **Results section**
-Based on meta PM model.
+____
 
-*Overall cognition*
-
-Overall, 46 studies which reported a cumulative 536 effect sizes, were available for analysis. The pooled effect size of the difference between cognition on- and off-medication across the 46 studies was negligible and non-significant (*g* = 0.0473952, 95% confidence interval (CI): -0.0197967 to 0.1145871, *p* = 0.1668178; see Figure 1), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot  did not reveal significant asymmetry (Egger’s intercept = -0.495, *p* = 0.13657; see Table S1).
-
-*Potency* 
-
-**Low potency.** The pooled effect size across low potency medication outcomes was negligible and statistically non-significant (*k* = 36, *g* = 0.0227174, 95% CI: -0.0512063 to 0.0966412, *p* = 0.5469645; see Figure 2), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = -0.107, *p* = 0.76844; see Table S1).
-
-**High potency.** The pooled effect size across high potency medication outcomes was negligible and statistically non-significant (*k* = 10, *g* = 0.1083688, 95% CI: -0.0803732 to 0.2971107, *p* = 0.2604449; see Figure 2), with low heterogeneity between studies (*tau^2^* = 0.0116812, *I^2^* = 28.0243284%). The funnel plot revealed significant asymmetry, indicating a potential small-study effect (Egger’s intercept = -1.734, *p* = 0.01388; see Table S1). Trim and fill estimation led to an increase in effect size (Table S1).
-
-*Cognitive domains* 
-
-**Attention.** The pooled effect size across attention outcomes was negligible and non-significant (*k* = 37, *g* = 0.0398772, 95% CI: -0.0381468 to 0.1179012, *p* = 0.3164811; see Figure 3), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = -0.322, *p* = 0.39056; see Table S1).
-
-**Psychomotor Functioning.** The pooled effect size across psychomotor functioning outcomes was negligible and non-significant (*k* = 17, *g* = -0.1034579, 95% CI: -0.3016644 to 0.0947485, *p* = 0.3062871; see Figure 3), with moderate heterogeneity between studies (*tau^2^* = 0.1022348, *I^2^* = 63.2378901%). The funnel plot revealed significant asymmetry (Egger’s intercept = -3.083, *p* = 0.00235; see Table S1). Trim and fill estimation led to an increase in effect size and a change in effect direction (Table S1).
-
-**Concept Formation & Reasoning.** The pooled effect size across concept formation and reasoning outcomes was negligible and non-significant (*k* = 13, *g* = 0.1382341, 95% CI: -0.0030341 to 0.2795023, *p* = 0.0551276; see Figure 3), with negligible heterogeneity between studies (*tau^2^* = 0.0068826, *I^2^* = 15.9645404%). The funnel plot revealed significant asymmetry (Egger’s intercept = -1.49, *p* = 0.018; see Table S1). Trim and fill estimation led to an increase in effect size (Table S1).
-
-**Perception.** The pooled effect size across perception outcomes was small and non-significant (*k* = 3, *g* = 0.2456687, 95% CI: -0.2769132 to 0.7682505, *p* = 0.3568469; see Figure 3), with moderate heterogeneity between studies (*tau^2^* = 0.110928, *I^2^* = 50.1845504%). Visual inspection (*k* < 10) of the funnel plot indicated potential small-study effect (see Table S1). A sensitivity analysis was performed removing the outlier (Aman 2008), which resulted in a decrease in effect size (Table S1).
-
-**Memory.** The pooled effect size across memory outcomes was negligible and non-significant (*k* = 16, *g* = 0.0393785, 95% CI: -0.0750444 to 0.1538013, *p* = 0.4999816; see Figure 3), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = 0.146, *p* = 0.70029; see Table S1).
-
-**Executive Function.** The pooled effect size across executive function outcomes was negligible and non-significant (*k* = 15, *g* = -0.0137945, 95% CI: -0.2495899 to 0.2220009, *p* = 0.9087134; see Figure 3), with low heterogeneity between studies (*tau^2^* = 0.1199335, *I^2^* = 48.5043879%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = -1.152, *p* = 0.19745; see Table S1).
-
-**Language.** The pooled effect size across language outcomes was negligible and non-significant (*k* = 6, *g* = 0.1131588, 95% CI: -0.0317128 to 0.2580304, *p* = 0.1257886; see Figure 3), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
-
-**Intelligence.** The pooled effect size across intelligence outcomes was negligible and non-significant (*k* = 14, *g* = 0.0761191, 95% CI: -0.1544082 to 0.3066464, *p* = 0.517521; see Figure 3), with high heterogeneity between studies (*tau^2^* = 0.1341982, *I^2^* = 76.2331004%). The funnel plot revealed significant asymmetry (Egger’s intercept = -3.233, *p* = 0.02725; see Table S1). Trim and fill estimation led to an increase in effect size (Table S1).
-
-*Drug class* 
-
-**Antiepileptic.** The pooled effect size across antiepileptic medications were negligible and non-significant (*k* = 14, *g* = -0.0322294, 95% CI: -0.1612011 to 0.0967422, *p* = 0.6242852; see Figure 4), with negligible heterogeneity between studies (*tau^2^* = 0.0048268, *I^2^* = 9.6687088%). The funnel plot revealed significant asymmetry (Egger’s intercept = -1.924, *p* = 0.01176; see Table S1). Trim and fill estimation led to an decrease in effect size (Table S1).
-
-**Antipsychotic.** The pooled effect size for cognitive outcomes on antipsychotic medications was negligible and non-significant (*k* = 14, *g* = 0.0609384, 95% CI: -0.0531475 to 0.1750244, *p* = 0.2951434; see Figure 4), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = 0.533, *p* = 0.18167; see Table S1).
-
-**Antidepressant.** The pooled effect size for cognitive outcomes on antidepressant medications was small and statistically significant (*k* = 7, *g* = 0.2391687, 95% CI: 0.0582267 to 0.4201107, *p* = 0.0095788; see Figure 4), with negligible heterogeneity between studies (*tau^2^* = 0.0045757, *I^2^* = 13.2206831%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
-
-**Respiratory.** The pooled effect size for cognitive outcomes on respiratory medications was negligible and non-significant (*k* = 5, *g* = 0.0211953, 95% CI: -0.1756152 to 0.2180058, *p* = 0.8328279; see Figure 4), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
-
-**Opioid analgesic.** The pooled effect size for cognitive outcomes on opioid analgesic medications was negligible and non-significant (*k* = 3, *g* = -0.1777412, 95% CI: -0.4704684 to 0.1149861, *p* = 0.2340184; see Figure 4), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
-
-**Urological.** The pooled effect size for cognitive outcomes on urological medications was negligible and non-significant (*k* = 2, *g* = -0.1258015, 95% CI: -0.7415743 to 0.4899713, *p* = 0.6888489; see Figure 4), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
-
-*Length of administration* 
-
-**Current + long-term.** The pooled effect size across cognitive outcomes following long-term medication use (> 1-month) was negligible and non-significant (*k* = 29, *g* = 0.0671079, 95% CI: -0.0296005 to 0.1638163, *p* = 0.1738115; see Figure 5), with low heterogeneity between studies (*tau^2^* = 0.0134227, *I^2^* = 24.168451%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = -0.497, *p* = 0.29685; see Table S1).
-
-**Current + acute.** The pooled effect size across cognitive outcomes following acute medication use (<= 1-month) was negligible and non-significant (*k* = 19, *g* = 0.0372, 95% CI: -0.092257 to 0.1666571, *p* = 0.573296; see Figure 5), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). The funnel plot did not reveal significant asymmetry (Egger’s intercept = 0.268, *p* = 0.56462; see Table S1).
-
-**Historical.** The pooled effect size across cognitive outcomes following historical medication use was negligible and non-significant (*k* = 3, *g* = -0.1777412, 95% CI: -0.4704684 to 0.1149861, *p* = 0.2340184; see Figure 5), with null heterogeneity between studies (*tau^2^* = 0, *I^2^* = 0%). Visual inspection (*k* < 10) of the funnel plot did not indicate a substantial small-study effect (see Table S1).
+### **Results**
 
 **Whole analysis**
 
@@ -966,7 +938,7 @@ k | g | LL | UL | p | tau^2^ | I^2^
 46 |0.0473952 |-0.0197967 | 0.1145871 | 0.1668178 | 0 | 0%
 
 
-**Sub-analysis table: 95% CI in one column
+**Sub-analysis table**
 
 
 Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^
