@@ -72,7 +72,7 @@ meta_all_mod1 <- metagen(g,
 Code for forest plot:
 
 ```r
-png(file='fig1_meta_forest_whole_1.png', width = 8, height = 11, units = "in", res = 300)
+png(file='fig2_meta_forest_whole.png', width = 8, height = 11, units = "in", res = 300)
 meta::forest(meta_all_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -95,7 +95,6 @@ Run sub-analyses by medication potency (low/high) for each model.
 
 
 ```r
-#Model 1
 potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
                              byvar=Potency, 
                              comb.random = TRUE, 
@@ -105,18 +104,15 @@ potency_subgroup_mod1 <- update.meta(meta_all_mod1,
 Code for forest plot:
 
 ```r
-png(file='fig2_meta_forest_potency_2.png', width = 8, height = 11.5, units = "in", res = 300)
+png(file='fig4_meta_forest_potency.png', width = 8, height = 11.5, units = "in", res = 300)
 meta::forest(potency_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
-             #rightcols = c("TE", "ci"),
              rightlabs = c("Hedges' g", "95% CI"),
              text.random = "Overall effect",
-             #weight = FALSE,
              text.overall.random = TRUE,
              overall.hetstat = FALSE,
-             #label.test.effect.subgroup.random = "x",
              print.byvar = F, #this removed "potency =" and just left subgroup label
              smlab = "",
              hetstat = FALSE,
@@ -169,8 +165,6 @@ meta_domain_mod1 <- metagen(g,
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
-                    #hakn = T, #using the Knapp-Hartung method
-                    #prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
 domain_subgroup_mod1 <- update.meta(meta_domain_mod1, 
                                 byvar=cog_domain_lezak, 
@@ -181,14 +175,13 @@ domain_subgroup_mod1 <- update.meta(meta_domain_mod1,
 Code for forest plot:
 
 ```r
-png(file='fig3_meta_forest_cog_1.png', width = 8, height = 31, units = "in", res = 300)
+png(file='fig6_meta_forest_cog.png', width = 8, height = 31, units = "in", res = 300)
 meta::forest(domain_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightlabs = c("Hedges' g", "95% CI"),
              text.random = "Overall effect",
-             #weight = FALSE,
              text.overall.random = TRUE,
              overall.hetstat = FALSE,
              print.byvar = F, #this removed "potency =" and just left subgroup label
@@ -215,8 +208,6 @@ meta_domain_group1 <- metagen(g,
                             comb.fixed = F,
                             comb.random = T,
                             method.tau = "PM", #use Paule-Mandel method
-                            #hakn = T, #using the Knapp-Hartung method
-                            #prediction = T, #True = print prediction interval for future studies based on present evidence
                             sm = "SMD") # says we want to calculate SMD
 domain_subgroup_group1 <- update.meta(meta_domain_group1, 
                                       byvar=cog_domain_lezak, 
@@ -229,8 +220,6 @@ meta_domain_group2 <- metagen(g,
                               comb.fixed = F,
                               comb.random = T,
                               method.tau = "PM", #use Paule-Mandel method
-                              #hakn = T, #using the Knapp-Hartung method
-                              #prediction = T, #True = print prediction interval for future studies based on present evidence
                               sm = "SMD") # says we want to calculate SMD
 domain_subgroup_group2 <- update.meta(meta_domain_group2, 
                                       byvar=cog_domain_lezak, 
@@ -240,14 +229,13 @@ domain_subgroup_group2 <- update.meta(meta_domain_group2,
 
 
 ```r
-png(file='fig3a_meta_forest_cog_1.png', width = 8, height = 18, units = "in", res = 300)
+png(file='fig6a_meta_forest_cog.png', width = 8, height = 18, units = "in", res = 300)
 meta::forest(domain_subgroup_group1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightlabs = c("Hedges' g", "95% CI"),
              text.random = "Overall effect",
-             #weight = FALSE,
              text.overall.random = TRUE,
              overall.hetstat = FALSE,
              print.byvar = F, #this removed "potency =" and just left subgroup label
@@ -261,14 +249,13 @@ dev.off()
 
 
 ```r
-png(file='fig3b_meta_forest_cog_1.png', width = 8, height = 18, units = "in", res = 300)
+png(file='fig6b_meta_forest_cog.png', width = 8, height = 18, units = "in", res = 300)
 meta::forest(domain_subgroup_group2,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
              rightlabs = c("Hedges' g", "95% CI"),
              text.random = "Overall effect",
-             #weight = FALSE,
              text.overall.random = TRUE,
              overall.hetstat = FALSE,
              print.byvar = F, #this removed "potency =" and just left subgroup label
@@ -319,8 +306,6 @@ meta_class_mod1 <- metagen(g,
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
-                    #hakn = T, #using the Knapp-Hartung method
-                    prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
 class_subgroup_mod1 <- update.meta(meta_class_mod1, 
                                 byvar=drug_class, 
@@ -331,18 +316,15 @@ class_subgroup_mod1 <- update.meta(meta_class_mod1,
 Forest plot:
 
 ```r
-png(file='fig4_meta_forest_class_1.png', width = 8, height = 15, units = "in", res = 300)
+png(file='fig3_meta_forest_class.png', width = 8, height = 15, units = "in", res = 300)
 meta::forest(class_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
              leftcols = "studlab",
-             #rightcols = c("TE", "ci"),
              rightlabs = c("Hedges' g", "95% CI"),
              text.random = "Overall effect",
-             #weight = FALSE,
              text.overall.random = TRUE,
              overall.hetstat = FALSE,
-             #label.test.effect.subgroup.random = "x",
              print.byvar = F, #this removed "potency =" and just left subgroup label
              smlab = "",
              hetstat = FALSE,
@@ -387,7 +369,6 @@ meta_duration_mod1 <- metagen(g,
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
-                    #hakn = T, #using the Knapp-Hartung method
                     prediction = T, #True = print prediction interval for future studies based on present evidence
                     sm = "SMD") # says we want to calculate SMD
 duration_subgroup_mod1 <- update.meta(meta_duration_mod1, 
@@ -399,7 +380,7 @@ duration_subgroup_mod1 <- update.meta(meta_duration_mod1,
 Forest plot:
 
 ```r
-png(file='fig4_meta_forest_duration_1.png', width = 8, height = 13, units = "in", res = 300)
+png(file='fig5_meta_forest_duration.png', width = 8, height = 13, units = "in", res = 300)
 meta::forest(duration_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -466,11 +447,6 @@ Does not seem possible to plot (using funnel plots) the individual parts of the 
 png(file='figS2_meta_funnel_low_1.png', width = 8, height = 6, units = "in", res = 300)
 funnel.meta(meta_low_mod1, xlab = "Hedges' g")
 dev.off()
-```
-
-```
-## png 
-##   2
 ```
 
 Egger's:
@@ -929,7 +905,7 @@ dev.off()
 
 ____
 
-### **Results**
+### Results
 
 **Whole analysis**
 
