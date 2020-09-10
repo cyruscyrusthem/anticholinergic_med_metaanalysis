@@ -72,7 +72,7 @@ meta_all_mod1 <- metagen(g,
 Code for forest plot:
 
 ```r
-png(file='fig2_meta_forest_whole.png', width = 8, height = 11, units = "in", res = 300)
+tiff(file='fig2_meta_forest_whole.tiff', width = 7, height = 10.75, units = "in", res = 600, compression = "lzw")
 meta::forest(meta_all_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -104,7 +104,7 @@ potency_subgroup_mod1 <- update.meta(meta_all_mod1,
 Code for forest plot:
 
 ```r
-png(file='fig4_meta_forest_potency.png', width = 8, height = 11.5, units = "in", res = 300)
+tiff(file='fig4_meta_forest_potency.tiff', width = 6, height = 11.2, units = "in", res = 600, compression = "lzw")
 meta::forest(potency_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -175,7 +175,6 @@ domain_subgroup_mod1 <- update.meta(meta_domain_mod1,
 Code for forest plot:
 
 ```r
-png(file='fig6_meta_forest_cog.png', width = 8, height = 31, units = "in", res = 300)
 meta::forest(domain_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -190,7 +189,6 @@ meta::forest(domain_subgroup_mod1,
              test.overall = F,
              overall = F,
              prediction = F)
-dev.off()
 ```
 
 
@@ -229,7 +227,7 @@ domain_subgroup_group2 <- update.meta(meta_domain_group2,
 
 
 ```r
-png(file='fig6a_meta_forest_cog.png', width = 8, height = 18, units = "in", res = 300)
+tiff(file='fig6a_meta_forest_cog.tiff', width = 6, height = 17.25, units = "in", res = 600, compression = "lzw")
 meta::forest(domain_subgroup_group1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -249,7 +247,7 @@ dev.off()
 
 
 ```r
-png(file='fig6b_meta_forest_cog.png', width = 8, height = 18, units = "in", res = 300)
+tiff(file='fig6b_meta_forest_cog.tiff', width = 6, height = 17.25, units = "in", res = 600, compression = "lzw")
 meta::forest(domain_subgroup_group2,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -267,6 +265,17 @@ meta::forest(domain_subgroup_group2,
 dev.off()
 ```
 
+Now, combine the two cognition plots into a single plot:
+
+```r
+library(multipanelfigure)
+figure1 <- multi_panel_figure(width = 12, height = 17.25, unit = "in", columns = 2, rows = 1, row_spacing = 0) %>%
+  fill_panel("fig6a_meta_forest_cog.tiff", column = 1) %>%
+  fill_panel("fig6b_meta_forest_cog.tiff", column = 2)
+tiff(file='fig6_meta_forest_cog.tiff', width = 12, height = 17.25, units = "in", res = 600, compression = "lzw")
+figure1
+dev.off()
+```
 ____
 
 ##### *Drug class*
@@ -316,7 +325,7 @@ class_subgroup_mod1 <- update.meta(meta_class_mod1,
 Forest plot:
 
 ```r
-png(file='fig3_meta_forest_class.png', width = 8, height = 15, units = "in", res = 300)
+tiff(file='fig3_meta_forest_class.tiff', width = 6, height = 14.5, units = "in", res = 600, compression = "lzw")
 meta::forest(class_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
@@ -380,7 +389,7 @@ duration_subgroup_mod1 <- update.meta(meta_duration_mod1,
 Forest plot:
 
 ```r
-png(file='fig5_meta_forest_duration.png', width = 8, height = 13, units = "in", res = 300)
+tiff(file='fig5_meta_forest_duration.tiff', width = 6, height = 13, units = "in", res = 600, compression = "lzw")
 meta::forest(duration_subgroup_mod1,
              sortvar = TE, #sort by effect size
              xlim = c(-1.5, 1.5),
