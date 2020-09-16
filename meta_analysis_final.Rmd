@@ -1,0 +1,1132 @@
+---
+title: "Anticholinergic Meta analysis"
+output: 
+  html_document:
+    keep_md: true
+---
+
+### Load packages
+```{r setup, results = 'hide', message = FALSE, warning =FALSE}
+library(meta)
+library(metafor)
+library(tidyverse)
+```
+
+___
+
+### Data import
+Import data (.csv) and assign to `dat`
+```{r data import, results = 'hide', warning = FALSE, message = FALSE}
+library(readr)
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/dat_antichol.csv")
+```
+
+Assign data to `dat`
+```{r assign dat}
+dat <- Anticholinergic_Medication_R_data %>%
+  filter(!is.na(study)) #a blank row keeps being added in the .csv file. This removes it
+```
+
+____
+
+### Meta-analysis
+#### Step 1: Average across studies
+This step is necessary to ensure independence of each effect size entered into the meta-analysis. In the current form, most studies report multiple outcomes (time-points, medication, cognitive tests), and these results are dependent on each other, as they come from they come from the same, or overlapping samples of participants. 
+
+Data are averaged **within studies** so that each study represents a single effect size.
+In all cases of studies which included outcomes for different medications, all medications were either low or high potency, so outcomes were able to be averaged together (within the study).
+
+Averaged results are assigned to `dat_study`
+
+```{r study average}
+dat_study <- dat %>%
+  group_by(study) %>% #group by study so further calculations are done within each study
+  mutate(g = mean(g, na.rm = T),
+          st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study, removing NAs from calculation
+  filter(row_number()==1) %>% #make each study only appear on one row
+  select(study, author, year, potency, g, st_err) #select relevant data for analysis
+```
+
+___
+
+#### Step 2: Run random effects model of all data
+
+* Using the Paule-Mandel method
+
+```{r meta whole mod1, results = 'hide'}
+meta_all_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_study,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM", #use Paule-Mandel method
+                    sm = "SMD") #calculate SMD
+```
+
+Code for forest plot:
+```{r meta forest whole mod1, fig.width=8, fig.height=12, results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig2_meta_forest_whole.tiff', width = 7, height = 10.75, units = "in", res = 600, compression = "lzw")
+meta::forest(meta_all_mod1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI", "Weight"),
+             text.random = "Overall effect",
+             overall = TRUE,
+             smlab = "",
+             weight = FALSE,
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE)
+dev.off()
+```
+
+___
+
+#### Step 3: Run subgroup analyses
+##### *Potency (low/high)*
+Run sub-analyses by medication potency (low/high) for each model.
+
+```{r meta potency subanalysis}
+potency_subgroup_mod1 <- update.meta(meta_all_mod1, 
+                             byvar=potency, 
+                             comb.random = TRUE, 
+                             comb.fixed = FALSE)
+```
+
+Code for forest plot:
+```{r meta forest potency mod1, fig.width = 8, fig.height = 13, results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig4_meta_forest_potency.tiff', width = 6, height = 11.2, units = "in", res = 600, compression = "lzw")
+meta::forest(potency_subgroup_mod1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             overall = F,
+             prediction = F)
+dev.off()
+```
+
+___
+
+##### *Cognitive domain*
+
+Create data set (`dat_study_domain`) which has the average effect size by cognitive domain within each study.
+
+Cognitive domains were defined using domains outlined by Lezak (2012): 
+
+* Memory
+* Executive function
+* Attention
+* Psychomotor functioning
+* Concept formation & reasoning
+* Language
+* Intelligence
+* Perception
+
+Effect sizes based on cognitive composite scores (reported in 3 studies: Stevenson, Robles, Operto) were not included in the cognitive domain sub analysis. 
+
+```{r domain average}
+dat_study_domain <- dat %>%
+  group_by(study, cog_domain_lezak) %>% #group by study and cognitive domains (based on Lezak) within studies
+  mutate(g = mean(g, na.rm = T),
+         st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
+  filter(row_number()==1) %>% #make each study/domain only appear on one row
+  filter(cog_domain_lezak != "Not Subdomain") %>% #remove outcomes based on cognitive composite scores
+  select(study, author, year, potency, cog_domain_lezak, g, st_err) #select relevant data
+```
+
+Then, run random effects model by subgroup (cognitive domain):
+
+* Use the Paule-Mandel method to estimate tau
+
+```{r meta domain mod1, results = 'hide'}
+meta_domain_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_study_domain,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM", #use Paule-Mandel method
+                    sm = "SMD") # says we want to calculate SMD
+domain_subgroup_mod1 <- update.meta(meta_domain_mod1, 
+                                byvar=cog_domain_lezak, 
+                                comb.random = TRUE, 
+                                comb.fixed = FALSE)
+```
+
+Code for forest plot:
+```{r meta forest domain mod1, fig.width = 8, fig.height = 33, fig.show = 'hide', results = 'hide', warning = FALSE, message = FALSE}
+meta::forest(domain_subgroup_mod1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             overall = F,
+             prediction = F)
+```
+
+```{r meta forest domain 2 plots}
+#individual cog plots
+dat_study_domain_group1 <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Attention" | cog_domain_lezak =="Psychomotor Functioning" | cog_domain_lezak =="Concept Formation & Reasoning" | cog_domain_lezak =="Perception")
+dat_study_domain_group2 <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Memory" | cog_domain_lezak =="Executive Function" | cog_domain_lezak =="Intelligence" | cog_domain_lezak =="Language")
+
+meta_domain_group1 <- metagen(g,
+                            st_err,
+                            data = dat_study_domain_group1,
+                            studlab = paste(author, year),
+                            comb.fixed = F,
+                            comb.random = T,
+                            method.tau = "PM", #use Paule-Mandel method
+                            sm = "SMD") # says we want to calculate SMD
+domain_subgroup_group1 <- update.meta(meta_domain_group1, 
+                                      byvar=cog_domain_lezak, 
+                                      comb.random = TRUE, 
+                                      comb.fixed = FALSE)
+meta_domain_group2 <- metagen(g,
+                              st_err,
+                              data = dat_study_domain_group2,
+                              studlab = paste(author, year),
+                              comb.fixed = F,
+                              comb.random = T,
+                              method.tau = "PM", #use Paule-Mandel method
+                              sm = "SMD") # says we want to calculate SMD
+domain_subgroup_group2 <- update.meta(meta_domain_group2, 
+                                      byvar=cog_domain_lezak, 
+                                      comb.random = TRUE, 
+                                      comb.fixed = FALSE)
+```
+
+```{r meta forest domain group1, fig.width = 8, fig.height = 18, fig.show = 'hide', results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig6a_meta_forest_cog.tiff', width = 6, height = 17.25, units = "in", res = 600, compression = "lzw")
+meta::forest(domain_subgroup_group1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             overall = F,
+             prediction = F)
+dev.off()
+```
+
+```{r meta forest domain group2, fig.width = 8, fig.height = 18, fig.show = 'hide', results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig6b_meta_forest_cog.tiff', width = 6, height = 17.25, units = "in", res = 600, compression = "lzw")
+meta::forest(domain_subgroup_group2,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             overall = F,
+             prediction = F)
+dev.off()
+```
+
+Now, combine the two cognition plots into a single plot:
+```{r meta forest domain combine, fig.show = 'hide', results = 'hide', warning = FALSE, message = FALSE}
+library(multipanelfigure)
+figure1 <- multi_panel_figure(width = 12, height = 17.25, unit = "in", columns = 2, rows = 1, row_spacing = 0) %>%
+  fill_panel("fig6a_meta_forest_cog.tiff", column = 1) %>%
+  fill_panel("fig6b_meta_forest_cog.tiff", column = 2)
+tiff(file='fig6_meta_forest_cog.tiff', width = 12, height = 17.25, units = "in", res = 600, compression = "lzw")
+figure1
+dev.off()
+```
+____
+
+##### *Drug class*
+
+Create data set (`dat_study_class`) which has the average effect size by drug class within each study.
+
+Drug class was defined by ATC group into:
+
+* Urological
+* Opioid analgesic
+* Antiepileptic
+* Antiparkinson
+* Antipsychotic
+* Antidepressant
+* Respiratory
+
+```{r class average}
+dat_study_class <- dat %>%
+  group_by(study, drug_class) %>% #group by study and drug class within studies
+  mutate(g = mean(g, na.rm = T),
+         st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
+  filter(row_number()==1) %>% #make each study/domain only appear on one row
+  select(study, author, year, drug_class, g, st_err) #select relevant data
+```
+
+Then, run random effects model by subgroup (drug class):
+
+* Use the Paule-Mandel method to estimate tau
+
+```{r meta class mod1, results = 'hide'}
+meta_class_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_study_class,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM", #use Paule-Mandel method
+                    sm = "SMD") # says we want to calculate SMD
+class_subgroup_mod1 <- update.meta(meta_class_mod1, 
+                                byvar=drug_class, 
+                                comb.random = TRUE, 
+                                comb.fixed = FALSE)
+```
+
+Forest plot:
+```{r meta forest class mod1, fig.width = 8, fig.height = 14, results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig3_meta_forest_class.tiff', width = 6, height = 14.5, units = "in", res = 600, compression = "lzw")
+meta::forest(class_subgroup_mod1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             overall = F,
+             prediction = F)
+dev.off()
+```
+
+_____
+
+##### *Length of administration*
+
+Create data set (`dat_study_duration`) which has the average effect size by length of administration within each study.
+
+Length of administration was categorised as 3 groups:
+
+* Current administration <=1 month (Acute)
+* Current administration >1 month (Long-term)
+* Historical administration (Historical)
+
+```{r duration average}
+dat_study_duration <- dat %>%
+  group_by(study, duration) %>% #group by study and drug class within studies
+  mutate(g = mean(g, na.rm = T),
+         st_err = mean(st_err, na.rm = T)) %>% #obtain average g and st err within each study/domain
+  filter(row_number()==1) %>% #make each study/domain only appear on one row
+  select(study, author, year, duration, g, st_err) #select relevant data
+```
+
+Then, run random effects model by subgroup (duration):
+
+* Use the Paule-Mandel method to estimate tau
+
+```{r meta duration mod1, results = 'hide'}
+meta_duration_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_study_duration,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM", #use Paule-Mandel method
+                    prediction = T, #True = print prediction interval for future studies based on present evidence
+                    sm = "SMD") # says we want to calculate SMD
+duration_subgroup_mod1 <- update.meta(meta_duration_mod1, 
+                                byvar=duration, 
+                                comb.random = TRUE, 
+                                comb.fixed = FALSE)
+```
+
+Forest plot:
+```{r meta forest duration mod1, fig.width = 8, fig.height = 13, results = 'hide', warning = FALSE, message = FALSE}
+tiff(file='fig5_meta_forest_duration.tiff', width = 6, height = 13, units = "in", res = 600, compression = "lzw")
+meta::forest(duration_subgroup_mod1,
+             sortvar = TE, #sort by effect size
+             xlim = c(-1.5, 1.5),
+             leftcols = "studlab",
+             rightlabs = c("Hedges' g", "95% CI"),
+             text.random = "Overall effect",
+             text.overall.random = TRUE,
+             overall.hetstat = FALSE,
+             print.byvar = F, #this removed "potency =" and just left subgroup label
+             smlab = "",
+             hetstat = FALSE,
+             test.overall = F,
+             prediction = F,
+             overall = F)
+dev.off()
+```
+
+____
+
+### Assess publication bias
+Steps:
+
+1. Visually inspect funnel plots (effect size vs standard error) for bias
+2. **If 10 or more studies**, use Egger's Test to test for small-study effect
+    + If statistically significant asymmetry found (1-sided P<0.1), use Duval and Tweedie's Trim and Fill method to quantify magnitude of bias
+3. **If <10 studies**, locate outliers in funnel plot and recalculate effect sizes after their removal
+
+To run Egger's, load Egger's function (found [here](https://raw.githubusercontent.com/MathiasHarrer/dmetar/master/R/eggers.test.R))
+```{r eggers, include = FALSE}
+#' Perform Egger's test of the intercept
+#'
+#' This function performs Egger's test of the intercept for funnel plot asymmetry using an object
+#' of class \code{meta}.
+#'
+#' @usage eggers.test(x)
+#'
+#' @param x An object of class \code{meta}, generated by the \code{metabin}, \code{metagen},
+#' \code{metacont}, \code{metacor}, \code{metainc}, or \code{metaprop} function.
+#'
+#' @details Performs Egger's test (Egger et al., 1997) for funnel plot asymmetry.
+#' The \code{\link[meta]{metabias}} function is called internally. Egger's test may lack
+#' the statistical power to detect bias when the number of studies is small. Sterne et al.
+#' (2011) recommend to perform funnel plot asymmetry tests only when \eqn{k \geq 10}. A warning
+#' is therefore printed when the number of studies in the \code{meta} object is \eqn{k < 10}.
+#'
+#' @references
+#'
+#' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html}{Chapter 9.1}
+#'
+#' Egger M, Smith GD, Schneider M & Minder C (1997), Bias in meta-analysis detected by a simple,
+#' graphical test. \emph{BMJ}, 315, 629–634.
+#'
+#' Sterne, JAC et al. (2011), Recommendations for Examining and Interpreting Funnel Plot
+#' Asymmetry in Meta-Analyses of Randomised Controlled Trials. \emph{BMJ}
+#' 343, 1, doi: 10.1136/bmj.d4002 .
+#'
+#' @author Mathias Harrer & David Daniel Ebert
+#'
+#' @importFrom meta metabias
+#' @importFrom graphics abline axis lines mtext par plot points rect segments text
+#' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
+#'
+#' @return Returns a data.frame containing the following columns:
+#' \itemize{
+#' \item \code{Intercept}: The intercept (bias).
+#' \item \code{ConfidenceInterval}: The 95\% confidence interval of the intercept.
+#' \item \code{t}: The t-statistic for the intercept test.
+#' \item \code{p}: The \eqn{p}-value for Egger's test.
+#' }
+#'
+#' @export eggers.test
+#'
+#' @seealso \code{\link[meta]{metabias}}
+#'
+#' @examples
+#' # Create meta-analysis results using the 'metagen' function
+#' suppressPackageStartupMessages(library(meta))
+#' data(ThirdWave)
+#' m = metagen(TE, seTE, studlab = paste(Author),
+#'     data = ThirdWave, comb.random = FALSE, hakn=TRUE)
+#'
+#' # Plug result into 'eggers.test' function
+#' eggers.test(m)
+
+
+eggers.test = function(x) {
+
+    # Validate
+    x = x
+
+    if (x$k < 10) {
+
+        warning(paste("Your meta-analysis contains k =", x$k, "studies. Egger's test may lack the statistical power to detect bias when the number of studies is small (i.e., k<10)."))
+
+    }
+
+    if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop")) {
+
+        # Conduct metabias
+        eggers = meta::metabias(x, k.min = 3, method = "linreg")
+
+        # Get Intercept
+        intercept = as.numeric(eggers$estimate[1]) %>% round(digits = 3)
+
+        # Get SE
+        se = as.numeric(eggers$estimate[2])
+
+        # Calculate 95CI
+        LLCI = intercept - 1.96 * se %>% round(digits = 1)
+        ULCI = intercept + 1.96 * se %>% round(digits = 1)
+        CI = paste(LLCI, "-", ULCI, sep = "")
+
+        # Get t
+        t = as.numeric(eggers$statistic) %>% round(digits = 3)
+
+        # Get df
+        df = as.numeric(eggers$parameters)
+
+        # Get p
+        p = as.numeric(eggers$p.value) %>% round(digits = 5)
+
+        # Make df
+        df = data.frame(Intercept = intercept, ConfidenceInterval = CI, t = t, p = p)
+        row.names(df) = "Egger's test"
+
+    } else {
+
+        stop("x must be of type 'metabin', 'metagen', 'metacont', 'metainc' or 'metaprop'")
+
+    }
+
+    return(df)
+
+}
+
+
+```
+
+____
+
+#### Whole meta-analysis
+```{r meta funnel whole, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS1_meta_funnel_whole_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_all_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+```{r meta eggers whole}
+eggers_whole <- eggers.test(x = meta_all_mod1)
+eggers_whole
+```
+
+p>0.1, so no further action required.
+
+____
+
+#### Potency
+Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
+
+```{r potency subanalysis, include = FALSE}
+dat_pot_low <-dat_study %>%
+  filter(potency == "Low")
+
+meta_low_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_pot_low,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+dat_pot_high <-dat_study %>%
+  filter(potency == "High")
+
+meta_high_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_pot_high,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+```
+
+**Low potency**
+```{r meta funnel low potency, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS2_meta_funnel_low_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_low_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers low potency}
+eggers.test(x = meta_low_mod1)
+eggers_meta_low_mod1 <- eggers.test(x = meta_low_mod1)
+```
+
+P>0.1 so nothing further required, no indication of substantial publication bias.
+
+**High potency**
+```{r meta funnel high potency, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS3_meta_funnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_high_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers high potency}
+eggers.test(x = meta_high_mod1)
+eggers_meta_high_mod1 <- eggers.test(x = meta_high_mod1)
+```
+
+p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
+
+```{r meta trimfill high potency, results = 'hide'}
+meta_high_mod1_trim <- trimfill.meta(meta_high_mod1)
+```
+
+```{r meta funnel trimfill high potency, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS4_meta_trimfunnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_high_mod1_trim, xlab = "Hedges' g")
+dev.off()
+```
+
+____
+
+#### Cognitive domains
+Again, run subgroup analyses individually first (code not displayed).
+
+```{r domain subanalysis, include=FALSE}
+#attention
+dat_dom_att <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Attention")
+meta_att_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_att,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#memory
+dat_dom_mem <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Memory")
+meta_mem_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_mem,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#executive function
+dat_dom_exec <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Executive Function")
+meta_exec_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_exec,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#psychomotor functioning
+dat_dom_psych <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Psychomotor Functioning")
+meta_psych_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_psych,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#Concept formation & reasoning
+dat_dom_conc <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Concept Formation & Reasoning")
+meta_conc_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_conc,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#Language
+dat_dom_lang <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Language")
+meta_lang_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_lang,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#Intelligence (General)
+dat_dom_gen <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Intelligence")
+meta_gen_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_gen,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+#Perception
+dat_dom_perc <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Perception")
+meta_perc_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_perc,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    prediction = T, 
+                    sm = "SMD")
+
+```
+
+**Attention**
+```{r meta funnel attention, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS5_meta_funnel_att_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_att_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers attention}
+eggers.test(x = meta_att_mod1)
+eggers_att <- eggers.test(x = meta_att_mod1)
+```
+
+P>0.1 so nothing further required, no indication of substantial publication bias
+
+**Memory**
+```{r meta funnel memory, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS12_meta_funnel_mem_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_mem_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers memory}
+eggers.test(x = meta_mem_mod1)
+eggers_mem <- eggers.test(x = meta_mem_mod1)
+```
+
+P>0.1 so nothing further required, no indication of substantial publication bias
+
+**Executive function**
+```{r meta funnel executive, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS13_meta_funnel_exec_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_exec_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers executive}
+eggers.test(x = meta_exec_mod1)
+eggers_exec <- eggers.test(x = meta_exec_mod1)
+```
+
+P>0.1 so nothing further required, no indication of substantial publication bias
+
+**Psychomotor functioning**
+```{r meta funnel psychomotor, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS6_meta_funnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_psych_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers psychomotor}
+eggers.test(x = meta_psych_mod1)
+eggers_psych <- eggers.test(x = meta_psych_mod1)
+```
+
+p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
+
+```{r meta trimfill psychomotor, results = 'hide'}
+meta_psych_mod1_trim <- trimfill.meta(meta_psych_mod1)
+```
+
+```{r meta funnel trimfill psychomotor, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS7_meta_trimfunnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_psych_mod1_trim, xlab = "Hedges' g")
+dev.off()
+```
+
+**Concept formation**
+```{r meta funnel concept, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS8_meta_funnel_conc_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_conc_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers concept}
+eggers.test(x = meta_conc_mod1)
+eggers_conc <- eggers.test(x = meta_conc_mod1)
+```
+
+p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
+
+```{r meta trimfill conc, results = 'hide', warning = FALSE, message = FALSE}
+meta_conc_mod1_trim <- trimfill.meta(meta_conc_mod1)
+
+png(file='figS9_meta_trimfunnel_conc_2.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_conc_mod1_trim, xlab = "Hedges' g")
+dev.off()
+```
+
+**Language**
+```{r meta funnel language, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS14_meta_funnel_lang_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_lang_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+<10 studies so Egger's not done. Inspected visually for outliers, didn't seem to be any indication of substantial outliers.
+
+**Intelligence**
+```{r meta funnel general, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS15_meta_funnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_gen_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers general, warning = FALSE, message = FALSE}
+eggers.test(x = meta_gen_mod1)
+eggers_gen <- eggers.test(x = meta_gen_mod1)
+```
+
+p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
+
+```{r meta trimfill gen, results = 'hide', warning = FALSE, message = FALSE}
+meta_gen_mod1_trim <- trimfill.meta(meta_gen_mod1)
+
+png(file='figS16_meta_trimfunnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_gen_mod1_trim, xlab = "Hedges' g")
+dev.off()
+```
+
+**Perception**
+```{r meta funnel perception, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS10_meta_funnel_perc_2.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_perc_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+k<10 so visual inspection for outliers undertaken. Outlier (Aman) identified. Sensitivity analysis conducted with outlier removed:
+
+```{r remove outlier}
+dat_dom_perc_sens <- dat_study_domain %>%
+  filter(cog_domain_lezak == "Perception") %>%
+  filter(author != "Aman")
+```
+
+```{r meta perception sensitivity}
+meta_perc_sens <- metagen(g,
+                    st_err,
+                    data = dat_dom_perc_sens,
+                    studlab = paste(study),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    #hakn = T,
+                    prediction = T, 
+                    sm = "SMD")
+```
+
+```{r meta funnel perception sensitivity, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS11_meta_funnel_perc_sens_2.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_perc_sens, xlab = "Hedges' g")
+dev.off()
+```
+
+____
+
+#### Drug class
+
+Again, run subgroup analyses individually first (code not displayed).
+
+```{r class subanalysis, include=FALSE}
+#antiepileptic
+dat_dom_antiepi <- dat_study_class %>%
+  filter(drug_class == "Antiepileptic")
+meta_antiepi_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_antiepi,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#antipsychotic
+dat_dom_antipsych <- dat_study_class %>%
+  filter(drug_class == "Antipsychotic")
+meta_antipsych_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_antipsych,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#antidepressant
+dat_dom_antidep <- dat_study_class %>%
+  filter(drug_class == "Antidepressant")
+meta_antidep_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_antidep,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#respiratory
+dat_dom_resp <- dat_study_class %>%
+  filter(drug_class == "Respiratory")
+meta_resp_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_resp,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#opioid analgesic
+dat_dom_opi <- dat_study_class %>%
+  filter(drug_class == "Opioid analgesic")
+meta_opi_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_opi,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#Urological
+dat_dom_uro <- dat_study_class %>%
+  filter(drug_class == "Urological")
+meta_uro_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_uro,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+```
+
+**Antiepileptic**
+```{r meta funnel Antiepileptic, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS17_meta_funnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_antiepi_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers Antiepileptic}
+eggers.test(x = meta_antiepi_mod1)
+eggers_antiepi <- eggers.test(x = meta_antiepi_mod1)
+```
+
+p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
+
+```{r meta trimfill Antiepileptic, results = 'hide', warning = FALSE, message = FALSE}
+meta_antiepi_mod1_trim <- trimfill.meta(meta_antiepi_mod1)
+
+png(file='figS18_meta_trimfunnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_antiepi_mod1_trim, xlab = "Hedges' g")
+dev.off()
+```
+
+**Antipsychotic**
+```{r meta funnel Antipsychotic, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS19_meta_funnel_antipsych_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_antipsych_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers Antipsychotic}
+eggers.test(x = meta_antipsych_mod1)
+eggers_antipsych <- eggers.test(x = meta_antipsych_mod1)
+```
+
+p>0.1, nothing further required.
+
+**Antidepressant**
+```{r meta funnel Antidepressant, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS20_meta_funnel_antidep_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_antidep_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+**Respiratory**
+```{r meta funnel Respiratory, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS21_meta_funnel_resp_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_resp_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+**Opioid analgesic**
+```{r meta funnel Opioid analgesic, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS22_meta_funnel_opi_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_opi_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+**Urological**
+```{r meta funnel Urological, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS22_meta_funnel_uro_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_uro_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+____
+
+#### Length of administration
+
+Again, run subgroup analyses individually first (code not displayed).
+
+```{r duration subanalysis, include=FALSE}
+#long-term
+dat_dom_long <- dat_study_duration %>%
+  filter(duration == "Current + long-term")
+meta_long_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_long,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#acute
+dat_dom_acute <- dat_study_duration %>%
+  filter(duration == "Current + acute")
+meta_acute_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_acute,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+
+#historical
+dat_dom_hist <- dat_study_duration %>%
+  filter(duration == "Historical")
+meta_hist_mod1 <- metagen(g,
+                    st_err,
+                    data = dat_dom_hist,
+                    studlab = paste(author, year),
+                    comb.fixed = F,
+                    comb.random = T,
+                    method.tau = "PM",
+                    sm = "SMD")
+```
+
+**Long-term**
+```{r meta funnel Long-term, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS23_meta_funnel_long_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_long_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers Long-term}
+eggers.test(x = meta_long_mod1)
+eggers_long <- eggers.test(x = meta_long_mod1)
+```
+
+p>0.1, nothing further required.
+
+**Acute**
+```{r meta funnel Acute, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS24_meta_funnel_acute_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_acute_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+Egger's:
+```{r meta eggers Acute}
+eggers.test(x = meta_acute_mod1)
+eggers_acute <- eggers.test(x = meta_acute_mod1)
+```
+
+p>0.1, nothing further required.
+
+**Historical**
+```{r meta funnel Historical, results = 'hide', warning = FALSE, message = FALSE}
+png(file='figS25_meta_funnel_hist_1.png', width = 8, height = 6, units = "in", res = 300)
+funnel.meta(meta_hist_mod1, xlab = "Hedges' g")
+dev.off()
+```
+
+____
+
+### Results
+
+**Whole analysis**
+
+k | g | LL | UL | p | tau^2^ | I^2^
+---- | ---- | ---- | ---- | ---- | ---- | ----
+`r meta_all_mod1[["k"]]` |`r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["pval.random"]]` | `r meta_all_mod1[["tau2"]]` | `r meta_all_mod1[["I2"]]*100`%
+
+
+**Sub-analysis table**
+
+
+Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^
+---- | ---- | ---- | ---- | ---- | ---- | ---- 
+`r class_subgroup_mod1[["bylevs"]][[1]]` | `r class_subgroup_mod1[["k.w"]][[1]]` | `r class_subgroup_mod1[["TE.random.w"]][[1]]` | `r class_subgroup_mod1[["lower.random.w"]][[1]]` - `r class_subgroup_mod1[["upper.random.w"]][[1]]` | `r class_subgroup_mod1[["pval.random.w"]][[1]]` | `r class_subgroup_mod1[["tau2.w"]][[1]]` | `r class_subgroup_mod1[["I2.w"]][[1]]*100`
+`r class_subgroup_mod1[["bylevs"]][[2]]` | `r class_subgroup_mod1[["k.w"]][[2]]` | `r class_subgroup_mod1[["TE.random.w"]][[2]]` | `r class_subgroup_mod1[["lower.random.w"]][[2]]` - `r class_subgroup_mod1[["upper.random.w"]][[2]]` | `r class_subgroup_mod1[["pval.random.w"]][[2]]` | `r class_subgroup_mod1[["tau2.w"]][[2]]` | `r class_subgroup_mod1[["I2.w"]][[2]]*100`
+`r class_subgroup_mod1[["bylevs"]][[3]]` | `r class_subgroup_mod1[["k.w"]][[3]]` | `r class_subgroup_mod1[["TE.random.w"]][[3]]` | `r class_subgroup_mod1[["lower.random.w"]][[3]]` - `r class_subgroup_mod1[["upper.random.w"]][[3]]` | `r class_subgroup_mod1[["pval.random.w"]][[3]]` | `r class_subgroup_mod1[["tau2.w"]][[3]]` | `r class_subgroup_mod1[["I2.w"]][[3]]*100`
+`r class_subgroup_mod1[["bylevs"]][[4]]` | `r class_subgroup_mod1[["k.w"]][[4]]` | `r class_subgroup_mod1[["TE.random.w"]][[4]]` | `r class_subgroup_mod1[["lower.random.w"]][[4]]` - `r class_subgroup_mod1[["upper.random.w"]][[4]]` | `r class_subgroup_mod1[["pval.random.w"]][[4]]` | `r class_subgroup_mod1[["tau2.w"]][[4]]` | `r class_subgroup_mod1[["I2.w"]][[4]]*100`
+`r class_subgroup_mod1[["bylevs"]][[5]]` | `r class_subgroup_mod1[["k.w"]][[5]]` | `r class_subgroup_mod1[["TE.random.w"]][[5]]` | `r class_subgroup_mod1[["lower.random.w"]][[5]]` - `r class_subgroup_mod1[["upper.random.w"]][[5]]` | `r class_subgroup_mod1[["pval.random.w"]][[5]]` | `r class_subgroup_mod1[["tau2.w"]][[5]]` | `r class_subgroup_mod1[["I2.w"]][[5]]*100`
+`r class_subgroup_mod1[["bylevs"]][[6]]` | `r class_subgroup_mod1[["k.w"]][[6]]` | `r class_subgroup_mod1[["TE.random.w"]][[6]]` | `r class_subgroup_mod1[["lower.random.w"]][[6]]` - `r class_subgroup_mod1[["upper.random.w"]][[6]]` | `r class_subgroup_mod1[["pval.random.w"]][[6]]` | `r class_subgroup_mod1[["tau2.w"]][[6]]` | `r class_subgroup_mod1[["I2.w"]][[6]]*100`
+`r class_subgroup_mod1[["bylevs"]][[7]]` | `r class_subgroup_mod1[["k.w"]][[7]]` | `r class_subgroup_mod1[["TE.random.w"]][[7]]` | `r class_subgroup_mod1[["lower.random.w"]][[7]]` - `r class_subgroup_mod1[["upper.random.w"]][[7]]` | `r class_subgroup_mod1[["pval.random.w"]][[7]]` | `r class_subgroup_mod1[["tau2.w"]][[7]]` | `r class_subgroup_mod1[["I2.w"]][[7]]*100`
+`r potency_subgroup_mod1[["bylevs"]][[1]]` | `r potency_subgroup_mod1[["k.w"]][[1]]` | `r potency_subgroup_mod1[["TE.random.w"]][[1]]` | `r potency_subgroup_mod1[["lower.random.w"]][[1]]` - `r potency_subgroup_mod1[["upper.random.w"]][[1]]` | `r potency_subgroup_mod1[["pval.random.w"]][[1]]` | `r potency_subgroup_mod1[["tau2.w"]][[1]]` | `r potency_subgroup_mod1[["I2.w"]][[1]]*100`
+`r potency_subgroup_mod1[["bylevs"]][[2]]` | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` - `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["I2.w"]][[2]]*100`
+`r duration_subgroup_mod1[["bylevs"]][[1]]` | `r duration_subgroup_mod1[["k.w"]][[1]]` | `r duration_subgroup_mod1[["TE.random.w"]][[1]]` | `r duration_subgroup_mod1[["lower.random.w"]][[1]]` - `r duration_subgroup_mod1[["upper.random.w"]][[1]]` | `r duration_subgroup_mod1[["pval.random.w"]][[1]]` | `r duration_subgroup_mod1[["tau2.w"]][[1]]` | `r duration_subgroup_mod1[["I2.w"]][[1]]*100`
+`r duration_subgroup_mod1[["bylevs"]][[2]]` | `r duration_subgroup_mod1[["k.w"]][[2]]` | `r duration_subgroup_mod1[["TE.random.w"]][[2]]` | `r duration_subgroup_mod1[["lower.random.w"]][[2]]` - `r duration_subgroup_mod1[["upper.random.w"]][[2]]` | `r duration_subgroup_mod1[["pval.random.w"]][[2]]` | `r duration_subgroup_mod1[["tau2.w"]][[2]]` | `r duration_subgroup_mod1[["I2.w"]][[2]]*100`
+`r duration_subgroup_mod1[["bylevs"]][[3]]` | `r duration_subgroup_mod1[["k.w"]][[3]]` | `r duration_subgroup_mod1[["TE.random.w"]][[3]]` | `r duration_subgroup_mod1[["lower.random.w"]][[3]]` - `r duration_subgroup_mod1[["upper.random.w"]][[3]]` | `r duration_subgroup_mod1[["pval.random.w"]][[3]]` | `r duration_subgroup_mod1[["tau2.w"]][[3]]` | `r duration_subgroup_mod1[["I2.w"]][[3]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[1]]` | `r domain_subgroup_mod1[["k.w"]][[1]]` | `r domain_subgroup_mod1[["TE.random.w"]][[1]]` | `r domain_subgroup_mod1[["lower.random.w"]][[1]]` - `r domain_subgroup_mod1[["upper.random.w"]][[1]]` | `r domain_subgroup_mod1[["pval.random.w"]][[1]]` | `r domain_subgroup_mod1[["tau2.w"]][[1]]` | `r domain_subgroup_mod1[["I2.w"]][[1]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[2]]` | `r domain_subgroup_mod1[["k.w"]][[2]]` | `r domain_subgroup_mod1[["TE.random.w"]][[2]]` | `r domain_subgroup_mod1[["lower.random.w"]][[2]]` - `r domain_subgroup_mod1[["upper.random.w"]][[2]]` | `r domain_subgroup_mod1[["pval.random.w"]][[2]]` | `r domain_subgroup_mod1[["tau2.w"]][[2]]` | `r domain_subgroup_mod1[["I2.w"]][[2]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[3]]` | `r domain_subgroup_mod1[["k.w"]][[3]]` | `r domain_subgroup_mod1[["TE.random.w"]][[3]]` | `r domain_subgroup_mod1[["lower.random.w"]][[3]]` - `r domain_subgroup_mod1[["upper.random.w"]][[3]]` | `r domain_subgroup_mod1[["pval.random.w"]][[3]]` | `r domain_subgroup_mod1[["tau2.w"]][[3]]` | `r domain_subgroup_mod1[["I2.w"]][[3]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[4]]` | `r domain_subgroup_mod1[["k.w"]][[4]]` | `r domain_subgroup_mod1[["TE.random.w"]][[4]]` | `r domain_subgroup_mod1[["lower.random.w"]][[4]]` - `r domain_subgroup_mod1[["upper.random.w"]][[4]]` | `r domain_subgroup_mod1[["pval.random.w"]][[4]]` | `r domain_subgroup_mod1[["tau2.w"]][[4]]` | `r domain_subgroup_mod1[["I2.w"]][[4]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[5]]` | `r domain_subgroup_mod1[["k.w"]][[5]]` | `r domain_subgroup_mod1[["TE.random.w"]][[5]]` | `r domain_subgroup_mod1[["lower.random.w"]][[5]]` - `r domain_subgroup_mod1[["upper.random.w"]][[5]]` | `r domain_subgroup_mod1[["pval.random.w"]][[5]]` | `r domain_subgroup_mod1[["tau2.w"]][[5]]` | `r domain_subgroup_mod1[["I2.w"]][[5]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[6]]` | `r domain_subgroup_mod1[["k.w"]][[6]]` | `r domain_subgroup_mod1[["TE.random.w"]][[6]]` | `r domain_subgroup_mod1[["lower.random.w"]][[6]]` - `r domain_subgroup_mod1[["upper.random.w"]][[6]]` | `r domain_subgroup_mod1[["pval.random.w"]][[6]]` | `r domain_subgroup_mod1[["tau2.w"]][[6]]` | `r domain_subgroup_mod1[["I2.w"]][[6]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[7]]` | `r domain_subgroup_mod1[["k.w"]][[7]]` | `r domain_subgroup_mod1[["TE.random.w"]][[7]]` | `r domain_subgroup_mod1[["lower.random.w"]][[7]]` - `r domain_subgroup_mod1[["upper.random.w"]][[7]]` | `r domain_subgroup_mod1[["pval.random.w"]][[7]]` | `r domain_subgroup_mod1[["tau2.w"]][[7]]` | `r domain_subgroup_mod1[["I2.w"]][[7]]*100`
+`r domain_subgroup_mod1[["bylevs"]][[8]]` | `r domain_subgroup_mod1[["k.w"]][[8]]` | `r domain_subgroup_mod1[["TE.random.w"]][[8]]` | `r domain_subgroup_mod1[["lower.random.w"]][[8]]` - `r domain_subgroup_mod1[["upper.random.w"]][[8]]` | `r domain_subgroup_mod1[["pval.random.w"]][[8]]` | `r domain_subgroup_mod1[["tau2.w"]][[8]]` | `r domain_subgroup_mod1[["I2.w"]][[8]]*100`
