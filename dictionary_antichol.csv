@@ -1,0 +1,18 @@
+Column Name,Description
+effectsizeID,Unique identifier (number) for each individual effect size
+study,"Study identifier, including first author, year and Covidence ID"
+author,First author
+year,Year of publication
+study_id,Unique identifier (number) for each individual paper
+comparison_id,Unique identifier (number) for each individual effect size within each paper
+comparison,Group comparison the effect size refers to (e.g. Drug vs Placebo)
+drug_class,Drug class (defined according to WHO Anatomical Therapeutic Chemical code)
+duration,"Duration of exposure to drug, categorised as (1) current and long-term (> 1-month), (2) current and acute (? 1-month) and (3) historical administration"
+potency,"Potency (low or high) categorised according to CE Durán, M Azermai and RH Vander Stichele (2013)"
+outcome,Cognitive test effect size refers to
+test_direction,"Direction of cognitive test (i.e., positive indicates higher scores = better cognition; negative indicates higher scores = worse cognition)"
+cog_domain_lezak,"Domain of cognitive test, categorised according to MD Lezak, DB Howieson, DW Loring and JS Fischer (2004)"
+data_format,Classifies data as from independent (between) or paired (within) groups
+g,Hedges g (effect size)
+st_err,Standard error
+quality,Quality assessment rating (possible scores: 0-8)

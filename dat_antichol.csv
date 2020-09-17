@@ -1,0 +1,539 @@
+effectsizeID,study,author,year,study_id,comparison_id,comparison,drug_class,duration,potency,outcome,test_direction,cog_domain_lezak,data_format,g,st_err,quality
+1,Aldenkamp 93_2193,Aldenkamp,1993,1,1,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Binary Choice Reaction: No. Correct,Positive,Attention,Paired,0.284193563,0.327642273,4
+2,Aldenkamp 93_2193,Aldenkamp,1993,1,2,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Binary Choice Reaction: Reaction Time,Negative,Attention,Paired,-0.449358506,0.330200237,4
+3,Aldenkamp 93_2193,Aldenkamp,1993,1,3,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Finger Tapping: Tapping Rate (dom. hand),Positive,Psychomotor Functioning,Paired,-0.684273163,0.335754226,4
+4,Aldenkamp 93_2193,Aldenkamp,1993,1,4,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Finger Tapping: Tapping Rate (nondom. hand),Positive,Psychomotor Functioning,Paired,-0.262858632,0.327394803,4
+5,Aldenkamp 93_2193,Aldenkamp,1993,1,5,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Serial Presentation: Figures,Positive,Attention,Paired,-0.578020981,0.33296862,4
+6,Aldenkamp 93_2193,Aldenkamp,1993,1,6,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Serial Presentation: Words,Positive,Attention,Paired,-0.543536171,0.332160993,4
+7,Aldenkamp 93_2193,Aldenkamp,1993,1,7,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Simple Motor Reaction (aud. dom. hand),Negative,Attention,Paired,-0.345259096,0.328455961,4
+8,Aldenkamp 93_2193,Aldenkamp,1993,1,8,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Simple Motor Reaction (vis. dom. hand),Negative,Attention,Paired,-0.347285993,0.328485638,4
+9,Aldenkamp 93_2193,Aldenkamp,1993,1,9,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Simultaneous Presentation: Figures,Positive,Attention,Paired,-0.56433659,0.332642427,4
+10,Aldenkamp 93_2193,Aldenkamp,1993,1,10,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Simultaneous Presentation: Words Correct,Positive,Attention,Paired,-0.518544973,0.331605605,4
+11,Aldenkamp 93_2193,Aldenkamp,1993,1,11,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Visual Searching Task: Errors,Negative,Attention,Paired,-0.121984204,0.32624282,4
+12,Aldenkamp 93_2193,Aldenkamp,1993,1,12,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Visual Searching Task: Time (sec),Negative,Attention,Paired,-0.587684303,0.333203473,4
+13,Aman 08_2484,Aman,2008,2,1,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Analogue Classroom Task: Number Correct,Positive,Concept Formation & Reasoning,Independent,-0.303538187,0.319977212,6
+14,Aman 08_2484,Aman,2008,2,2,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Analogue Classroom Task: Number Correct,Positive,Concept Formation & Reasoning,Independent,-0.43359945,0.321942392,6
+15,Aman 08_2484,Aman,2008,2,3,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of) Commission,Negative,Perception,Independent,1.273016677,0.349994881,6
+16,Aman 08_2484,Aman,2008,2,4,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of) Commission,Negative,Perception,Independent,0.556869359,0.32442783,6
+17,Aman 08_2484,Aman,2008,2,5,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: Correct Detections,Positive,Perception,Independent,1.050514897,0.485211008,6
+18,Aman 08_2484,Aman,2008,2,6,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: Correct Detections,Positive,Perception,Independent,0.691377284,0.467939223,6
+19,Aman 08_2484,Aman,2008,2,7,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of)  Omission,Negative,Perception,Independent,0.871957888,0.333432444,6
+20,Aman 08_2484,Aman,2008,2,8,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task:  (errors of) Omission,Negative,Perception,Independent,0.616362418,0.325840186,6
+21,Aman 08_2484,Aman,2008,2,9,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Dot Test: Difference,Negative,Attention,Independent,0.513327947,0.323481509,6
+22,Aman 08_2484,Aman,2008,2,10,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Dot Test: Difference,Negative,Attention,Independent,-0.054488388,0.318138608,6
+23,Aman 08_2484,Aman,2008,2,11,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands drops,Negative,Psychomotor Functioning,Independent,0.100866887,0.318287572,6
+24,Aman 08_2484,Aman,2008,2,12,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands drops,Negative,Psychomotor Functioning,Independent,-0.275303517,0.319641004,6
+25,Aman 08_2484,Aman,2008,2,13,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands inserts,Positive,Psychomotor Functioning,Independent,0.359136417,0.320733846,6
+26,Aman 08_2484,Aman,2008,2,14,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands inserts,Positive,Psychomotor Functioning,Independent,0.4228097,0.321753507,6
+27,Aman 08_2484,Aman,2008,2,15,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Delayed Recall,Positive,Memory,Independent,-0.246337463,0.490168811,6
+28,Aman 08_2484,Aman,2008,2,16,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Delayed Recall,Positive,Memory,Independent,0.876214847,0.512212271,6
+29,Aman 08_2484,Aman,2008,2,17,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Immediate Recall,Positive,Attention,Independent,0.312317291,0.439929769,6
+30,Aman 08_2484,Aman,2008,2,18,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Immediate Recall,Positive,Attention,Independent,0.183769851,0.438114064,6
+31,Aman 08_2484,Aman,2008,2,19,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Recognition,Positive,Memory,Independent,1.217675994,0.561398645,6
+32,Aman 08_2484,Aman,2008,2,20,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Recognition,Positive,Memory,Independent,0.513203263,0.523949614,6
+33,Aman 09_2819,Aman,2009,3,1,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: (errors of) Commission,Negative,Attention,Paired,0.331728298,0.259234447,7
+34,Aman 09_2819,Aman,2009,3,2,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: (errors of) Omission,Negative,Attention,Paired,-4.53E-02,0.251685333,7
+35,Aman 09_2819,Aman,2009,3,3,Risperidone v Placebo,Antipsychotic,Current + acute,Low,GHT: Error Time,Negative,Psychomotor Functioning,Paired,0.336253911,0.25171646,7
+36,Aman 09_2819,Aman,2009,3,4,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Graduated Holes Task (GHT): Contacts,Negative,Psychomotor Functioning,Paired,0.523575275,0.262164049,7
+37,Aman 09_2819,Aman,2009,3,5,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Match-to-Sample (MTS) Task: Accuracy,Positive,Attention,Paired,1.56E-02,0.244131895,7
+38,Aman 09_2819,Aman,2009,3,6,Risperidone v Placebo,Antipsychotic,Current + acute,Low,MTS: Longest Delay,Positive,Attention,Paired,-0.123783031,0.245159189,7
+39,Aman 09_2819,Aman,2009,3,7,Risperidone v Placebo,Antipsychotic,Current + acute,Low,MTS: Mean Delay,Positive,Attention,Paired,2.18E-02,0.244147858,7
+40,Aman 09_2819,Aman,2009,3,8,Risperidone v Placebo,Antipsychotic,Current + acute,Low,STRM: Accuracy,Positive,Attention,Paired,1.29E-02,0.251551734,7
+41,Barrickman 91_3276,Barrickman,1991,4,1,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,CPT: (errors of) Commission,Negative,Attention,Paired,-0.382316474,0.228307417,3
+42,Barrickman 91_3276,Barrickman,1991,4,2,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,CPT: (errors of) Omission,Negative,Attention,Paired,0.380119253,0.228210849,3
+43,Barrickman 91_3276,Barrickman,1991,4,3,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,MFF: Errors,Negative,Executive Function,Paired,0.17797491,0.221610831,3
+44,Barrickman 91_3276,Barrickman,1991,4,4,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,WISC-R: IQ,Positive,Intelligence,Paired,0.722885746,0.249057193,3
+45,Beers 05_2414,Beers,2005,5,1,Amantadine v Control,Antiparkinson,Current + long-term,Low,Controlled Oral Word Association Test (COWAT),Positive,Executive Function,Independent,0.841147756,0.582832648,3
+46,Beers 05_2414,Beers,2005,5,2,Amantadine v Control,Antiparkinson,Current + long-term,Low,N-Back 1,Positive,Attention,Independent,-0.619612165,0.572055369,3
+47,Beers 05_2414,Beers,2005,5,3,Amantadine v Control,Antiparkinson,Current + long-term,Low,N-Back 2,Positive,Attention,Independent,-0.688446157,0.575074238,3
+48,Beers 05_2414,Beers,2005,5,4,Amantadine v Control,Antiparkinson,Current + long-term,Low,Stroop Color/Word T-score,Positive,Attention,Independent,6.95E-02,0.559166484,3
+49,Beers 05_2414,Beers,2005,5,5,Amantadine v Control,Antiparkinson,Current + long-term,Low,TOL-1: # sec,Negative,Executive Function,Independent,-0.222153822,0.56069545,3
+50,Beers 05_2414,Beers,2005,5,6,Amantadine v Control,Antiparkinson,Current + long-term,Low,TOL-2: # moves,Negative,Executive Function,Independent,1.005108577,0.592736645,3
+51,Beers 05_2414,Beers,2005,5,7,Amantadine v Control,Antiparkinson,Current + long-term,Low,TOL-2: # sec,Negative,Executive Function,Independent,1.672246552,0.648101377,3
+52,Beers 05_2414,Beers,2005,5,8,Amantadine v Control,Antiparkinson,Current + long-term,Low,TOL-3: # moves,Negative,Executive Function,Independent,-0.405554412,0.564630108,3
+53,Beers 05_2414,Beers,2005,5,9,Amantadine v Control,Antiparkinson,Current + long-term,Low,TOL-3: # sec,Negative,Executive Function,Independent,-7.42E-02,0.55918966,3
+54,Beers 05_2414,Beers,2005,5,10,Amantadine v Control,Antiparkinson,Current + long-term,Low,Tower of London (TOL)-1: # moves,Negative,Executive Function,Independent,-0.533385602,0.568703382,3
+55,Beers 05_2414,Beers,2005,5,11,Amantadine v Control,Antiparkinson,Current + long-term,Low,Trail Making Test: Trails A sec,Negative,Attention,Independent,0.695635893,0.575406914,3
+56,Beers 05_2414,Beers,2005,5,12,Amantadine v Control,Antiparkinson,Current + long-term,Low,Trail Making Test: Trails B sec,Negative,Attention,Independent,0.31958347,0.562502832,3
+57,Beers 05_2414,Beers,2005,5,13,Amantadine v Control,Antiparkinson,Current + long-term,Low,WCST: # categories,Positive,Concept Formation & Reasoning,Independent,-0.417000802,0.564950693,3
+58,Beers 05_2414,Beers,2005,5,14,Amantadine v Control,Antiparkinson,Current + long-term,Low,WCST: # errors,Negative,Concept Formation & Reasoning,Independent,-0.081528776,0.55922882,3
+59,Beers 05_2414,Beers,2005,5,15,Amantadine v Control,Antiparkinson,Current + long-term,Low,WCST: % Perseverative Errors,Negative,Concept Formation & Reasoning,Independent,-0.440282286,0.565629678,3
+60,Beers 05_2414,Beers,2005,5,16,Amantadine v Control,Antiparkinson,Current + long-term,Low,WCST: Failure to Maintain Set,Negative,Concept Formation & Reasoning,Independent,-0.161488443,0.559896634,3
+61,Beers 05_2414,Beers,2005,5,17,Amantadine v Control,Antiparkinson,Current + long-term,Low,WISC-III: Mazes Subscale,Negative,Executive Function,Independent,-0.296073411,0.562007775,3
+62,Bender 04_2974,Bender,2004,6,1,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Commissions,Negative,Attention,Independent,0.280134747,0.311523523,6
+63,Bender 04_2974,Bender,2004,6,2,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Detectability,Positive,Attention,Independent,-0.393796205,0.313056553,6
+64,Bender 04_2974,Bender,2004,6,3,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Hit Reaction Time,Negative,Attention,Independent,-1.17E-02,0.309947847,6
+65,Bender 04_2974,Bender,2004,6,4,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Hit Reaction Time Block,Negative,Attention,Independent,-0.251649985,0.31121947,6
+66,Bender 04_2974,Bender,2004,6,5,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Hit Reaction Time Interstimulus Interval Change,Negative,Attention,Independent,-4.05E-02,0.309978156,6
+67,Bender 04_2974,Bender,2004,6,6,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Omissions,Negative,Attention,Independent,-0.302437802,0.311784092,6
+68,Bender 04_2974,Bender,2004,6,7,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Perseverations,Negative,Attention,Independent,-0.209869885,0.310831995,6
+69,Bender 04_2974,Bender,2004,6,8,Loratadine vs Placebo,Respiratory,Current + acute,Low,CPT: Variability,Negative,Attention,Independent,-0.073472132,0.310053929,6
+70,Bender 04_2974,Bender,2004,6,9,Loratadine vs Placebo,Respiratory,Current + acute,Low,CVLT: Delayed Recall,Positive,Memory,Independent,0.178306374,0.310585538,6
+71,Bender 04_2974,Bender,2004,6,10,Loratadine vs Placebo,Respiratory,Current + acute,Low,CVLT: Total,Positive,Memory,Independent,0.289121711,0.311626145,6
+72,Bender 91_2708,Bender,1991,7,1,Theophylline v Control,Respiratory,Current + acute,Low,CPT: Commissions (errors),Negative,Attention,Independent,0.074801722,0.271208466,2
+73,Bender 91_2708,Bender,1991,7,2,Theophylline v Control,Respiratory,Current + acute,Low,CPT: Commissions (errors),Negative,Attention,Independent,-0.107641503,0.271296117,2
+74,Bender 91_2708,Bender,1991,7,3,Theophylline v Control,Respiratory,Current + long-term,Low,CPT: Commissions (errors),Negative,Attention,Independent,0.257244947,0.272093409,2
+75,Bender 91_2708,Bender,1991,7,4,Theophylline v Control,Respiratory,Current + long-term,Low,CPT: Commissions (errors),Negative,Attention,Independent,0.239000625,0.271961337,2
+76,Bender 91_2708,Bender,1991,7,5,Theophylline v Control,Respiratory,Current + acute,Low,CPT: Omissions (errors),Negative,Attention,Independent,0.513976092,0.274965859,2
+77,Bender 91_2708,Bender,1991,7,6,Theophylline v Control,Respiratory,Current + acute,Low,CPT: Omissions (errors),Negative,Attention,Independent,-0.031467924,0.271141078,2
+78,Bender 91_2708,Bender,1991,7,7,Theophylline v Control,Respiratory,Current + long-term,Low,CPT: Omissions (errors),Negative,Attention,Independent,1.048930801,0.286778336,2
+79,Bender 91_2708,Bender,1991,7,8,Theophylline v Control,Respiratory,Current + long-term,Low,CPT: Omissions (errors),Negative,Attention,Independent,0.608379865,0.276490748,2
+80,Carlson 92_2185,Carlson,1992,8,1,Lithium v Placebo,Antipsychotic,Current + acute,Low,CPT: Commissions,Negative,Attention,Paired,0.270547121,0.503009269,4
+81,Carlson 92_2185,Carlson,1992,8,2,Lithium v Placebo,Antipsychotic,Current + long-term,Low,CPT: Commissions,Negative,Attention,Paired,-8.07E-02,0.500636335,4
+82,Carlson 92_2185,Carlson,1992,8,3,Lithium v Placebo,Antipsychotic,Current + acute,Low,CPT: Omissions,Negative,Attention,Paired,0.369547882,0.505253931,4
+83,Carlson 92_2185,Carlson,1992,8,4,Lithium v Placebo,Antipsychotic,Current + long-term,Low,CPT: Omissions,Negative,Attention,Paired,0.266638768,0.502934729,4
+84,Carlson 92_2185,Carlson,1992,8,5,Lithium v Placebo,Antipsychotic,Current + acute,Low,MFFT: Errors,Negative,Executive Function,Paired,0.247726067,0.502589208,4
+85,Carlson 92_2185,Carlson,1992,8,6,Lithium v Placebo,Antipsychotic,Current + long-term,Low,MFFT: Errors,Negative,Executive Function,Paired,0.553448174,0.511217811,4
+86,Carlson 92_2185,Carlson,1992,8,7,Lithium v Placebo,Antipsychotic,Current + acute,Low,Paired Associate Learning Paradigm (PAL): Correct per min,Positive,Memory,Paired,-0.876045094,0.527079973,4
+87,Carlson 92_2185,Carlson,1992,8,8,Lithium v Placebo,Antipsychotic,Current + long-term,Low,Paired Associate Learning Paradigm (PAL): Correct per min,Positive,Memory,Paired,0.558914507,0.511430164,4
+88,Carlson 92_2185,Carlson,1992,8,9,Lithium v Placebo,Antipsychotic,Current + acute,Low,Paired Associate Learning Paradigm (PAL): Errors per min,Negative,Memory,Paired,-0.74893617,0.52003512,4
+89,Carlson 92_2185,Carlson,1992,8,10,Lithium v Placebo,Antipsychotic,Current + long-term,Low,Paired Associate Learning Paradigm (PAL): Errors per min,Negative,Memory,Paired,0.508541212,0.509549223,4
+90,Chen 01_2781,Chen,2001,9,1,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,WISC-R: FSIQ,Positive,Intelligence,Paired,9.87E-02,0.278575078,5
+91,Chen 01_2781,Chen,2001,9,2,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,WISC-R: FSIQ,Positive,Intelligence,Paired,-0.125316707,0.278682059,5
+92,de Graaf 11_185,de Graaf,2011,10,1,Morphine v Placebo,Opioid analgesic,Historical,Low,Beery VMI: VMI,Positive,Psychomotor Functioning,Independent,-0.341421996,0.212367313,7
+93,de Graaf 11_185,de Graaf,2011,10,2,Morphine v Placebo,Opioid analgesic,Historical,Low,RAKIT: IQ,Positive,Intelligence,Independent,-0.417035595,0.213124529,7
+94,de Graaf 13_1235,de Graaf,2013,11,1,Morphine v Placebo,Opioid analgesic,Historical,Low,Beery-Buktenica: VMI,Positive,Psychomotor Functioning,Independent,-0.247557003,0.223847614,5
+95,de Graaf 13_1235,de Graaf,2013,11,2,Morphine v Placebo,Opioid analgesic,Historical,Low,CNTAB: reaction Time (RTI-1),Negative,Attention,Independent,-0.264858552,0.234569198,5
+96,de Graaf 13_1235,de Graaf,2013,11,3,Morphine v Placebo,Opioid analgesic,Historical,Low,CNTAB: reaction Time (RTI-5),Negative,Attention,Independent,-0.106374014,0.233696673,5
+97,de Graaf 13_1235,de Graaf,2013,11,4,Morphine v Placebo,Opioid analgesic,Historical,Low,Intra/extra Dimensional Set Shift: Stages,Positive,Concept Formation & Reasoning,Independent,0.624909722,0.234682703,5
+98,de Graaf 13_1235,de Graaf,2013,11,5,Morphine v Placebo,Opioid analgesic,Historical,Low,Intra/extra Dimensional Set Shift: Trials,Negative,Concept Formation & Reasoning,Independent,0.208660036,0.229701582,5
+99,de Graaf 13_1235,de Graaf,2013,11,6,Morphine v Placebo,Opioid analgesic,Historical,Low,RVP-A,Positive,Executive Function,Independent,0.208354807,0.225127581,5
+100,de Graaf 13_1235,de Graaf,2013,11,7,Morphine v Placebo,Opioid analgesic,Historical,Low,Spatial Span: SSP-backward,Positive,Attention,Independent,8.94E-04,0.229068902,5
+101,de Graaf 13_1235,de Graaf,2013,11,8,Morphine v Placebo,Opioid analgesic,Historical,Low,Spatial Span: SSP-forward,Positive,Attention,Independent,-6.96E-04,0.227397873,5
+102,de Graaf 13_1235,de Graaf,2013,11,9,Morphine v Placebo,Opioid analgesic,Historical,Low,Stockings of Cambridge,Positive,Executive Function,Independent,0.177140268,0.227851329,5
+103,de Graaf 13_1235,de Graaf,2013,11,10,Morphine v Placebo,Opioid analgesic,Historical,Low,Stop Signal Test: Delay,Positive,Executive Function,Independent,0.256174718,0.238258427,5
+104,de Graaf 13_1235,de Graaf,2013,11,11,Morphine v Placebo,Opioid analgesic,Historical,Low,Stop Signal Test: Reaction Time,Negative,Executive Function,Independent,-0.228427652,0.238056786,5
+105,de Graaf 13_1235,de Graaf,2013,11,12,Morphine v Placebo,Opioid analgesic,Historical,Low,WISC-III: IQ,Positive,Intelligence,Independent,-0.10712538,0.223142354,5
+106,Donati 07_2459,Donati,2007,12,1,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Binary Choice RT,Negative,Attention,Paired,0.139984642,0.273513602,4
+107,Donati 07_2459,Donati,2007,12,2,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CVST,Negative,Perception,Paired,0.201461855,0.273882326,4
+108,Donati 07_2459,Donati,2007,12,3,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,FTT (dom. hand),Positive,Psychomotor Functioning,Paired,-0.116606019,0.273408139,4
+109,Donati 07_2459,Donati,2007,12,4,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,FTT (non. dom. hand),Positive,Psychomotor Functioning,Paired,-5.86E-02,0.273229364,4
+110,Donati 07_2459,Donati,2007,12,5,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory and Learning: Figure Recognition,Positive,Attention,Paired,-0.492146597,0.282716696,4
+111,Donati 07_2459,Donati,2007,12,6,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory and Learning: Word Recognition,Positive,Attention,Paired,-0.15518797,0.290280011,4
+112,Donati 07_2459,Donati,2007,12,7,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Rey AVLT: Delayed Recall,Positive,Memory,Paired,-0.067882289,0.278482903,4
+113,Donati 07_2459,Donati,2007,12,8,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Rey AVLT: Immediate Recall,Positive,Memory,Paired,5.51E-02,0.278454718,4
+114,Donati 07_2459,Donati,2007,12,9,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Visual Reaction Time (dom. hand),Negative,Attention,Paired,6.38E-02,0.273240655,4
+115,Donati 07_2459,Donati,2007,12,10,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Visual Reaction Time (non. dom. hand),Negative,Attention,Paired,-5.30E-02,0.273218438,4
+116,Donati 07_2459,Donati,2007,12,11,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Binary Choice RT,Negative,Attention,Paired,0.113807336,0.204766298,4
+117,Donati 07_2459,Donati,2007,12,12,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,CVST,Positive,Perception,Paired,-0.309449591,0.205839012,4
+118,Donati 07_2459,Donati,2007,12,13,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,FTT (dom. hand),Positive,Psychomotor Functioning,Paired,1.81E-02,0.204602281,4
+119,Donati 07_2459,Donati,2007,12,14,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,FTT (non. dom. hand),Positive,Psychomotor Functioning,Paired,-0.058774851,0.204642902,4
+120,Donati 07_2459,Donati,2007,12,15,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory and Learning: Figure Recognition,Positive,Attention,Paired,-0.385709961,0.206522841,4
+121,Donati 07_2459,Donati,2007,12,16,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory and Learning: Word Recognition,Positive,Attention,Paired,-0.173569482,0.204989241,4
+122,Donati 07_2459,Donati,2007,12,17,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Rey AVLT: Delayed Recall,Positive,Memory,Paired,-9.30E-02,0.20471036,4
+123,Donati 07_2459,Donati,2007,12,18,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Rey AVLT: Immediate Recall,Positive,Memory,Paired,9.60E-02,0.204717724,4
+124,Donati 07_2459,Donati,2007,12,19,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Visual Reaction Time (dom. hand),Negative,Attention,Paired,0.160476915,0.20493249,4
+125,Donati 07_2459,Donati,2007,12,20,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Visual Reaction Time (non. dom. hand),Negative,Attention,Paired,8.82E-02,0.204699013,4
+126,Erickson 84_3532,Erickson,1984,13,1,Thioridazine/Thiothixene v Baseline,Antipsychotic,Current + long-term,High,CPT: Commissions (errors),Negative,Attention,Paired,0.207325098,0.411397987,3
+127,Erickson 84_3532,Erickson,1984,13,2,Thioridazine/Thiothixene v Baseline,Antipsychotic,Current + long-term,High,CPT: Omissions (errors),Negative,Attention,Paired,-0.510190969,0.417357393,3
+128,Erickson 84_3532,Erickson,1984,13,3,Thioridazine/Thiothixene v Baseline,Antipsychotic,Current + long-term,High,CPT: Reaction Time,Negative,Attention,Paired,-1.153267095,0.371371353,3
+129,Eun 12_2886,Eun,2012a,14,1,Carbamazepine vs Baseline,Antiepileptic,Current + long-term,Low,K-WISC-III: FSIQ,Positive,Intelligence,Paired,0.288512081,0.156504481,5
+130,Eun 12_2898,Eun,2012b,15,1,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,K-WISC-III: FSIQ,Positive,Intelligence,Paired,4.75E-02,0.237436716,3
+131,Eun 12_2898,Eun,2012b,15,2,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Information subtest,Positive,Language,Paired,-0.284588294,0.242562595,3
+132,Eun 12_2898,Eun,2012b,15,3,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Similarities,Positive,Concept Formation & Reasoning,Paired,0.130656003,0.23840958,3
+133,Eun 12_2898,Eun,2012b,15,4,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Arithmetic,Positive,Concept Formation & Reasoning,Paired,-0.191609215,0.239693501,3
+134,Eun 12_2898,Eun,2012b,15,5,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Vocabulary,Positive,Language,Paired,8.57E-02,0.237771313,3
+135,Eun 12_2898,Eun,2012b,15,6,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Comprehension,Positive,Concept Formation & Reasoning,Paired,-0.261959979,0.241764615,3
+136,Eun 12_2898,Eun,2012b,15,7,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Digit span,Positive,Attention,Paired,0.130301266,0.238403513,3
+137,Eun 12_2898,Eun,2012b,15,8,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture completion,Positive,Concept Formation & Reasoning,Paired,0.275362486,0.242229591,3
+138,Eun 12_2898,Eun,2012b,15,9,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture arrangement,Positive,Concept Formation & Reasoning,Paired,4.10E-02,0.237399016,3
+139,Eun 12_2898,Eun,2012b,15,10,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Block design,Positive,Psychomotor Functioning,Paired,-0.109190923,0.238071927,3
+140,Eun 12_2898,Eun,2012b,15,11,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture assembly (reporting error: should be object assembly),Positive,Psychomotor Functioning,Paired,-0.123966774,0.238297927,3
+141,Eun 12_2898,Eun,2012b,15,12,impaired Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Coding,Positive,Attention,Paired,3.40E-02,0.237364205,3
+142,Eun 12_2898,Eun,2012b,15,13,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,K-WISC-III: FSIQ,Positive,Intelligence,Paired,0.127134764,0.101151982,3
+143,Eun 12_2898,Eun,2012b,15,14,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Information subtest,Positive,Language,Paired,1.04E-02,0.100742073,3
+144,Eun 12_2898,Eun,2012b,15,15,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Similarities,Positive,Concept Formation & Reasoning,Paired,0.171991504,0.101493288,3
+145,Eun 12_2898,Eun,2012b,15,16,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Arithmetic,Positive,Concept Formation & Reasoning,Paired,2.48E-02,0.100755052,3
+146,Eun 12_2898,Eun,2012b,15,17,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Vocabulary,Positive,Language,Paired,,,3
+147,Eun 12_2898,Eun,2012b,15,18,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Comprehension,Positive,Concept Formation & Reasoning,Paired,-9.13E-02,0.100952383,3
+148,Eun 12_2898,Eun,2012b,15,19,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Digit span,Positive,Attention,Paired,0.1776525,0.101543539,3
+149,Eun 12_2898,Eun,2012b,15,20,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture completion,Positive,Concept Formation & Reasoning,Paired,0.207631096,0.101836279,3
+150,Eun 12_2898,Eun,2012b,15,21,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture arrangement,Positive,Concept Formation & Reasoning,Paired,0.197360229,0.101730951,3
+151,Eun 12_2898,Eun,2012b,15,22,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Block design,Positive,Psychomotor Functioning,Paired,-1.36E-02,0.100744029,3
+152,Eun 12_2898,Eun,2012b,15,23,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Picture assembly (reporting error: should be object assembly),Positive,Psychomotor Functioning,Paired,0.120132784,0.101107858,3
+153,Eun 12_2898,Eun,2012b,15,24,normal Oxcarbazepine vs Baseline,Antiepileptic,Current + long-term,Low,Coding,Positive,Attention,Paired,0.1011218,0.10100058,3
+154,Farmer 17_1856,Farmer,2017,16,1,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: Commissions (errors),Negative,Attention,Independent,-0.13928934,0.161111285,6
+155,Farmer 17_1856,Farmer,2017,16,2,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: Omissions (errors),Negative,Attention,Independent,6.96E-02,0.161111285,6
+156,Farmer 17_1856,Farmer,2017,16,3,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: Reaction Time,Negative,Attention,Independent,7.96E-02,0.161111285,6
+157,Farmer 17_1856,Farmer,2017,16,4,Risperidone v Placebo,Antipsychotic,Current + acute,Low,WISC-III: Digit Span,Positive,Attention,Independent,-8.95E-02,0.161111285,6
+158,Ferguson 12_771,Ferguson,2012,17,1,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: Fluid Reasoning,Positive,Concept Formation & Reasoning,Independent,0.183031066,0.498545195,7
+159,Ferguson 12_771,Ferguson,2012,17,2,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: FSIQ,Positive,Intelligence,Independent,5.14E-02,0.497730202,7
+160,Ferguson 12_771,Ferguson,2012,17,3,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: Knowledge,Positive,Intelligence,Independent,-0.538567186,0.505270956,7
+161,Ferguson 12_771,Ferguson,2012,17,4,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: Quantitative Reasoning,Positive,Concept Formation & Reasoning,Independent,-0.564008635,0.506000915,7
+162,Ferguson 12_771,Ferguson,2012,17,5,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: Visual Spatial Processing,Positive,Attention,Independent,0.432863902,0.502589835,7
+163,Ferguson 12_771,Ferguson,2012,17,6,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Stanford-Binet: Working Memory,Positive,Attention,Independent,0.188686912,0.498600679,7
+164,Ferguson 12_771,Ferguson,2012,17,7,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,WRAT: Math Computation,Positive,Concept Formation & Reasoning,Independent,-0.191843954,0.498632381,7
+165,Ferguson 12_771,Ferguson,2012,17,8,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,WRAT: Reading Composite,Positive,Language,Independent,0.52910927,0.505007923,7
+166,Ferguson 12_771,Ferguson,2012,17,9,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,WRAT: Sentence Comprehension,Positive,Language,Independent,0.401172996,0.50189738,7
+167,Ferguson 12_771,Ferguson,2012,17,10,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,WRAT: Spelling,Positive,Language,Independent,-0.22568045,0.49900504,7
+168,Ferguson 12_771,Ferguson,2012,17,11,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,WRAT: Word Reading,Positive,Language,Independent,0.491742923,0.504013068,7
+169,Ferguson 12_771,Ferguson,2012,17,12,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,Progressive Ratio (no. of reinforcers earner),Positive,Attention,Independent,0.136925491,0.505770453,7
+170,Ferguson 12_771,Ferguson,2012,17,13,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,DMTS (delayed match to sample): Percent task completed,Positive,Attention,Independent,-0.776536402,0.522482416,7
+171,Ferguson 12_771,Ferguson,2012,17,14,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,DMTS (delayed match to sample): Accuracy,Positive,Attention,Independent,-0.472639316,0.511685993,7
+172,Ferguson 12_771,Ferguson,2012,17,15,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,DMTS: Correct choice response latency (sec),Negative,Attention,Independent,-0.895352147,0.52804396,7
+173,Ferguson 12_771,Ferguson,2012,17,16,Morphine v Placebo (Combined boys + girls),Opioid analgesic,Historical,Low,DMTS: No. of incorrect trials,Negative,Attention,Independent,-0.417806942,0.510280822,7
+174,Forsythe 91_3633,Forsythe,1991,18,1,Carbamazepine v Baseline,Antiepileptic,Current + acute,Low,Information Processing (speed),Negative,Attention,Paired,-0.273049042,0.364691657,3
+175,Forsythe 91_3633,Forsythe,1991,18,2,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Information Processing (speed),Negative,Attention,Paired,-0.481046109,0.376289971,3
+176,Forsythe 91_3633,Forsythe,1991,18,3,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Information Processing (speed),Negative,Attention,Paired,-0.629945654,0.389359954,3
+177,Forsythe 91_3633,Forsythe,1991,18,4,Carbamazepine v Baseline,Antiepileptic,Current + acute,Low,Memory,Positive,Memory,Paired,0.281409442,0.313091386,3
+178,Forsythe 91_3633,Forsythe,1991,18,5,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory,Positive,Memory,Paired,9.02E-02,0.321837709,3
+179,Forsythe 91_3633,Forsythe,1991,18,6,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Memory,Positive,Memory,Paired,0.177246918,0.334936369,3
+180,Forsythe 91_3633,Forsythe,1991,18,7,Carbamazepine v Baseline,Antiepileptic,Current + acute,Low,Stroop Test,Negative,Attention,Paired,0.302763829,0.343106031,3
+181,Forsythe 91_3633,Forsythe,1991,18,8,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Stroop Test,Negative,Attention,Paired,0.527006151,0.35355606,3
+182,Forsythe 91_3633,Forsythe,1991,18,9,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Stroop Test,Negative,Attention,Paired,-0.271140065,0.364291252,3
+183,Forsythe 91_3633,Forsythe,1991,18,10,Carbamazepine v Baseline,Antiepileptic,Current + acute,Low,Vigilance,Negative,Attention,Paired,0.157052809,0.312001034,3
+184,Forsythe 91_3633,Forsythe,1991,18,11,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Vigilance,Negative,Attention,Paired,0.308453305,0.323611471,3
+185,Forsythe 91_3633,Forsythe,1991,18,12,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Vigilance,Negative,Attention,Paired,0.402770685,0.337637596,3
+186,Freibergs 68_3435,Freibergs,1968,19,1,Continuous Reinforcement CPZ (chlorpromazine) v Placebo,Antipsychotic,Current + long-term,High,Number Concepts (trials to criterion) - continuous reinforcement condition,Negative,Concept Formation & Reasoning,Independent,-0.771739637,0.467018257,4
+187,Freibergs 68_3435,Freibergs,1968,19,2,Continuous Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Object Concepts (trials to criterion) - continuous reinforcement condition,Negative,Concept Formation & Reasoning,Independent,0.45852928,0.455414492,4
+188,Freibergs 68_3435,Freibergs,1968,19,3,Continuous Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Number Concepts ERRORS to criterion,Negative,Concept Formation & Reasoning,Independent,0.799179945,0.468298469,4
+189,Freibergs 68_3435,Freibergs,1968,19,4,Continuous Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Object Concepts ERRORS to criterion,Negative,Concept Formation & Reasoning,Independent,0.49182567,0.456378508,4
+190,Freibergs 68_3435,Freibergs,1968,19,5,Partial Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Number Concepts (trials to criterion) - partial reinforcement condition,Negative,Concept Formation & Reasoning,Independent,0.1067604,0.449309149,4
+191,Freibergs 68_3435,Freibergs,1968,19,6,Partial Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Object Concepts (trials to criterion) - partial reinforcement condition,Negative,Concept Formation & Reasoning,Independent,0.157389416,0.449722361,4
+192,Freibergs 68_3435,Freibergs,1968,19,7,Partial Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Number Concepts ERRORS to criterion,Negative,Concept Formation & Reasoning,Independent,9.64E-02,0.449244329,4
+193,Freibergs 68_3435,Freibergs,1968,19,8,Partial Reinforcement CPZ v Placebo,Antipsychotic,Current + long-term,High,Object Concepts ERRORS to criterion,Negative,Concept Formation & Reasoning,Independent,0.120851893,0.449408284,4
+194,Giramonti 08_5607,Giramonti,2008,20,1,Tolterodine/Oxybutynin v Placebo (Group A),Urological,Current + acute,High,NEPSY: Attention,Positive,Attention,Paired,-0.174655477,0.473734463,5
+195,Giramonti 08_5607,Giramonti,2008,20,2,Tolterodine/Oxybutynin v Placebo (Group A),Urological,Current + acute,High,NEPSY: Memory,Positive,Memory,Paired,-0.628829724,0.485621419,5
+196,Giramonti 08_5607,Giramonti,2008,20,3,Tolterodine/Oxybutynin v Placebo (Group B),Urological,Current + acute,High,NEPSY: Attention ,Positive,Attention,Paired,0.406898411,0.539372103,5
+197,Giramonti 08_5607,Giramonti,2008,20,4,Tolterodine/Oxybutynin v Placebo (Group B),Urological,Current + acute,High,NEPSY: Memory,Positive,Memory,Paired,0.581186022,0.545983258,5
+198,Gualtieri 88_2159,Gualtieri,1988,21,1,High Imipramine v Placebo,Antidepressant,Current + acute,High,Finger Tapping,Positive,Psychomotor Functioning,Paired,-1.543450533,0.472221303,5
+199,Gualtieri 88_2159,Gualtieri,1988,21,2,High Imipramine v Placebo,Antidepressant,Current + acute,High,Motor Pursuit (trail making test),Negative,Attention,Paired,-1.04197901,0.667779417,5
+200,Gualtieri 88_2159,Gualtieri,1988,21,3,High Imipramine v Placebo,Antidepressant,Current + acute,High,Selective Attention,Positive,Attention,Paired,1.597890576,0.58445859,5
+201,Gualtieri 88_2159,Gualtieri,1988,21,4,Low Imipramine v Placebo,Antidepressant,Current + acute,High,Finger Tapping,Positive,Psychomotor Functioning,Paired,-0.350877193,0.452749337,5
+202,Gualtieri 88_2159,Gualtieri,1988,21,5,Low Imipramine v Placebo,Antidepressant,Current + acute,High,Motor Pursuit (trail making test),Negative,Attention,Paired,-0.457271364,0.625412186,5
+203,Gualtieri 88_2159,Gualtieri,1988,21,6,Low Imipramine v Placebo,Antidepressant,Current + acute,High,Selective Attention,Positive,Attention,Paired,0.342494485,0.504572655,5
+204,Gualtieri 88_2159,Gualtieri,1988,21,7,Med Imipramine v  Placebo,Antidepressant,Current + acute,High,Finger Tapping,Positive,Psychomotor Functioning,Paired,-0.66833751,0.462568639,5
+205,Gualtieri 88_2159,Gualtieri,1988,21,8,Med Imipramine v  Placebo,Antidepressant,Current + acute,High,Motor Pursuit (trail making test),Negative,Attention,Paired,-0.689655172,0.63859091,5
+206,Gualtieri 88_2159,Gualtieri,1988,21,9,Med Imipramine v  Placebo,Antidepressant,Current + acute,High,Selective Attention,Positive,Attention,Paired,0.228270082,0.502260055,5
+207,Gualtieri 91_2261,Gualtieri,1991,22,1,High Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: consistency,Positive,Memory,Paired,0.830303759,0.41198687,5
+208,Gualtieri 91_2261,Gualtieri,1991,22,2,High Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: delayed recall,Positive,Memory,Paired,0.796345199,0.410587841,5
+209,Gualtieri 91_2261,Gualtieri,1991,22,3,High Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: words recalled on last trial,Positive,Memory,Paired,-0.464534699,0.399832799,5
+210,Gualtieri 91_2261,Gualtieri,1991,22,4,High Desipramine v Placebo,Antidepressant,Current + acute,High,Finger Tapping Test (dom. hand),Positive,Psychomotor Functioning,Paired,-1.181909428,0.429503062,5
+211,Gualtieri 91_2261,Gualtieri,1991,22,5,High Desipramine v Placebo,Antidepressant,Current + acute,High,Trail Making A,Negative,Attention,Paired,-0.220955176,0.395458846,5
+212,Gualtieri 91_2261,Gualtieri,1991,22,6,Low Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: consistency,Positive,Memory,Paired,0,0.394170763,5
+213,Gualtieri 91_2261,Gualtieri,1991,22,7,Low Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: delayed recall,Positive,Memory,Paired,-0.209040615,0.395323874,5
+214,Gualtieri 91_2261,Gualtieri,1991,22,8,Low Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: words recalled on last trial,Positive,Memory,Paired,0.464534699,0.399832799,5
+215,Gualtieri 91_2261,Gualtieri,1991,22,9,Low Desipramine v Placebo,Antidepressant,Current + acute,High,Finger Tapping Test (dom. hand),Positive,Psychomotor Functioning,Paired,-0.898631989,0.414963046,5
+216,Gualtieri 91_2261,Gualtieri,1991,22,10,Low Desipramine v Placebo,Antidepressant,Current + acute,High,Trail Making A,Positive,Attention,Paired,0.590954714,0.403294139,5
+217,Gualtieri 91_2261,Gualtieri,1991,22,11,Med Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: consistency,Positive,Memory,Paired,0.187336944,0.395097126,5
+218,Gualtieri 91_2261,Gualtieri,1991,22,12,Med Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: delayed recall,Positive,Memory,Paired,-8.46E-02,0.394359911,5
+219,Gualtieri 91_2261,Gualtieri,1991,22,13,Med Desipramine v Placebo,Antidepressant,Current + acute,High,Buschke Serial Reminding Test: words recalled on last trial,Positive,Memory,Paired,0.929069398,0.416357176,5
+220,Gualtieri 91_2261,Gualtieri,1991,22,14,Med Desipramine v Placebo,Antidepressant,Current + acute,High,Finger Tapping Test (dom. hand),Positive,Psychomotor Functioning,Paired,-1.045203074,0.422054445,5
+221,Gualtieri 91_2261,Gualtieri,1991,22,15,Med Desipramine v Placebo,Antidepressant,Current + acute,High,Trail Making A,Negative,Attention,Paired,-1.023428009,0.420941238,5
+222,Gunther 06_2433,Gunther,2006,23,1,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: False Alarms,Negative,Attention,Paired,0.538519528,0.295216733,4
+223,Gunther 06_2433,Gunther,2006,23,2,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: Misses,Negative,Attention,Paired,0.494433754,0.294377199,4
+224,Gunther 06_2433,Gunther,2006,23,3,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Go/No-Go: False Alarms,Negative,Executive Function,Paired,0.1368103,0.290179524,4
+225,Gunther 06_2433,Gunther,2006,23,4,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Go/No-Go: Misses,Negative,Executive Function,Paired,0.515122034,0.294762543,4
+226,Gunther 06_2433,Gunther,2006,23,5,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Sustained Attention: False Alarms,Negative,Attention,Paired,0.308575697,0.291608811,4
+227,Gunther 06_2433,Gunther,2006,23,6,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Sustained Attention: Fluctuations,Negative,Attention,Paired,0.237289879,0.290882686,4
+228,Gunther 06_2433,Gunther,2006,23,7,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Sustained Attention: Misses,Negative,Attention,Paired,7.23E-02,0.289926818,4
+229,Gunther 06_2433,Gunther,2006,23,8,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Sustained Attention: Speed,Negative,Attention,Paired,0.182807715,0.29045474,4
+230,Jung 15_2532,Jung,2015,24,1,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,K-WISC + K-WPPI,Positive,Intelligence,Paired,3.81E-02,0.221470262,6
+231,Klein 90_2266,Klein,1990,25,1,Thioridazine v Placebo,Antipsychotic,Current + acute,High,CPT: Commissions (errors),Negative,Attention,Independent,-0.311214055,0.239067135,3
+232,Klein 90_2266,Klein,1990,25,2,Thioridazine v Placebo,Antipsychotic,Current + acute,High,CPT: Omissions (errors),Negative,Attention,Independent,-0.182476567,0.238129196,3
+233,Klein 90_2266,Klein,1990,25,3,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Draw a Person,Positive,Psychomotor Functioning,Independent,-0.410454107,0.240119657,3
+234,Klein 90_2266,Klein,1990,25,4,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Gray Oral Reading,Positive,Language,Independent,-0.182437848,0.226588946,3
+235,Klein 90_2266,Klein,1990,25,5,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Paired Associates Test (PAT),Positive,Memory,Independent,0.129627239,0.314994908,3
+236,Klein 90_2266,Klein,1990,25,6,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Porteus Mazes: Qualitative,Negative,Executive Function,Independent,0.241443907,0.238498538,3
+237,Klein 90_2266,Klein,1990,25,7,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Porteus Mazes: Quantitative,Positive,Executive Function,Independent,-0.490027963,0.241168118,3
+238,Klein 90_2266,Klein,1990,25,8,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Beery: Visual Motor integration Test,Positive,Psychomotor Functioning,Independent,-0.360726689,0.239556648,3
+239,Klein 90_2266,Klein,1990,25,9,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Visual Sequential Memory Test,Negative,Attention,Independent,0.444758673,0.240549482,3
+240,Klein 90_2266,Klein,1990,25,10,Thioridazine v Placebo,Antipsychotic,Current + acute,High,Wide Range Achievement Test (WRAT): Reading,Negative,Language,Independent,6.39E-02,0.226170106,3
+241,Klein 90_2266,Klein,1990,25,11,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,CPT: Commissions (errors),Negative,Attention,Paired,0.398665907,0.257431085,3
+242,Klein 90_2266,Klein,1990,25,12,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,CPT: Omissions (errors),Negative,Attention,Paired,-0.27916943,0.256116716,3
+243,Klein 90_2266,Klein,1990,25,13,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Draw a Person,Positive,Psychomotor Functioning,Paired,-8.12E-02,0.254953475,3
+244,Klein 90_2266,Klein,1990,25,14,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Gray Oral Reading,Positive,Language,Paired,4.23E-02,0.233194521,3
+245,Klein 90_2266,Klein,1990,25,15,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Paired Associates Test (PAT),Positive,Memory,Paired,-0.247866754,0.327232354,3
+246,Klein 90_2266,Klein,1990,25,16,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Porteus Mazes: Qualitative,Negative,Executive Function,Paired,-0.233285189,0.255733896,3
+247,Klein 90_2266,Klein,1990,25,17,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Porteus Mazes: Quantitative,Positive,Executive Function,Paired,-0.877376808,0.267135221,3
+248,Klein 90_2266,Klein,1990,25,18,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Beery: Visual Motor integration Test,Positive,Psychomotor Functioning,Paired,-0.167362413,0.255303206,3
+249,Klein 90_2266,Klein,1990,25,19,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Visual Sequential Memory Test,Negative,Attention,Paired,0.131471947,0.255128105,3
+250,Klein 90_2266,Klein,1990,25,20,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,Wide Range Achievement Test (WRAT): Reading,Positive,Language,Paired,0.243684392,0.234050446,3
+251,Klein 90_2266,Klein,1990,25,21,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: FSIQ,Positive,Intelligence,Independent,-0.136952001,0.226380685,3
+252,Klein 90_2266,Klein,1990,25,22,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Information,Positive,Language,Independent,-0.105408562,0.226271016,3
+253,Klein 90_2266,Klein,1990,25,23,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Comprehension,Positive,Concept Formation & Reasoning,Independent,2.14E-02,0.226118079,3
+254,Klein 90_2266,Klein,1990,25,24,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Arithmetic,Positive,Concept Formation & Reasoning,Independent,0.156880348,0.226464651,3
+255,Klein 90_2266,Klein,1990,25,25,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Similarity,Positive,Concept Formation & Reasoning,Independent,4.38E-02,0.226139044,3
+256,Klein 90_2266,Klein,1990,25,26,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Vocabulary,Positive,Language,Independent,-0.120094303,0.22631853,3
+257,Klein 90_2266,Klein,1990,25,27,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Digit Span,Positive,Attention,Independent,7.04E-02,0.226182671,3
+258,Klein 90_2266,Klein,1990,25,28,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Picture Completion,Positive,Concept Formation & Reasoning,Independent,-0.104241753,0.226267506,3
+259,Klein 90_2266,Klein,1990,25,29,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Picture Arrangement,Positive,Concept Formation & Reasoning,Independent,-0.114610946,0.226300066,3
+260,Klein 90_2266,Klein,1990,25,30,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Block Design,Positive,Psychomotor Functioning,Independent,-0.227005905,0.22685027,3
+261,Klein 90_2266,Klein,1990,25,31,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Object Assembly,Positive,Psychomotor Functioning,Independent,6.54E-02,0.226173007,3
+262,Klein 90_2266,Klein,1990,25,32,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WISC: Coding,Positive,Attention,Independent,-0.590867101,0.231070253,3
+263,Klein 90_2266,Klein,1990,25,33,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: FSIQ,Positive,Intelligence,Paired,1.17E-02,0.233169862,3
+264,Klein 90_2266,Klein,1990,25,34,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Information,Positive,Language,Paired,-6.72E-02,0.23323505,3
+265,Klein 90_2266,Klein,1990,25,35,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Comprehension,Positive,Concept Formation & Reasoning,Paired,-0.323454775,0.234720652,3
+266,Klein 90_2266,Klein,1990,25,36,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Arithmetic,Positive,Concept Formation & Reasoning,Paired,0.287262878,0.234393454,3
+267,Klein 90_2266,Klein,1990,25,37,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Similarity,Positive,Concept Formation & Reasoning,Paired,0.352441113,0.235010294,3
+268,Klein 90_2266,Klein,1990,25,38,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Vocabulary,Positive,Language,Paired,-0.282887087,0.234356493,3
+269,Klein 90_2266,Klein,1990,25,39,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Digit Span,Positive,Attention,Paired,0.113153969,0.233358418,3
+270,Klein 90_2266,Klein,1990,25,40,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Picture Completion,Positive,Concept Formation & Reasoning,Paired,0.153364102,0.233517821,3
+271,Klein 90_2266,Klein,1990,25,41,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Picture Arrangement,Positive,Concept Formation & Reasoning,Paired,0.329087654,0.23477502,3
+272,Klein 90_2266,Klein,1990,25,42,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Block Design,Positive,Psychomotor Functioning,Paired,9.77E-02,0.233309821,3
+273,Klein 90_2266,Klein,1990,25,43,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Object Assembly,Positive,Psychomotor Functioning,Paired,3.08E-02,0.233181911,3
+274,Klein 90_2266,Klein,1990,25,44,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WISC: Coding,Positive,Attention,Paired,-0.551156539,0.237648426,3
+275,Klein 90_2266,Klein,1990,25,45,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WRAT: Arithmetic,Positive,Concept Formation & Reasoning,Independent,-8.57E-02,0.226216941,3
+276,Klein 90_2266,Klein,1990,25,46,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WRAT: Arithmetic,Positive,Concept Formation & Reasoning,Paired,0.167221507,0.233583868,3
+277,Klein 90_2266,Klein,1990,25,47,Thioridazine v Placebo,Antipsychotic,Current + acute,High,WRAT: Spelling,Positive,Language,Independent,-0.116711555,0.226307038,3
+278,Klein 90_2266,Klein,1990,25,48,Thioridazine v Baseline,Antipsychotic,Current + long-term,High,WRAT: Spelling,Positive,Language,Paired,0.259167813,0.234165924,3
+279,Kwon 13_3337,Kwon,2013,26,1,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,"Attention Deficit Diagnostic Scale, Visual (K-ADS): impulsivity",Negative,Attention,Independent,0.279471149,0.364775524,3
+280,Kwon 13_3337,Kwon,2013,26,2,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,"Attention Deficit Diagnostic Scale, Visual (K-ADS): inattentiveness",Negative,Attention,Independent,0.279471149,0.364775524,3
+281,Kwon 13_3337,Kwon,2013,26,3,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,Auditory Verbal Learning Test/Rey Complex Figure Test: Stroop Test (Level 1),Positive,Attention,Independent,-1.694039635,0.425668132,3
+282,Kwon 13_3337,Kwon,2013,26,4,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,Auditory Verbal Learning Test/Rey Complex Figure Test: Verbal Fluency,Positive,Executive Function,Independent,-1.866705913,0.437942593,3
+283,Kwon 13_3337,Kwon,2013,26,5,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,K-WISC-III: FSIQ,Positive,Intelligence,Independent,-0.910120166,0.382094121,3
+284,Kwon 13_3337,Kwon,2013,26,6,Oxcarbazepine v Control,Antiepileptic,Current + long-term,Low,Wisconsin Card Sorting Test (WCST),Positive,Concept Formation & Reasoning,Independent,-0.279471149,0.364775524,3
+285,O'Dougherty 87_2149,O'Dougherty,1987,27,1,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CPT: No. of false alarms,Negative,Attention,Paired,4.16E-02,0.449010219,3
+286,O'Dougherty 87_2149,O'Dougherty,1987,27,2,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CPT: No. of hits,Positive,Attention,Paired,-0.159917712,0.449747136,3
+287,O'Dougherty 87_2149,O'Dougherty,1987,27,3,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,PAT: % errors,Negative,Memory,Paired,0.298024827,0.451696021,3
+288,O'Dougherty 87_2149,O'Dougherty,1987,27,4,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,PAT: No. of trials (to successful completion),Negative,Memory,Paired,0.238786064,0.450717163,3
+289,O'Dougherty 87_2149,O'Dougherty,1987,27,5,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Purdue Pegboard Test: Z score (dom. hand),Positive,Psychomotor Functioning,Paired,-2.17071469,0.57658569,3
+290,O'Dougherty 87_2149,O'Dougherty,1987,27,6,Low Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Purdue Pegboard Test: Z score (non. dom. hand),Positive,Psychomotor Functioning,Paired,-0.472513275,0.455811383,3
+291,O'Dougherty 87_2149,O'Dougherty,1987,27,7,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CPT: No. of false alarms,Negative,Attention,Paired,0.350508831,0.500154399,3
+292,O'Dougherty 87_2149,O'Dougherty,1987,27,8,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CPT: No. of hits,Positive,Attention,Paired,-0.734304587,0.513841074,3
+293,O'Dougherty 87_2149,O'Dougherty,1987,27,9,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,CPT: Reaction Time,Negative,Attention,Paired,-0.666932814,0.510769864,3
+294,O'Dougherty 87_2149,O'Dougherty,1987,27,10,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,PAT: % errors,Negative,Memory,Paired,-0.512040486,0.504775914,3
+295,O'Dougherty 87_2149,O'Dougherty,1987,27,11,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,PAT: No. of trials (to successful completion),Negative,Memory,Paired,-0.418508879,0.501893944,3
+296,O'Dougherty 87_2149,O'Dougherty,1987,27,12,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Purdue Pegboard Test: Z score (dom. hand),Positive,Psychomotor Functioning,Paired,-2.762979057,0.707479788,3
+297,O'Dougherty 87_2149,O'Dougherty,1987,27,13,Mod Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,Purdue Pegboard Test: Z score (non. dom. hand),Positive,Psychomotor Functioning,Paired,0.221516736,0.497689525,3
+298,Pandina 09_3079,Pandina,2009,28,1,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Easy CPT: Correct mean response time,Negative,Attention,Independent,0.112794652,0.124263589,6
+299,Pandina 09_3079,Pandina,2009,28,2,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Easy CPT: False alarm rates,Negative,Attention,Independent,-0.129970724,0.1242961,6
+300,Pandina 09_3079,Pandina,2009,28,3,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Easy CPT: Hit rates,Positive,Attention,Independent,-0.162804534,0.124371018,6
+301,Pandina 09_3079,Pandina,2009,28,4,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Hard CPT: Correct mean response time,Negative,Attention,Independent,3.99E-02,0.124176748,6
+302,Pandina 09_3079,Pandina,2009,28,5,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Hard CPT: False alarm rates,Negative,Attention,Independent,-0.207841171,0.124501005,6
+303,Pandina 09_3079,Pandina,2009,28,6,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Hard CPT: Hit rates,Positive,Attention,Independent,-7.77E-02,0.12421145,6
+304,Pandina 09_3079,Pandina,2009,28,7,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 1,Positive,Memory,Independent,-0.161307764,0.121128247,6
+305,Pandina 09_3079,Pandina,2009,28,8,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 2,Positive,Memory,Independent,-5.57E-02,0.120954214,6
+306,Pandina 09_3079,Pandina,2009,28,9,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 3,Positive,Memory,Independent,-7.44E-03,0.120931066,6
+307,Pandina 09_3079,Pandina,2009,28,10,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 4,Positive,Memory,Independent,-7.65E-02,0.120975132,6
+308,Pandina 09_3079,Pandina,2009,28,11,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 5,Positive,Memory,Independent,4.49E-02,0.120945971,6
+309,Pandina 09_3079,Pandina,2009,28,12,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Long-delay free recall,Positive,Memory,Independent,-1.35E-02,0.120932037,6
+310,Pandina 09_3079,Pandina,2009,28,13,Double Blind Risperidone v Placebo,Antipsychotic,Current + long-term,Low,MVLT-C: Total short-delay free recall,Positive,Memory,Independent,-5.56E-02,0.120954117,6
+311,Pandina 09_3079,Pandina,2009,28,14,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Easy CPT: Correct mean response time,Negative,Attention,Paired,-3.32E-02,0.068223749,6
+312,Pandina 09_3079,Pandina,2009,28,15,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Easy CPT: False alarm rates,Negative,Attention,Paired,0.161143576,4.85E-02,6
+313,Pandina 09_3079,Pandina,2009,28,16,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Easy CPT: Hit rates,Positive,Attention,Paired,0.126467764,4.84E-02,6
+314,Pandina 09_3079,Pandina,2009,28,17,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Hard CPT: Correct mean response time,Negative,Attention,Paired,0,6.82E-02,6
+315,Pandina 09_3079,Pandina,2009,28,18,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Hard CPT: False alarm rates,Negative,Attention,Paired,0,6.82E-02,6
+316,Pandina 09_3079,Pandina,2009,28,19,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Hard CPT: Hit rates,Positive,Attention,Paired,5.06E-02,6.82E-02,6
+317,Pandina 09_3079,Pandina,2009,28,20,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 1,Positive,Memory,Paired,0.161143576,4.85E-02,6
+318,Pandina 09_3079,Pandina,2009,28,21,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 2,Positive,Memory,Paired,0.161143576,4.85E-02,6
+319,Pandina 09_3079,Pandina,2009,28,22,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 3,Positive,Memory,Paired,0.161143576,4.85E-02,6
+320,Pandina 09_3079,Pandina,2009,28,23,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 4,Positive,Memory,Paired,0.161143576,4.85E-02,6
+321,Pandina 09_3079,Pandina,2009,28,24,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Learning Trial 5,Positive,Memory,Paired,0.161143576,4.85E-02,6
+322,Pandina 09_3079,Pandina,2009,28,25,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Long-delay free recall,Positive,Memory,Paired,0.161143576,4.85E-02,6
+323,Pandina 09_3079,Pandina,2009,28,26,Open Label Risperidone v Baseline,Antipsychotic,Current + long-term,Low,MVLT-C: Total short-delay free recall,Positive,Memory,Paired,0.126467764,4.84E-02,6
+324,Piccinelli 10_3375,Piccinelli,2010,29,1,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,WISC-R: FSIQ,Positive,Intelligence,Paired,-0.468780384,0.47993585,3
+325,Piccinelli 10_3375,Piccinelli,2010,29,2,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,WISC-R: Images Completion (picure completion),Positive,Concept Formation & Reasoning,Paired,-0.53546018,0.482110983,3
+326,Platt 84_2664,Platt,1984,30,1,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Qualitative,Negative,Executive Function,Independent,0.411653327,0.317266173,5
+327,Platt 84_2664,Platt,1984,30,2,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Test Quotient,Positive,Executive Function,Independent,-0.675566764,0.323011517,5
+328,Platt 84_2664,Platt,1984,30,3,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (1s): Anticipatory Response,Negative,Executive Function,Independent,-0.191081202,0.318831507,5
+329,Platt 84_2664,Platt,1984,30,4,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (1s): RT,Negative,Attention,Independent,0.198955612,0.318894875,5
+330,Platt 84_2664,Platt,1984,30,5,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (1s): Variability Index,Negative,Attention,Independent,-8.71E-02,0.31823403,5
+331,Platt 84_2664,Platt,1984,30,6,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (4s): Anticipatory Response,Negative,Executive Function,Independent,0.398347555,0.321342517,5
+332,Platt 84_2664,Platt,1984,30,7,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (4s): RT,Negative,Attention,Independent,0.237296566,0.319239761,5
+333,Platt 84_2664,Platt,1984,30,8,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (4s): Variability Index,Negative,Attention,Independent,0,0.318077205,5
+334,Platt 84_2664,Platt,1984,30,9,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (8s): Anticipatory Response,Negative,Executive Function,Independent,-0.169160907,0.318668522,5
+335,Platt 84_2664,Platt,1984,30,10,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (8s): RT,Negative,Attention,Independent,0.119391975,0.3183719,5
+336,Platt 84_2664,Platt,1984,30,11,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT (8s): Variability Index,Negative,Attention,Independent,0,0.318077205,5
+337,Platt 84_2664,Platt,1984,30,12,Lithium v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Qualitative,Negative,Executive Function,Independent,-0.182282103,0.310614386,5
+338,Platt 84_2664,Platt,1984,30,13,Lithium v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Test Quotient,Positive,Executive Function,Independent,-0.228370092,0.310994973,5
+339,Platt 84_2664,Platt,1984,30,14,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (1s): Anticipatory Response,Negative,Executive Function,Independent,0.395189175,0.316997661,5
+340,Platt 84_2664,Platt,1984,30,15,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (1s): RT,Negative,Attention,Independent,0.825158071,0.327436385,5
+341,Platt 84_2664,Platt,1984,30,16,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (1s): Variability Index,Negative,Attention,Independent,9.03E-02,0.313990266,5
+342,Platt 84_2664,Platt,1984,30,17,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (4s): Anticipatory Response,Negative,Executive Function,Independent,0.095974089,0.314011736,5
+343,Platt 84_2664,Platt,1984,30,18,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (4s): RT,Negative,Attention,Independent,0.867316481,0.328830284,5
+344,Platt 84_2664,Platt,1984,30,19,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (4s): Variability Index,Negative,Attention,Independent,0.835742744,0.327780371,5
+345,Platt 84_2664,Platt,1984,30,20,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (8s): Anticipatory Response,Negative,Executive Function,Independent,-0.24498275,0.315047176,5
+346,Platt 84_2664,Platt,1984,30,21,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (8s): RT,Negative,Attention,Independent,0.835227045,0.327763519,5
+347,Platt 84_2664,Platt,1984,30,22,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT (8s): Variability Index,Negative,Attention,Independent,0.766744307,0.32561084,5
+348,Platt 81_2654,Platt,1981,31,1,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,MFF: Mean number correct,Positive,Executive Function,Independent,-9.39E-02,0.428574531,5
+349,Platt 81_2654,Platt,1981,31,2,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Qualitative,Negative,Executive Function,Independent,0.357082086,0.4320224,5
+350,Platt 81_2654,Platt,1981,31,3,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Scaled,Positive,Executive Function,Independent,-0.307702478,0.431071553,5
+351,Platt 81_2654,Platt,1981,31,4,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT: 1s,Negative,Attention,Independent,-0.130147679,0.439402598,5
+352,Platt 81_2654,Platt,1981,31,5,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT: 4s,Negative,Attention,Independent,-3.39E-02,0.438929622,5
+353,Platt 81_2654,Platt,1981,31,6,Haloperidol v Placebo,Antipsychotic,Current + acute,Low,RT: 8s,Negative,Attention,Independent,-0.502099051,0.446389064,5
+354,Platt 81_2654,Platt,1981,31,7,Lithium v Placebo,Antipsychotic,Current + acute,Low,MFF: Mean number correct,Positive,Executive Function,Independent,0.413141131,0.433269897,5
+355,Platt 81_2654,Platt,1981,31,8,Lithium v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Qualitative,Negative,Executive Function,Independent,-0.28022018,0.441242903,5
+356,Platt 81_2654,Platt,1981,31,9,Lithium v Placebo,Antipsychotic,Current + acute,Low,Porteus Mazes: Scaled,Positive,Executive Function,Independent,4.90E-02,0.438967183,5
+357,Platt 81_2654,Platt,1981,31,10,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT: 1s,Negative,Attention,Independent,0.582749271,0.462076698,5
+358,Platt 81_2654,Platt,1981,31,11,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT: 4s,Negative,Attention,Independent,0.793847021,0.47073028,5
+359,Platt 81_2654,Platt,1981,31,12,Lithium v Placebo,Antipsychotic,Current + acute,Low,RT: 8s,Negative,Attention,Independent,0.768457132,0.469558455,5
+360,Rappaport 89_2693,Rappaport,1989,32,1,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Auditory CPT A: Commissions,Negative,Attention,Paired,-5.95E-02,0.231211606,7
+361,Rappaport 89_2693,Rappaport,1989,32,2,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Auditory CPT A: Omissions,Negative,Attention,Paired,0.163206597,0.232675952,7
+362,Rappaport 89_2693,Rappaport,1989,32,3,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Auditory CPT X: Commissions,Negative,Attention,Paired,2.65E-02,0.231031105,7
+363,Rappaport 89_2693,Rappaport,1989,32,4,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Auditory CPT X: Omissions,Negative,Attention,Paired,0.011767581,0.230995126,7
+364,Rappaport 89_2693,Rappaport,1989,32,5,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Kløve Pegs Trial 1,Positive,Psychomotor Functioning,Paired,0.130476037,0.232067622,7
+365,Rappaport 89_2693,Rappaport,1989,32,6,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Kløve Pegs Trial 1 (non. dom. hand),Positive,Psychomotor Functioning,Paired,-8.74E-02,0.23147256,7
+366,Rappaport 89_2693,Rappaport,1989,32,7,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Kløve Pegs Trial 2,Positive,Psychomotor Functioning,Paired,-0.106814778,0.231711557,7
+367,Rappaport 89_2693,Rappaport,1989,32,8,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Kløve Pegs Trial 2 (non. dom. hand),Positive,Psychomotor Functioning,Paired,-0.178870592,0.233014367,7
+368,Rappaport 89_2693,Rappaport,1989,32,9,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Logical Memory A,Positive,Memory,Paired,-0.120175138,0.231903949,7
+369,Rappaport 89_2693,Rappaport,1989,32,10,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Logical Memory B,Positive,Memory,Paired,0.516337194,0.247378197,7
+370,Rappaport 89_2693,Rappaport,1989,32,11,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,MFF,Positive,Executive Function,Paired,0.148280326,0.232381913,7
+371,Rappaport 89_2693,Rappaport,1989,32,12,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,Porteus Mazes: Unsuccessful Trials,Negative,Executive Function,Paired,-0.379385464,0.239975016,7
+372,Rappaport 89_2693,Rappaport,1989,32,13,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,WISC-R: Backwards Digit (absolute score),Positive,Attention,Paired,-0.467516332,0.244506134,7
+373,Rappaport 89_2693,Rappaport,1989,32,14,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,WISC-R: Coding (raw),Positive,Attention,Paired,0.127013307,0.232011114,7
+374,Rappaport 89_2693,Rappaport,1989,32,15,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,WISC-R: Digit Score (absolute),Positive,Attention,Paired,0.187025737,0.233202612,7
+375,Rappaport 89_2693,Rappaport,1989,32,16,Group 1 Theophylline v Placebo Crossover,Respiratory,Current + acute,Low,WISC-R: Digit Span (raw),Positive,Attention,Paired,0.301680567,0.236709683,7
+376,Robles 11_176,Robles,2011,33,1,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Attention,Positive,Not Subdomain,Paired,0.395380832,0.2624032,6
+377,Robles 11_176,Robles,2011,33,2,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: TMT-A,Negative,Attention,Paired,0.412262265,0.348471735,6
+378,Robles 11_176,Robles,2011,33,3,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,SRT (seashore rhythm test),Positive,Perception,Paired,0.347809453,0.347371704,6
+379,Robles 11_176,Robles,2011,33,4,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Digits forward,Positive,Attention,Paired,9.27E-02,0.344835157,6
+380,Robles 11_176,Robles,2011,33,5,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Executive functions,Positive,Not Subdomain,Paired,3.58E-01,0.278274862,6
+381,Robles 11_176,Robles,2011,33,6,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WCST Categories,Positive,Concept Formation & Reasoning,Paired,0.043059015,0.344682307,6
+382,Robles 11_176,Robles,2011,33,7,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WCST Persev errors (%),Negative,Concept Formation & Reasoning,Paired,0.326462661,0.347047838,6
+383,Robles 11_176,Robles,2011,33,8,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,STROOP Interference,Negative,Attention,Paired,2.59E-02,0.3446555,6
+384,Robles 11_176,Robles,2011,33,9,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,TMT-B,Negative,Attention,Paired,0.494067106,0.350130006,6
+385,Robles 11_176,Robles,2011,33,10,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,FAS,Positive,Executive Function,Paired,-0.132265595,0.371179606,6
+386,Robles 11_176,Robles,2011,33,11,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,COWAT,Positive,Executive Function,Paired,0.117981815,0.371093613,6
+387,Robles 11_176,Robles,2011,33,12,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Learning and memory,Positive,Not Subdomain,Paired,0.499501204,0.260593556,6
+388,Robles 11_176,Robles,2011,33,13,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC (Spanish version of California Verbal Learning Test): Total learning ,Positive,Memory,Paired,0.660900697,0.354403389,6
+389,Robles 11_176,Robles,2011,33,14,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC:Short-term free recal,Positive,Memory,Paired,0.511296502,0.350516297,6
+390,Robles 11_176,Robles,2011,33,15,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC:Long-term free recal,Positive,Memory,Paired,0.371271333,0.347750931,6
+391,Robles 11_176,Robles,2011,33,16,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC: Recognition,Positive,Memory,Paired,-0.495885453,0.350170169,6
+392,Robles 11_176,Robles,2011,33,17,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Working memory,Positive,Not Subdomain,Paired,0.228907682,0.240713771,6
+393,Robles 11_176,Robles,2011,33,18,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Digits backward,Positive,Attention,Paired,-0.16810471,0.345280281,6
+394,Robles 11_176,Robles,2011,33,19,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Letter-number S,Positive,Attention,Paired,0.389915966,0.348069621,6
+395,Robles 11_176,Robles,2011,33,20,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,NES: Motor coordination,Negative,Psychomotor Functioning,Paired,0.159116242,0.345213725,6
+396,Robles 11_176,Robles,2011,33,21,Olanzapine v Baseline,Antipsychotic,Current + long-term,Low,NES: SCMA,Negative,Psychomotor Functioning,Paired,0.431891547,0.354293651,6
+397,Robles 11_176,Robles,2011,33,22,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Attention,Positive,Not Subdomain,Paired,3.87E-02,0.251646452,6
+398,Robles 11_176,Robles,2011,33,23,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: TMT-A,Positive,Attention,Paired,-0.474341429,0.349703509,6
+399,Robles 11_176,Robles,2011,33,24,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,SRT (seashore rhythm test),Positive,Perception,Paired,-0.118621247,0.361528338,6
+400,Robles 11_176,Robles,2011,33,25,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Digits forward,Positive,Attention,Paired,-8.47E-02,0.344802808,6
+401,Robles 11_176,Robles,2011,33,26,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Executive functions,Positive,Not Subdomain,Paired,2.07E-02,0.268568183,6
+402,Robles 11_176,Robles,2011,33,27,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Categories,Positive,Concept Formation & Reasoning,Paired,-0.162214847,0.345236257,6
+403,Robles 11_176,Robles,2011,33,28,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Persev errors (%),Negative,Concept Formation & Reasoning,Paired,0.316838423,0.346908436,6
+404,Robles 11_176,Robles,2011,33,29,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,STROOP Interference,Positive,Attention,Paired,0.174535974,0.350723215,6
+405,Robles 11_176,Robles,2011,33,30,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,TMT-B,Positive,Attention,Paired,-7.11E-02,0.344754948,6
+406,Robles 11_176,Robles,2011,33,31,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,FAS,Positive,Executive Function,Paired,0.315591638,0.373149354,6
+407,Robles 11_176,Robles,2011,33,32,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,COWAT,Positive,Executive Function,Paired,1.35E-02,0.370762915,6
+408,Robles 11_176,Robles,2011,33,33,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Learning and memory,Positive,Not Subdomain,Paired,0.344513316,0.252088478,6
+409,Robles 11_176,Robles,2011,33,34,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC: Total learning,Positive,Memory,Paired,0.247998332,0.35671918,6
+410,Robles 11_176,Robles,2011,33,35,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC:Short-term free recal,Positive,Memory,Paired,0.376438892,0.358587913,6
+411,Robles 11_176,Robles,2011,33,36,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC:Long-term free recal,Positive,Memory,Paired,0.208477589,0.356297492,6
+412,Robles 11_176,Robles,2011,33,37,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,TAVEC: Recognition,Positive,Memory,Paired,0.361938594,0.358339011,6
+413,Robles 11_176,Robles,2011,33,38,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,Cognitive Domain composite: Working memory,Positive,Not Subdomain,Paired,-6.95E-02,0.244444997,6
+414,Robles 11_176,Robles,2011,33,39,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Digits backward,Positive,Attention,Paired,-0.254896041,0.346109968,6
+415,Robles 11_176,Robles,2011,33,40,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,WAIS: Letter-number S,Positive,Attention,Paired,2.39E-02,0.350035251,6
+416,Robles 11_176,Robles,2011,33,41,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,NES: Motor coordination,Positive,Psychomotor Functioning,Paired,-9.01E-02,0.344824137,6
+417,Robles 11_176,Robles,2011,33,42,Quetiapine v Baseline,Antipsychotic,Current + long-term,Low,NES: SCMA,Positive,Psychomotor Functioning,Paired,0.27842624,0.351803609,6
+418,Seidel 99_2761,Seidel,1999,34,1,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Boston Naming Test,Positive,Language,Paired,-0.281916848,0.295915008,5
+419,Seidel 99_2761,Seidel,1999,34,2,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,CAT: False Alarms,Negative,Attention,Paired,0.320060349,0.297848566,5
+420,Seidel 99_2761,Seidel,1999,34,3,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,CAT: Variability,Negative,Attention,Paired,4.53E-02,0.289299782,5
+421,Seidel 99_2761,Seidel,1999,34,4,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Continuous Attention Test (CAT): Hits,Positive,Attention,Paired,-3.47E-02,0.289226863,5
+422,Seidel 99_2761,Seidel,1999,34,5,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Finger Tapping Test (FTT) (dom. hand),Positive,Psychomotor Functioning,Paired,-0.129836038,0.290576507,5
+423,Seidel 99_2761,Seidel,1999,34,6,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Finger Tapping Test (FTT) (non. dom. hand),Positive,Psychomotor Functioning,Paired,-0.366282799,0.300499569,5
+424,Seidel 99_2761,Seidel,1999,34,7,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Grooved Pegboard Test (PEGS) (dom. hand),Positive,Psychomotor Functioning,Paired,0.258817768,0.294857879,5
+425,Seidel 99_2761,Seidel,1999,34,8,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Grooved Pegboard Test (PEGS) (non. dom. hand),Positive,Psychomotor Functioning,Paired,0.234629778,0.293844165,5
+426,Seidel 99_2761,Seidel,1999,34,9,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Trail Making Test: Trails A,Negative,Attention,Paired,-0.689088464,0.327618654,5
+427,Seidel 99_2761,Seidel,1999,34,10,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Trail Making Test: Trails B,Negative,Attention,Paired,-0.389367794,0.301947348,5
+428,Seidel 99_2761,Seidel,1999,34,11,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,Wide Range Assessment of Memory and Learning (WRAML): Memory Quotient,Positive,Memory,Paired,-0.105345841,0.290080548,5
+429,Seidel 99_2761,Seidel,1999,34,12,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WISC-III: Block Design,Positive,Psychomotor Functioning,Paired,-0.406804693,0.303094605,5
+430,Seidel 99_2761,Seidel,1999,34,13,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WISC-III: IQ,Positive,Intelligence,Paired,,,5
+431,Seidel 99_2761,Seidel,1999,34,14,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WISC-III: Picture Arrangement,Positive,Concept Formation & Reasoning,Paired,0.31447635,0.297551013,5
+432,Seidel 99_2761,Seidel,1999,34,15,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WISC-III: Similarities,Positive,Concept Formation & Reasoning,Paired,4.08E-02,0.289266129,5
+433,Seidel 99_2761,Seidel,1999,34,16,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WISC-III: Vocabulary,Positive,Language,Paired,-0.167755884,0.291545774,5
+434,Seidel 99_2761,Seidel,1999,34,17,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WRAML: Design Memory,Positive,Memory,Paired,9.50E-02,0.289901787,5
+435,Seidel 99_2761,Seidel,1999,34,18,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WRAML: Picture Memory,Positive,Memory,Paired,0.441616318,0.305521006,5
+436,Seidel 99_2761,Seidel,1999,34,19,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WRAML: Story Memory,Negative,Memory,Paired,1.382269543,0.423231959,5
+437,Seidel 99_2761,Seidel,1999,34,20,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WRAML: Verbal Learning,Negative,Memory,Paired,6.28E-02,0.289462889,5
+438,Seidel 99_2761,Seidel,1999,34,21,Carbamazepine Treated v Untreated,Antiepileptic,Current + long-term,Low,WRAML: Visual Learning,Negative,Memory,Paired,3.77E-02,0.289245699,5
+439,Sommer 05_2991,Sommer,2005,35,1,Oxybutynin v Control,Urological,Current + acute,High,Cognitive composite score (see paper): Attention + Speed of Processing (Digit symbol),Positive,Attention,Independent,0.216176409,0.395971512,2
+440,Sommer 05_2991,Sommer,2005,35,2,Oxybutynin v Control,Urological,Current + acute,High,Cognitive composite score (see paper): Delayed Recall (Buschke style word list),Positive,Memory,Independent,-0.567290398,0.402858736,2
+441,Sommer 05_2991,Sommer,2005,35,3,Oxybutynin v Control,Urological,Current + acute,High,Cognitive composite score (see paper): Immediate Memory (Buschke style word list),Positive,Attention,Independent,-0.45364339,0.399968298,2
+442,Sommer 05_2991,Sommer,2005,35,4,Oxybutynin v Control,Urological,Current + acute,High,Cognitive composite score (see paper): Learning (Buschke style word list),Positive,Memory,Independent,-0.346176169,0.397813464,2
+443,Sommer 05_2991,Sommer,2005,35,5,Oxybutynin v Control,Urological,Current + acute,High,Cognitive composite score (see paper): Working Memory (digit span forward and backward),Positive,Attention,Independent,0,0.394789556,2
+444,Stevenson 02_2802,Stevenson,2002,36,3,Cetirizine vs Placebo,Respiratory,Current + long-term,Low,MSCA: General Cognitive Index (GCI),Positive,Not Subdomain,Independent,-2.08E-02,0.155217583,7
+445,Tonnby 94_3153,Tonnby,1994,37,1,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Computerized Visual Searching Task (CVST),Negative,Attention,Paired,-0.394722817,0.189534678,3
+446,Tonnby 94_3153,Tonnby,1994,37,2,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Finger Tapping (FTT),Positive,Psychomotor Functioning,Paired,-0.310421882,0.188833306,3
+447,Tonnby 94_3153,Tonnby,1994,37,3,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Recognition of Words Serial (RWSE),Positive,Memory,Paired,-0.416878161,0.189746325,3
+448,Tonnby 94_3153,Tonnby,1994,37,4,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Recognition of Words Simultaneous (RWSI),Positive,Memory,Paired,-0.201357425,0.188172354,3
+449,Troost 06_5174,Troost,2006,38,1,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: RTCRL1,Negative,Attention,Paired,0.571939626,0.37483049,3
+450,Troost 06_5174,Troost,2006,38,2,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTCRL1,Negative,Attention,Paired,0.096725598,0.347575108,3
+451,Troost 06_5174,Troost,2006,38,3,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTCRL1,Negative,Attention,Paired,0.252907636,0.357565458,3
+452,Troost 06_5174,Troost,2006,38,4,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: RTCRL2,Negative,Attention,Paired,0.754333887,0.380549107,3
+453,Troost 06_5174,Troost,2006,38,5,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTCRL2,Negative,Attention,Paired,0.553944061,0.354198905,3
+454,Troost 06_5174,Troost,2006,38,6,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTCRL2,Negative,Attention,Paired,0.438522506,0.360544105,3
+455,Troost 06_5174,Troost,2006,38,7,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: RTHL1,Negative,Attention,Paired,0.420290356,0.371228926,3
+456,Troost 06_5174,Troost,2006,38,8,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTHL1,Negative,Attention,Paired,9.54E-02,0.347569243,3
+457,Troost 06_5174,Troost,2006,38,9,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTHL1,Negative,Attention,Paired,0.261849579,0.357672716,3
+458,Troost 06_5174,Troost,2006,38,10,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Divided Attention: RTHL2,Negative,Attention,Paired,0.598681636,0.375575439,3
+459,Troost 06_5174,Troost,2006,38,11,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTHL2,Negative,Attention,Paired,0.759868953,0.360116868,3
+460,Troost 06_5174,Troost,2006,38,12,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Divided Attention: RTHL2,Negative,Attention,Paired,0.856263672,0.37283617,3
+461,Troost 06_5174,Troost,2006,38,13,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Focused Attention: RTIT,Negative,Attention,Paired,0.842512538,0.371556156,3
+462,Troost 06_5174,Troost,2006,38,14,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTIT,Negative,Attention,Paired,1.373750544,0.397085251,3
+463,Troost 06_5174,Troost,2006,38,15,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTIT,Negative,Attention,Paired,1.155260914,0.37952825,3
+464,Troost 06_5174,Troost,2006,38,16,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Focused Attention: RTRNT,Negative,Attention,Paired,0.864456718,0.372395325,3
+465,Troost 06_5174,Troost,2006,38,17,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTRNT,Negative,Attention,Paired,0.900590256,0.373819789,3
+466,Troost 06_5174,Troost,2006,38,18,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTRNT,Negative,Attention,Paired,1.194227636,0.381468656,3
+467,Troost 06_5174,Troost,2006,38,19,Risperidone v Baseline,Antipsychotic,Current + acute,Low,Focused Attention: RTRT,Negative,Attention,Paired,0.671121419,0.365691473,3
+468,Troost 06_5174,Troost,2006,38,20,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTRT,Negative,Attention,Paired,0.801742626,0.370049602,3
+469,Troost 06_5174,Troost,2006,38,21,Risperidone v Baseline,Antipsychotic,Current + long-term,Low,Focused Attention: RTRT,Negative,Attention,Paired,0.975923309,0.371318128,3
+470,Tzitiridou 05_5054,Tzitiridou,2005,39,1,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,WISC-III: FSIQ,Positive,Intelligence,Paired,0.283967682,0.120630466,4
+471,Tzitiridou 05_5054,Tzitiridou,2005,39,2,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Information,Positive,Language,Paired,0.244956007,0.120018008,4
+472,Tzitiridou 05_5054,Tzitiridou,2005,39,3,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Similarities,Positive,Concept Formation & Reasoning,Paired,7.87E-02,0.16817628,4
+473,Tzitiridou 05_5054,Tzitiridou,2005,39,4,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Arithmetic,Positive,Concept Formation & Reasoning,Paired,-0.171541229,0.168422823,4
+474,Tzitiridou 05_5054,Tzitiridou,2005,39,5,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Vocabulary,Positive,Language,Paired,-6.80E-02,0.1681597,4
+475,Tzitiridou 05_5054,Tzitiridou,2005,39,6,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Comprehension,Positive,Concept Formation & Reasoning,Paired,-1.68E-02,0.168113542,4
+476,Tzitiridou 05_5054,Tzitiridou,2005,39,7,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Picture Completion,Positive,Concept Formation & Reasoning,Paired,0.241375281,0.119966176,4
+477,Tzitiridou 05_5054,Tzitiridou,2005,39,8,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Coding,Positive,Attention,Paired,-5.29E-02,0.168140287,4
+478,Tzitiridou 05_5054,Tzitiridou,2005,39,9,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Block Design,Positive,Psychomotor Functioning,Paired,0.140855919,0.168321156,4
+479,Tzitiridou 05_5054,Tzitiridou,2005,39,10,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Picture Arrangement,Positive,Concept Formation & Reasoning,Paired,0.258754982,0.120224664,4
+480,Tzitiridou 05_5054,Tzitiridou,2005,39,11,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,Object Assembly,Positive,Psychomotor Functioning,Paired,0.392219763,0.169736762,4
+481,Werry 75_3482,Werry,1975,40,1,Imipramine v Placebo,Antidepressant,Current + acute,High,CPT: Commissions,Negative,Attention,Paired,0.075575209,0.210254779,6
+482,Werry 75_3482,Werry,1975,40,2,Imipramine v Placebo,Antidepressant,Current + acute,High,CPT: Omissions,Negative,Attention,Paired,0.104965567,0.210555003,6
+483,Werry 75_3482,Werry,1975,40,3,Imipramine v Placebo,Antidepressant,Current + acute,High,CPT: Speed,Negative,Attention,Paired,-0.050383472,0.210075038,6
+484,Werry 75_3482,Werry,1975,40,4,Imipramine v Placebo,Antidepressant,Current + acute,High,STM: Accuracy,Positive,Attention,Paired,-0.251917362,0.213499625,6
+485,Werry 75_3482,Werry,1975,40,5,Imipramine v Placebo,Antidepressant,Current + acute,High,STM: Speed,Negative,Attention,Paired,-0.293903589,0.214773676,6
+486,Wilson 84_2126,Wilson,1984,41,1,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Attention Tests Color High Distractability: Time,Negative,Attention,Paired,0.271772745,0.11642993,2
+487,Wilson 84_2126,Wilson,1984,41,2,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Attention Tests Color Naming/Low Distractability: Errors,Negative,Attention,Paired,0.271772745,0.11642993,2
+488,Wilson 84_2126,Wilson,1984,41,3,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Attention Tests Color Naming/Low Distractability: Time,Negative,Attention,Paired,0.860604595,0.134168281,2
+489,Wilson 84_2126,Wilson,1984,41,4,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Attention Tests Object Naming: Errors,Negative,Attention,Paired,0.252906831,0.116146193,2
+490,Wilson 84_2126,Wilson,1984,41,5,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Beery-Buktenica VMI (age ratio),Positive,Psychomotor Functioning,Paired,0.227739317,0.115798505,2
+491,Wilson 84_2126,Wilson,1984,41,6,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Goodenough-Harris Draw-a-Person,Positive,Psychomotor Functioning,Paired,0.271772745,0.11642993,2
+492,Wilson 84_2126,Wilson,1984,41,7,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Halstead Categories Test (Error Ratio),Negative,Concept Formation & Reasoning,Paired,0.302188089,0.116928654,2
+493,Wilson 84_2126,Wilson,1984,41,8,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,Illinois Test of Psycholinguistic Abilities (ITPA): Visual Reception,Positive,Language,Paired,0.271772745,0.11642993,2
+494,Wilson 84_2126,Wilson,1984,41,9,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,ITPA: Auditory Association,Positive,Language,Paired,0.271772745,0.11642993,2
+495,Wilson 84_2126,Wilson,1984,41,10,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,MFF: Errors,Negative,Executive Function,Paired,0.227739317,0.115798505,2
+496,Wilson 84_2126,Wilson,1984,41,11,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,TMT: Trail Making B,Negative,Attention,Paired,0.860604595,0.134168281,2
+497,Wilson 84_2126,Wilson,1984,41,12,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,WISC-R: Block Design,Positive,Psychomotor Functioning,Paired,0.860604595,0.134168281,2
+498,Wilson 84_2126,Wilson,1984,41,13,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,WISC-R: FSIQ,Positive,Intelligence,Paired,0.860604595,0.134168281,2
+499,Wilson 84_2126,Wilson,1984,41,14,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,WISC-R: Picture Arrangement,Positive,Concept Formation & Reasoning,Paired,0.860604595,0.134168281,2
+500,Wilson 84_2126,Wilson,1984,41,15,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,WISC-R: Picture Completion,Positive,Concept Formation & Reasoning,Paired,0.271772745,0.11642993,2
+501,Wilson 84_2126,Wilson,1984,41,16,Amitriptyline/Imipramine v Baseline,Antidepressant,Current + long-term,High,WISC-R: Similarities,Positive,Concept Formation & Reasoning,Paired,0.271772745,0.11642993,2
+502,Yepes 77_2099,Yepes,1977,42,1,Amitriptyline v Placebo,Antidepressant,Current + acute,High,CPT: Absolute,Positive,Attention,Paired,0.607261892,0.229893993,5
+503,Yepes 77_2099,Yepes,1977,42,2,Amitriptyline v Placebo,Antidepressant,Current + acute,High,CPT: Commissions (errors),Negative,Attention,Paired,0.449591785,0.306731889,5
+504,Yepes 77_2099,Yepes,1977,42,3,Amitriptyline v Placebo,Antidepressant,Current + acute,High,CPT: Omissions (errors),Negative,Attention,Paired,0.607261892,0.229893993,5
+505,Yepes 77_2099,Yepes,1977,42,4,Amitriptyline v Placebo,Antidepressant,Current + acute,High,CPT: Relative,Positive,Attention,Paired,0.526530724,0.308185855,5
+506,Yepes 77_2099,Yepes,1977,42,5,Amitriptyline v Placebo,Antidepressant,Current + acute,High,MFFT: Errors,Negative,Executive Function,Paired,3.30E-02,0.344665002,5
+507,Yepes 77_2099,Yepes,1977,42,6,Amitriptyline v Placebo,Antidepressant,Current + acute,High,Short-Term Memory (STM): Matrix I,Positive,Attention,Paired,-0.532132648,0.361860388,5
+508,Yepes 77_2099,Yepes,1977,42,7,Amitriptyline v Placebo,Antidepressant,Current + acute,High,STM: Matrix III,Positive,Attention,Paired,-0.125298647,0.355647555,5
+509,Yepes 77_2099,Yepes,1977,42,8,Amitriptyline v Placebo,Antidepressant,Current + acute,High,STM: Matrix IX,Positive,Attention,Paired,-0.162615506,0.355899214,5
+510,Shehab 16_154,Shehab,2016,43,1,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,DMS (Delayed Matching to Sample): % correct,Positive,Attention,Paired,-1.65E-02,0.293570084,3
+511,Shehab 16_154,Shehab,2016,43,2,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP (Rapid Visual Information Processing) - Total Hits,Positive,Executive Function,Paired,0.345405365,0.295814085,3
+512,Shehab 16_154,Shehab,2016,43,3,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP - Total False Alarms,Negative,Executive Function,Paired,5.07E-02,0.293613595,3
+513,Shehab 16_154,Shehab,2016,43,4,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP - A' (the signal detection measure of sensitivity to the target),Positive,Attention,Paired,0.280635166,0.295051573,3
+514,Shehab 16_154,Shehab,2016,43,5,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,"RVP - B' (signal detection measure of the strength of visual trace
+required to elicit a response)",Positive,Executive Function,Paired,5.76E-02,0.293627711,3
+515,Shehab 16_154,Shehab,2016,43,6,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC (Stockings of Cambridge): Mean moves - 2 moves,Negative,Executive Function,Paired,-9.35E-02,0.293730477,3
+516,Shehab 16_154,Shehab,2016,43,7,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 3 moves,Negative,Executive Function,Paired,0.399803468,0.296574433,3
+517,Shehab 16_154,Shehab,2016,43,8,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 4 moves,Negative,Executive Function,Paired,0.612227949,0.300574556,3
+518,Shehab 16_154,Shehab,2016,43,9,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 5 moves,Negative,Executive Function,Paired,0.222963032,0.294504201,3
+519,Shehab 16_154,Shehab,2016,43,10,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,DMS (Delayed Matching to Sample): % correct,Positive,Attention,Paired,0.107954006,0.337169824,3
+520,Shehab 16_154,Shehab,2016,43,11,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP (Rapid Visual Information Processing) - Total Hits,Positive,Executive Function,Paired,0.521334425,0.342343154,3
+521,Shehab 16_154,Shehab,2016,43,12,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP - Total False Alarms,Negative,Executive Function,Paired,0.261978828,0.338309731,3
+522,Shehab 16_154,Shehab,2016,43,13,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,RVP - A' (the signal detection measure of sensitivity to the target),Positive,Attention,Paired,0.517040824,0.342255148,3
+523,Shehab 16_154,Shehab,2016,43,14,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,"RVP - B' (signal detection measure of the strength of visual trace
+required to elicit a response)",Positive,Executive Function,Paired,0.312771982,0.338892284,3
+524,Shehab 16_154,Shehab,2016,43,15,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC (Stockings of Cambridge): Mean moves - 2 moves,Negative,Executive Function,Paired,-2.90E-02,0.336953039,3
+525,Shehab 16_154,Shehab,2016,43,16,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 3 moves,Negative,Executive Function,Paired,0.402888404,0.340175695,3
+526,Shehab 16_154,Shehab,2016,43,17,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 4 moves,Negative,Executive Function,Paired,0.631885676,0.344850216,3
+527,Shehab 16_154,Shehab,2016,43,18,Fluoxetine v Baseline,Antidepressant,Current + long-term,Low,SOC: Mean moves - 5 moves,Negative,Executive Function,Paired,2.68E-02,0.336950619,3
+528,Schlieper 91_239,Schlieper,1991,44,1,Theophylline v Placebo,Respiratory,Current + acute,Low,Visual-Aural Digit Span,Positive,Attention,Paired,-0.170553035,0.251279179,6
+529,Schlieper 91_239,Schlieper,1991,44,2,Theophylline v Placebo,Respiratory,Current + acute,Low,Visual Retention Test (Benton),Positive,Memory,Paired,4.34E-02,0.250842197,6
+530,Schlieper 91_239,Schlieper,1991,44,3,Theophylline v Placebo,Respiratory,Current + acute,Low,Visual Retention Errors (Benton),Negative,Memory,Paired,-2.43E-02,0.250821472,6
+531,Schlieper 91_239,Schlieper,1991,44,4,Theophylline v Placebo,Respiratory,Current + acute,Low,Porteus Mazes Test,Positive,Executive Function,Paired,-0.128313323,0.25107652,6
+532,Schlieper 91_239,Schlieper,1991,44,5,Theophylline v Placebo,Respiratory,Current + acute,Low,Porteus Mazes Errors,Negative,Executive Function,Paired,-6.97E-02,0.250890046,6
+533,Schlieper 91_239,Schlieper,1991,44,6,Theophylline v Placebo,Respiratory,Current + acute,Low,Coding,Positive,Attention,Paired,-4.40E-02,0.250843121,6
+534,Operto 19_44,Operto,2019,45,1,Oxcarbazepine v Baseline,Antiepileptic,Current + long-term,Low,EpiTrack Junior (executive function),Positive,Not Subdomain,Paired,0.149705198,0.215963634,2
+535,Operto 19_44,Operto,2019,45,2,Carbamazepine v Baseline,Antiepileptic,Current + long-term,Low,EpiTrack Junior (executive function),Positive,Not Subdomain,Paired,-0.463753898,0.221792111,2
+536,Yuan 18_26,Yuan,2018,46,1,Lithium v Placebo,Antipsychotic,Current + long-term,Low,IQ (WISC-IV-CR or WPPSI-IV-CR),Positive,Intelligence,Independent,2.66E-02,0.178506921,8
