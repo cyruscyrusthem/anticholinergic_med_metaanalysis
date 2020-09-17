@@ -20,7 +20,7 @@ Import data (.csv) and assign to `dat`
 
 ```r
 library(readr)
-Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/dat_antichol.csv")
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Final analysis/anticholinergic_med_metaanalysis/dat_antichol.csv")
 ```
 
 Assign data to `dat`
@@ -869,8 +869,8 @@ eggers.test(x = meta_long_mod1)
 ```
 
 ```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.497       -1.477-0.483 -1.064 0.29685
+##              Intercept ConfidenceInterval     t       p
+## Egger's test     -0.52          -1.5-0.46 -1.12 0.27259
 ```
 
 ```r
@@ -894,8 +894,8 @@ eggers.test(x = meta_acute_mod1)
 ```
 
 ```
-##              Intercept ConfidenceInterval     t       p
-## Egger's test     0.268       -0.712-1.248 0.587 0.56462
+##              Intercept ConfidenceInterval    t       p
+## Egger's test     0.443       -0.537-1.423 0.94 0.35954
 ```
 
 ```r
@@ -937,8 +937,8 @@ Opioid analgesic | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0
 Urological | 2 | -0.1258015 | -0.7415743 - 0.4899713 | 0.6888489 | 0 | 0
 Low | 36 | 0.0227174 | -0.0512063 - 0.0966412 | 0.5469645 | 0 | 0
 High | 10 | 0.1083688 | -0.0803732 - 0.2971107 | 0.2604449 | 0.0116812 | 28.0243284
-Current + long-term | 29 | 0.0671079 | -0.0296005 - 0.1638163 | 0.1738115 | 0.0134227 | 24.168451
-Current + acute | 19 | 0.0372 | -0.092257 - 0.1666571 | 0.573296 | 0 | 0
+Current + long-term | 29 | 0.0662493 | -0.0295131 - 0.1620118 | 0.1751245 | 0.0125514 | 23.391868
+Current + acute | 20 | 0.0502412 | -0.0774366 - 0.1779189 | 0.4405616 | 0 | 0
 Historical | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0
 Attention | 37 | 0.0398772 | -0.0381468 - 0.1179012 | 0.3164811 | 0 | 0
 Psychomotor Functioning | 17 | -0.1034579 | -0.3016644 - 0.0947485 | 0.3062871 | 0.1022348 | 63.2378901

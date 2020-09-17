@@ -11,25 +11,25 @@ effectsizeID,study,author,year,study_id,comparison_id,comparison,drug_class,dura
 10,Aldenkamp 93_2193,Aldenkamp,1993,1,10,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Simultaneous Presentation: Words Correct,Positive,Attention,Paired,-0.518544973,0.331605605,4
 11,Aldenkamp 93_2193,Aldenkamp,1993,1,11,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Visual Searching Task: Errors,Negative,Attention,Paired,-0.121984204,0.32624282,4
 12,Aldenkamp 93_2193,Aldenkamp,1993,1,12,Carbamazepine v Withdrawal,Antiepileptic,Current + long-term,Low,Visual Searching Task: Time (sec),Negative,Attention,Paired,-0.587684303,0.333203473,4
-13,Aman 08_2484,Aman,2008,2,1,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Analogue Classroom Task: Number Correct,Positive,Concept Formation & Reasoning,Independent,-0.303538187,0.319977212,6
+13,Aman 08_2484,Aman,2008,2,1,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Analogue Classroom Task: Number Correct,Positive,Concept Formation & Reasoning,Independent,-0.303538187,0.319977212,6
 14,Aman 08_2484,Aman,2008,2,2,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Analogue Classroom Task: Number Correct,Positive,Concept Formation & Reasoning,Independent,-0.43359945,0.321942392,6
-15,Aman 08_2484,Aman,2008,2,3,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of) Commission,Negative,Perception,Independent,1.273016677,0.349994881,6
+15,Aman 08_2484,Aman,2008,2,3,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Cancellation Task: (errors of) Commission,Negative,Perception,Independent,1.273016677,0.349994881,6
 16,Aman 08_2484,Aman,2008,2,4,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of) Commission,Negative,Perception,Independent,0.556869359,0.32442783,6
-17,Aman 08_2484,Aman,2008,2,5,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: Correct Detections,Positive,Perception,Independent,1.050514897,0.485211008,6
+17,Aman 08_2484,Aman,2008,2,5,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Cancellation Task: Correct Detections,Positive,Perception,Independent,1.050514897,0.485211008,6
 18,Aman 08_2484,Aman,2008,2,6,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: Correct Detections,Positive,Perception,Independent,0.691377284,0.467939223,6
-19,Aman 08_2484,Aman,2008,2,7,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task: (errors of)  Omission,Negative,Perception,Independent,0.871957888,0.333432444,6
+19,Aman 08_2484,Aman,2008,2,7,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Cancellation Task: (errors of)  Omission,Negative,Perception,Independent,0.871957888,0.333432444,6
 20,Aman 08_2484,Aman,2008,2,8,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Cancellation Task:  (errors of) Omission,Negative,Perception,Independent,0.616362418,0.325840186,6
-21,Aman 08_2484,Aman,2008,2,9,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Dot Test: Difference,Negative,Attention,Independent,0.513327947,0.323481509,6
+21,Aman 08_2484,Aman,2008,2,9,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Dot Test: Difference,Negative,Attention,Independent,0.513327947,0.323481509,6
 22,Aman 08_2484,Aman,2008,2,10,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Dot Test: Difference,Negative,Attention,Independent,-0.054488388,0.318138608,6
-23,Aman 08_2484,Aman,2008,2,11,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands drops,Negative,Psychomotor Functioning,Independent,0.100866887,0.318287572,6
+23,Aman 08_2484,Aman,2008,2,11,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Purdue Pegboard: Both hands drops,Negative,Psychomotor Functioning,Independent,0.100866887,0.318287572,6
 24,Aman 08_2484,Aman,2008,2,12,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands drops,Negative,Psychomotor Functioning,Independent,-0.275303517,0.319641004,6
-25,Aman 08_2484,Aman,2008,2,13,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands inserts,Positive,Psychomotor Functioning,Independent,0.359136417,0.320733846,6
+25,Aman 08_2484,Aman,2008,2,13,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Purdue Pegboard: Both hands inserts,Positive,Psychomotor Functioning,Independent,0.359136417,0.320733846,6
 26,Aman 08_2484,Aman,2008,2,14,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Purdue Pegboard: Both hands inserts,Positive,Psychomotor Functioning,Independent,0.4228097,0.321753507,6
-27,Aman 08_2484,Aman,2008,2,15,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Delayed Recall,Positive,Memory,Independent,-0.246337463,0.490168811,6
+27,Aman 08_2484,Aman,2008,2,15,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Verbal Learning Task: Delayed Recall,Positive,Memory,Independent,-0.246337463,0.490168811,6
 28,Aman 08_2484,Aman,2008,2,16,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Delayed Recall,Positive,Memory,Independent,0.876214847,0.512212271,6
-29,Aman 08_2484,Aman,2008,2,17,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Immediate Recall,Positive,Attention,Independent,0.312317291,0.439929769,6
+29,Aman 08_2484,Aman,2008,2,17,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Verbal Learning Task: Immediate Recall,Positive,Attention,Independent,0.312317291,0.439929769,6
 30,Aman 08_2484,Aman,2008,2,18,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Immediate Recall,Positive,Attention,Independent,0.183769851,0.438114064,6
-31,Aman 08_2484,Aman,2008,2,19,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Recognition,Positive,Memory,Independent,1.217675994,0.561398645,6
+31,Aman 08_2484,Aman,2008,2,19,Risperidone v Placebo,Antipsychotic,Current + acute,Low,Verbal Learning Task: Recognition,Positive,Memory,Independent,1.217675994,0.561398645,6
 32,Aman 08_2484,Aman,2008,2,20,Risperidone v Placebo,Antipsychotic,Current + long-term,Low,Verbal Learning Task: Recognition,Positive,Memory,Independent,0.513203263,0.523949614,6
 33,Aman 09_2819,Aman,2009,3,1,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: (errors of) Commission,Negative,Attention,Paired,0.331728298,0.259234447,7
 34,Aman 09_2819,Aman,2009,3,2,Risperidone v Placebo,Antipsychotic,Current + acute,Low,CPT: (errors of) Omission,Negative,Attention,Paired,-4.53E-02,0.251685333,7

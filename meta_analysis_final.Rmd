@@ -18,7 +18,7 @@ ___
 Import data (.csv) and assign to `dat`
 ```{r data import, results = 'hide', warning = FALSE, message = FALSE}
 library(readr)
-Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/dat_antichol.csv")
+Anticholinergic_Medication_R_data <- read_csv("Z:/PROJECTS/2018_Anticholinergic_Med_SR/Analysis/Final analysis/anticholinergic_med_metaanalysis/dat_antichol.csv")
 ```
 
 Assign data to `dat`
