@@ -65,6 +65,7 @@ meta_all_mod1 <- metagen(g,
                     studlab = paste(author, year),
                     comb.fixed = F,
                     comb.random = T,
+                    hakn = T,
                     method.tau = "PM", #use Paule-Mandel method
                     sm = "SMD") #calculate SMD
 ```
@@ -163,6 +164,7 @@ meta_domain_mod1 <- metagen(g,
                     data = dat_study_domain,
                     studlab = paste(author, year),
                     comb.fixed = F,
+                    hakn = T,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
                     sm = "SMD") # says we want to calculate SMD
@@ -204,6 +206,7 @@ meta_domain_group1 <- metagen(g,
                             data = dat_study_domain_group1,
                             studlab = paste(author, year),
                             comb.fixed = F,
+                            hakn = T,
                             comb.random = T,
                             method.tau = "PM", #use Paule-Mandel method
                             sm = "SMD") # says we want to calculate SMD
@@ -216,6 +219,7 @@ meta_domain_group2 <- metagen(g,
                               data = dat_study_domain_group2,
                               studlab = paste(author, year),
                               comb.fixed = F,
+                              hakn = T,
                               comb.random = T,
                               method.tau = "PM", #use Paule-Mandel method
                               sm = "SMD") # says we want to calculate SMD
@@ -313,6 +317,7 @@ meta_class_mod1 <- metagen(g,
                     data = dat_study_class,
                     studlab = paste(author, year),
                     comb.fixed = F,
+                    hakn = T,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
                     sm = "SMD") # says we want to calculate SMD
@@ -376,6 +381,7 @@ meta_duration_mod1 <- metagen(g,
                     data = dat_study_duration,
                     studlab = paste(author, year),
                     comb.fixed = F,
+                    hakn = T,
                     comb.random = T,
                     method.tau = "PM", #use Paule-Mandel method
                     prediction = T, #True = print prediction interval for future studies based on present evidence
@@ -735,7 +741,7 @@ meta_perc_sens <- metagen(g,
                     comb.fixed = F,
                     comb.random = T,
                     method.tau = "PM",
-                    #hakn = T,
+                    hakn = T,
                     prediction = T, 
                     sm = "SMD")
 ```
@@ -920,31 +926,31 @@ ____
 
 k | g | LL | UL | p | tau^2^ | I^2^
 ---- | ---- | ---- | ---- | ---- | ---- | ----
-46 |0.0473952 |-0.0197967 | 0.1145871 | 0.1668178 | 0 | 0%
-
+46 |0.0473952 |-0.0195985 | 0.1143889 | 0.1610876 | 0 | 0%
 
 **Sub-analysis table**
 
 
 Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^
 ---- | ---- | ---- | ---- | ---- | ---- | ---- 
-Antiepileptic | 14 | -0.0322294 | -0.1612011 - 0.0967422 | 0.6242852 | 0.0048268 | 9.6687088
-Antipsychotic | 14 | 0.0609384 | -0.0531475 - 0.1750244 | 0.2951434 | 0 | 0
-Antidepressant | 7 | 0.2391687 | 0.0582267 - 0.4201107 | 0.0095788 | 0.0045757 | 13.2206831
+Antiepileptic | 14 | -0.0322294 | -0.1743892 - 0.1099303 | 0.6324484 | 0.0048268 | 9.6687088
+Antipsychotic | 14 | 0.0609384 | -0.0342013 - 0.1560782 | 0.1897344 | 0 | 0
+Antidepressant | 7 | 0.2391687 | 0.0132144 - 0.465123 | 0.0412112 | 0.0045757 | 13.2206831
 Antiparkinson | 1 | 0.0390292 | -1.0830858 - 1.1611442 | 0.9456494 | NA | NA
-Respiratory | 5 | 0.0211953 | -0.1756152 - 0.2180058 | 0.8328279 | 0 | 0
-Opioid analgesic | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0
-Urological | 2 | -0.1258015 | -0.7415743 - 0.4899713 | 0.6888489 | 0 | 0
-Low | 36 | 0.0227174 | -0.0512063 - 0.0966412 | 0.5469645 | 0 | 0
-High | 10 | 0.1083688 | -0.0803732 - 0.2971107 | 0.2604449 | 0.0116812 | 28.0243284
-Current + long-term | 29 | 0.0662493 | -0.0295131 - 0.1620118 | 0.1751245 | 0.0125514 | 23.391868
-Current + acute | 20 | 0.0502412 | -0.0774366 - 0.1779189 | 0.4405616 | 0 | 0
-Historical | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0
-Attention | 37 | 0.0398772 | -0.0381468 - 0.1179012 | 0.3164811 | 0 | 0
-Psychomotor Functioning | 17 | -0.1034579 | -0.3016644 - 0.0947485 | 0.3062871 | 0.1022348 | 63.2378901
-Concept Formation & Reasoning | 13 | 0.1382341 | -0.0030341 - 0.2795023 | 0.0551276 | 0.0068826 | 15.9645404
-Perception | 3 | 0.2456687 | -0.2769132 - 0.7682505 | 0.3568469 | 0.110928 | 50.1845504
-Memory | 16 | 0.0393785 | -0.0750444 - 0.1538013 | 0.4999816 | 0 | 0
-Executive Function | 15 | -0.0137945 | -0.2495899 - 0.2220009 | 0.9087134 | 0.1199335 | 48.5043879
-Intelligence | 14 | 0.0761191 | -0.1544082 - 0.3066464 | 0.517521 | 0.1341982 | 76.2331004
-Language | 6 | 0.1131588 | -0.0317128 - 0.2580304 | 0.1257886 | 0 | 0
+Respiratory | 5 | 0.0211953 | -0.1483864 - 0.1907769 | 0.7460674 | 0 | 0
+Opioid analgesic | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0
+Urological | 2 | -0.1258015 | -1.8281093 - 1.5765064 | 0.5200227 | 0 | 0
+Low | 36 | 0.0227174 | -0.0450249 - 0.0904598 | 0.5004789 | 0 | 0
+High | 10 | 0.1083688 | -0.1095259 - 0.3262634 | 0.2896666 | 0.0116812 | 28.0243284
+Current + long-term | 29 | 0.0662493 | -0.0338582 - 0.1663568 | 0.1860613 | 0.0125514 | 23.391868
+Current + acute | 20 | 0.0502412 | -0.0385721 - 0.1390544 | 0.25101 | 0 | 0
+Historical | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0
+Attention | 37 | 0.0398772 | -0.0402848 - 0.1200391 | 0.3197601 | 0 | 0
+Psychomotor Functioning | 17 | -0.1034579 | -0.3178389 - 0.110923 | 0.3215072 | 0.1022348 | 63.2378901
+Concept Formation & Reasoning | 13 | 0.1382341 | -0.0188303 - 0.2952985 | 0.0792704 | 0.0068826 | 15.9645404
+Perception | 3 | 0.2456687 | -0.9015413 - 1.3928786 | 0.4541163 | 0.110928 | 50.1845504
+Memory | 16 | 0.0393785 | -0.0573014 - 0.1360583 | 0.3989859 | 0 | 0
+Executive Function | 15 | -0.0137945 | -0.2718257 - 0.2442367 | 0.9103418 | 0.1199335 | 48.5043879
+Intelligence | 14 | 0.0761191 | -0.1779935 - 0.3302317 | 0.5288061 | 0.1341982 | 76.2331004
+Language | 6 | 0.1131588 | -0.0679091 - 0.2942267 | 0.1690754 | 0 | 0
+
