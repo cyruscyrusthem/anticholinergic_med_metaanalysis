@@ -451,506 +451,72 @@ p>0.1, so no further action required.
 
 ____
 
-#### Potency
-Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
-
-
-
-**Low potency**
-
-```r
-png(file='figS2_meta_funnel_low_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_low_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_low_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.107       -0.891-0.677 -0.297 0.76844
-```
-
-```r
-eggers_meta_low_mod1 <- eggers.test(x = meta_low_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias.
-
-**High potency**
-
-```r
-png(file='figS3_meta_funnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_high_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_high_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -1.734       -2.91--0.558 -3.136 0.01388
-```
-
-```r
-eggers_meta_high_mod1 <- eggers.test(x = meta_high_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-
-```r
-meta_high_mod1_trim <- trimfill.meta(meta_high_mod1)
-```
-
-
-```r
-png(file='figS4_meta_trimfunnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_high_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Cognitive domains
-Again, run subgroup analyses individually first (code not displayed).
-
-
-
-**Attention**
-
-```r
-png(file='figS5_meta_funnel_att_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_att_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_att_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -0.322       -1.106-0.462 -0.869 0.39056
-```
-
-```r
-eggers_att <- eggers.test(x = meta_att_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Memory**
-
-```r
-png(file='figS12_meta_funnel_mem_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_mem_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_mem_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval     t       p
-## Egger's test     0.146        -0.638-0.93 0.393 0.70029
-```
-
-```r
-eggers_mem <- eggers.test(x = meta_mem_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Executive function**
-
-```r
-png(file='figS13_meta_funnel_exec_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_exec_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_exec_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -1.152        -2.72-0.416 -1.358 0.19745
-```
-
-```r
-eggers_exec <- eggers.test(x = meta_exec_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Psychomotor functioning**
-
-```r
-png(file='figS6_meta_funnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_psych_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_psych_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -3.083      -4.651--1.515 -3.654 0.00235
-```
-
-```r
-eggers_psych <- eggers.test(x = meta_psych_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-
-```r
-meta_psych_mod1_trim <- trimfill.meta(meta_psych_mod1)
-```
-
-
-```r
-png(file='figS7_meta_trimfunnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_psych_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Concept formation**
-
-```r
-png(file='figS8_meta_funnel_conc_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_conc_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_conc_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t     p
-## Egger's test     -1.49        -2.47--0.51 -2.777 0.018
-```
-
-```r
-eggers_conc <- eggers.test(x = meta_conc_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-
-```r
-meta_conc_mod1_trim <- trimfill.meta(meta_conc_mod1)
-
-png(file='figS9_meta_trimfunnel_conc_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_conc_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Language**
-
-```r
-png(file='figS14_meta_funnel_lang_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_lang_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-<10 studies so Egger's not done. Inspected visually for outliers, didn't seem to be any indication of substantial outliers.
-
-**Intelligence**
-
-```r
-png(file='figS15_meta_funnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_gen_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_gen_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -3.233      -5.781--0.685 -2.513 0.02725
-```
-
-```r
-eggers_gen <- eggers.test(x = meta_gen_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-
-```r
-meta_gen_mod1_trim <- trimfill.meta(meta_gen_mod1)
-
-png(file='figS16_meta_trimfunnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_gen_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Perception**
-
-```r
-png(file='figS10_meta_funnel_perc_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_perc_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-k<10 so visual inspection for outliers undertaken. Outlier (Aman) identified. Sensitivity analysis conducted with outlier removed:
-
-
-```r
-dat_dom_perc_sens <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Perception") %>%
-  filter(author != "Aman")
-```
-
-
-```r
-meta_perc_sens <- metagen(g,
-                    st_err,
-                    data = dat_dom_perc_sens,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "PM",
-                    hakn = T,
-                    prediction = T, 
-                    sm = "SMD")
-```
-
-
-```r
-png(file='figS11_meta_funnel_perc_sens_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_perc_sens, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Drug class
-
-Again, run subgroup analyses individually first (code not displayed).
-
-
-
-**Antiepileptic**
-
-```r
-png(file='figS17_meta_funnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antiepi_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_antiepi_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval      t       p
-## Egger's test    -1.924        -3.1--0.748 -2.967 0.01176
-```
-
-```r
-eggers_antiepi <- eggers.test(x = meta_antiepi_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-
-```r
-meta_antiepi_mod1_trim <- trimfill.meta(meta_antiepi_mod1)
-
-png(file='figS18_meta_trimfunnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antiepi_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Antipsychotic**
-
-```r
-png(file='figS19_meta_funnel_antipsych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antipsych_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_antipsych_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval     t       p
-## Egger's test     0.533       -0.251-1.317 1.418 0.18167
-```
-
-```r
-eggers_antipsych <- eggers.test(x = meta_antipsych_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Antidepressant**
-
-```r
-png(file='figS20_meta_funnel_antidep_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antidep_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Respiratory**
-
-```r
-png(file='figS21_meta_funnel_resp_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_resp_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Opioid analgesic**
-
-```r
-png(file='figS22_meta_funnel_opi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_opi_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Urological**
-
-```r
-png(file='figS22_meta_funnel_uro_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_uro_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Length of administration
-
-Again, run subgroup analyses individually first (code not displayed).
-
-
-
-**Long-term**
-
-```r
-png(file='figS23_meta_funnel_long_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_long_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_long_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval     t       p
-## Egger's test     -0.52          -1.5-0.46 -1.12 0.27259
-```
-
-```r
-eggers_long <- eggers.test(x = meta_long_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Acute**
-
-```r
-png(file='figS24_meta_funnel_acute_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_acute_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-
-```r
-eggers.test(x = meta_acute_mod1)
-```
-
-```
-##              Intercept ConfidenceInterval    t       p
-## Egger's test     0.443       -0.537-1.423 0.94 0.35954
-```
-
-```r
-eggers_acute <- eggers.test(x = meta_acute_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Historical**
-
-```r
-png(file='figS25_meta_funnel_hist_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_hist_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
 ### Results
 
 **Whole analysis**
 
-k | g | LL | UL | p | tau^2^ | I^2^
----- | ---- | ---- | ---- | ---- | ---- | ----
-46 |0.0473952 |-0.0195985 | 0.1143889 | 0.1610876 | 0 | 0%
+k | g | LL | UL | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
+46 |0.0473952 |-0.0195985 | 0.1143889 | 0.1610876 | 0 | 0% | 42.3623376
 
-**Sub-analysis table**
+**Sub-analysis table (combining with random-effects)**
 
 
-Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^
----- | ---- | ---- | ---- | ---- | ---- | ---- 
-Antiepileptic | 14 | -0.0322294 | -0.1743892 - 0.1099303 | 0.6324484 | 0.0048268 | 9.6687088
-Antipsychotic | 14 | 0.0609384 | -0.0342013 - 0.1560782 | 0.1897344 | 0 | 0
-Antidepressant | 7 | 0.2391687 | 0.0132144 - 0.465123 | 0.0412112 | 0.0045757 | 13.2206831
-Antiparkinson | 1 | 0.0390292 | -1.0830858 - 1.1611442 | 0.9456494 | NA | NA
-Respiratory | 5 | 0.0211953 | -0.1483864 - 0.1907769 | 0.7460674 | 0 | 0
-Opioid analgesic | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0
-Urological | 2 | -0.1258015 | -1.8281093 - 1.5765064 | 0.5200227 | 0 | 0
-Low | 36 | 0.0227174 | -0.0450249 - 0.0904598 | 0.5004789 | 0 | 0
-High | 10 | 0.1083688 | -0.1095259 - 0.3262634 | 0.2896666 | 0.0116812 | 28.0243284
-Current + long-term | 29 | 0.0662493 | -0.0338582 - 0.1663568 | 0.1860613 | 0.0125514 | 23.391868
-Current + acute | 20 | 0.0502412 | -0.0385721 - 0.1390544 | 0.25101 | 0 | 0
-Historical | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0
-Attention | 37 | 0.0398772 | -0.0402848 - 0.1200391 | 0.3197601 | 0 | 0
-Psychomotor Functioning | 17 | -0.1034579 | -0.3178389 - 0.110923 | 0.3215072 | 0.1022348 | 63.2378901
-Concept Formation & Reasoning | 13 | 0.1382341 | -0.0188303 - 0.2952985 | 0.0792704 | 0.0068826 | 15.9645404
-Perception | 3 | 0.2456687 | -0.9015413 - 1.3928786 | 0.4541163 | 0.110928 | 50.1845504
-Memory | 16 | 0.0393785 | -0.0573014 - 0.1360583 | 0.3989859 | 0 | 0
-Executive Function | 15 | -0.0137945 | -0.2718257 - 0.2442367 | 0.9103418 | 0.1199335 | 48.5043879
-Intelligence | 14 | 0.0761191 | -0.1779935 - 0.3302317 | 0.5288061 | 0.1341982 | 76.2331004
-Language | 6 | 0.1131588 | -0.0679091 - 0.2942267 | 0.1690754 | 0 | 0
+Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
+Antiepileptic | 14 | -0.0322294 | -0.1743892 - 0.1099303 | 0.6324484 | 0.0048268 | 9.6687088 | 14.3914693 
+Antipsychotic | 14 | 0.0609384 | -0.0342013 - 0.1560782 | 0.1897344 | 0 | 0 | 7.441203 
+Antidepressant | 7 | 0.2391687 | 0.0132144 - 0.465123 | 0.0412112 | 0.0045757 | 13.2206831 | 6.9140899 
+Antiparkinson | 1 | 0.0390292 | -1.0830858 - 1.1611442 | 0.9456494 | NA | NA | 0 
+Respiratory | 5 | 0.0211953 | -0.1483864 - 0.1907769 | 0.7460674 | 0 | 0  | 1.4799235 
+Opioid analgesic | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0 | 1.8391246 
+Urological | 2 | -0.1258015 | -1.8281093 - 1.5765064 | 0.5200227 | 0 | 0 | 0.1818443 
+Low | 36 | 0.0227174 | -0.0450249 - 0.0904598 | 0.5004789 | 0 | 0 | 27.3954939
+High | 10 | 0.1083688 | -0.1095259 - 0.3262634 | 0.2896666 | 0.0116812 | 28.0243284 | 12.5042251
+Current + long-term | 29 | 0.0662493 | -0.0338582 - 0.1663568 | 0.1860613 | 0.0125514 | 23.391868 | 36.5496446
+Current + acute | 20 | 0.0502412 | -0.0385721 - 0.1390544 | 0.25101 | 0 | 0 | 8.0617008
+Historical | 3 | -0.1777412 | -0.7939699 - 0.4384876 | 0.3404144 | 0 | 0 | 1.8391246
+Attention | 37 | 0.0398772 | -0.0402848 - 0.1200391 | 0.3197601 | 0 | 0 | 35.4897181
+Psychomotor Functioning | 17 | -0.1034579 | -0.3178389 - 0.110923 | 0.3215072 | 0.1022348 | 63.2378901 | 43.5230732
+Concept Formation & Reasoning | 13 | 0.1382341 | -0.0188303 - 0.2952985 | 0.0792704 | 0.0068826 | 15.9645404 | 14.2796863
+Perception | 3 | 0.2456687 | -0.9015413 - 1.3928786 | 0.4541163 | 0.110928 | 50.1845504 | 4.0148187
+Memory | 16 | 0.0393785 | -0.0573014 - 0.1360583 | 0.3989859 | 0 | 0 | 9.0548962
+Executive Function | 15 | -0.0137945 | -0.2718257 - 0.2442367 | 0.9103418 | 0.1199335 | 48.5043879 | 27.1867824
+Intelligence | 14 | 0.0761191 | -0.1779935 - 0.3302317 | 0.5288061 | 0.1341982 | 76.2331004 | 54.6979211
+Language | 6 | 0.1131588 | -0.0679091 - 0.2942267 | 0.1690754 | 0 | 0 | 4.5406659
 
+**Sub-analysis table (combining with fixed-effects)**
+
+
+Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
+Antiepileptic | 14 | -0.023635 | -0.1450149 - 0.0977449 | 0.702726 | 0.0048268 | 9.6687088 | 14.3914693 
+Antipsychotic | 14 | 0.0609384 | -0.0531475 - 0.1750244 | 0.2951434 | 0 | 0 | 7.441203 
+Antidepressant | 7 | 0.2578004 | 0.0908379 - 0.4247628 | 0.0024756 | 0.0045757 | 13.2206831 | 6.9140899 
+Antiparkinson | 1 | 0.0390292 | -1.0830858 - 1.1611442 | 0.9456494 | NA | NA | 0 
+Respiratory | 5 | 0.0211953 | -0.1756152 - 0.2180058 | 0.8328279 | 0 | 0  | 1.4799235 
+Opioid analgesic | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0 | 1.8391246 
+Urological | 2 | -0.1258015 | -0.7415743 - 0.4899713 | 0.6888489 | 0 | 0 | 0.1818443 
+Low | 36 | 0.0227174 | -0.0512063 - 0.0966412 | 0.5469645 | 0 | 0 | 27.3954939
+High | 10 | 0.1646766 | 0.0035209 - 0.3258323 | 0.0452004 | 0.0116812 | 28.0243284 | 12.5042251
+Current + long-term | 29 | 0.0771692 | -0.0010683 - 0.1554067 | 0.0532115 | 0.0125514 | 23.391868 | 36.5496446
+Current + acute | 20 | 0.0502412 | -0.0774366 - 0.1779189 | 0.4405616 | 0 | 0 | 8.0617008
+Historical | 3 | -0.1777412 | -0.4704684 - 0.1149861 | 0.2340184 | 0 | 0 | 1.8391246
+Attention | 37 | 0.0398772 | -0.0381468 - 0.1179012 | 0.3164811 | 0 | 0 | 35.4897181
+Psychomotor Functioning | 17 | 0.0103703 | -0.0979011 - 0.1186418 | 0.8510908 | 0.1022348 | 63.2378901 | 43.5230732
+Concept Formation & Reasoning | 13 | 0.1590038 | 0.0321123 - 0.2858954 | 0.0140505 | 0.0068826 | 15.9645404 | 14.2796863
+Perception | 3 | 0.1793376 | -0.1659284 - 0.5246036 | 0.308658 | 0.110928 | 50.1845504 | 4.0148187
+Memory | 16 | 0.0393785 | -0.0750444 - 0.1538013 | 0.4999816 | 0 | 0 | 9.0548962
+Executive Function | 15 | 0.057334 | -0.0725232 - 0.1871911 | 0.3868441 | 0.1199335 | 48.5043879 | 27.1867824
+Intelligence | 14 | 0.2058602 | 0.1021236 - 0.3095969 | 1.0047122\times 10^{-4} | 0.1341982 | 76.2331004 | 54.6979211
+Language | 6 | 0.1131588 | -0.0317128 - 0.2580304 | 0.1257886 | 0 | 0 | 4.5406659
+
+
+**Sub-analysis: Test of subgroup differences**
+
+Sub-analysis | Q (random) | p (random) | Q (fixed) | p (fixed)
+--- | --- | --- |  --- | ---
+Class | 9.9761328 | 0.1256607 | 10.1146831 | 0.1199048 
+Potency | 0.7059872 | 0.4007792 | 2.4626187 | 0.1165843 
+Duration | 2.6221744 | 0.2695269 | 2.7360294 | 0.2546119 
+Domain | 5.5882051 | 0.5885671 | 10.8420528 | 0.1456585 

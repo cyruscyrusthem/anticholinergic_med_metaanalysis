@@ -532,626 +532,72 @@ p>0.1, so no further action required.
 
 ____
 
-#### Potency
-Does not seem possible to plot (using funnel plots) the individual parts of the sub-analyses separately. So, first I will run the meta-analyses separately for each subgroup (code not shown). This will provide the same results as previously found, it just requires extra data wrangling (filtering by subgroup), and more code. 
-
-```{r potency subanalysis, include = FALSE}
-dat_pot_low <-dat_study %>%
-  filter(potency == "Low")
-
-meta_low_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_pot_low,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-dat_pot_high <-dat_study %>%
-  filter(potency == "High")
-
-meta_high_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_pot_high,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-```
-
-**Low potency**
-```{r meta funnel low potency, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS2_meta_funnel_low_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_low_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers low potency}
-eggers.test(x = meta_low_mod1)
-eggers_meta_low_mod1 <- eggers.test(x = meta_low_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias.
-
-**High potency**
-```{r meta funnel high potency, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS3_meta_funnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_high_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers high potency}
-eggers.test(x = meta_high_mod1)
-eggers_meta_high_mod1 <- eggers.test(x = meta_high_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-```{r meta trimfill high potency, results = 'hide'}
-meta_high_mod1_trim <- trimfill.meta(meta_high_mod1)
-```
-
-```{r meta funnel trimfill high potency, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS4_meta_trimfunnel_high_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_high_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Cognitive domains
-Again, run subgroup analyses individually first (code not displayed).
-
-```{r domain subanalysis, include=FALSE}
-#attention
-dat_dom_att <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Attention")
-meta_att_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_att,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#memory
-dat_dom_mem <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Memory")
-meta_mem_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_mem,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#executive function
-dat_dom_exec <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Executive Function")
-meta_exec_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_exec,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#psychomotor functioning
-dat_dom_psych <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Psychomotor Functioning")
-meta_psych_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_psych,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#Concept formation & reasoning
-dat_dom_conc <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Concept Formation & Reasoning")
-meta_conc_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_conc,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#Language
-dat_dom_lang <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Language")
-meta_lang_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_lang,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#Intelligence (General)
-dat_dom_gen <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Intelligence")
-meta_gen_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_gen,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-#Perception
-dat_dom_perc <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Perception")
-meta_perc_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_perc,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    prediction = T, 
-                    sm = "SMD")
-
-```
-
-**Attention**
-```{r meta funnel attention, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS5_meta_funnel_att_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_att_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers attention}
-eggers.test(x = meta_att_mod1)
-eggers_att <- eggers.test(x = meta_att_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Memory**
-```{r meta funnel memory, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS12_meta_funnel_mem_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_mem_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers memory}
-eggers.test(x = meta_mem_mod1)
-eggers_mem <- eggers.test(x = meta_mem_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Executive function**
-```{r meta funnel executive, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS13_meta_funnel_exec_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_exec_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers executive}
-eggers.test(x = meta_exec_mod1)
-eggers_exec <- eggers.test(x = meta_exec_mod1)
-```
-
-P>0.1 so nothing further required, no indication of substantial publication bias
-
-**Psychomotor functioning**
-```{r meta funnel psychomotor, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS6_meta_funnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_psych_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers psychomotor}
-eggers.test(x = meta_psych_mod1)
-eggers_psych <- eggers.test(x = meta_psych_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-```{r meta trimfill psychomotor, results = 'hide'}
-meta_psych_mod1_trim <- trimfill.meta(meta_psych_mod1)
-```
-
-```{r meta funnel trimfill psychomotor, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS7_meta_trimfunnel_psych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_psych_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Concept formation**
-```{r meta funnel concept, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS8_meta_funnel_conc_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_conc_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers concept}
-eggers.test(x = meta_conc_mod1)
-eggers_conc <- eggers.test(x = meta_conc_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-```{r meta trimfill conc, results = 'hide', warning = FALSE, message = FALSE}
-meta_conc_mod1_trim <- trimfill.meta(meta_conc_mod1)
-
-png(file='figS9_meta_trimfunnel_conc_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_conc_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Language**
-```{r meta funnel language, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS14_meta_funnel_lang_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_lang_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-<10 studies so Egger's not done. Inspected visually for outliers, didn't seem to be any indication of substantial outliers.
-
-**Intelligence**
-```{r meta funnel general, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS15_meta_funnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_gen_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers general, warning = FALSE, message = FALSE}
-eggers.test(x = meta_gen_mod1)
-eggers_gen <- eggers.test(x = meta_gen_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-```{r meta trimfill gen, results = 'hide', warning = FALSE, message = FALSE}
-meta_gen_mod1_trim <- trimfill.meta(meta_gen_mod1)
-
-png(file='figS16_meta_trimfunnel_gen_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_gen_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Perception**
-```{r meta funnel perception, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS10_meta_funnel_perc_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_perc_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-k<10 so visual inspection for outliers undertaken. Outlier (Aman) identified. Sensitivity analysis conducted with outlier removed:
-
-```{r remove outlier}
-dat_dom_perc_sens <- dat_study_domain %>%
-  filter(cog_domain_lezak == "Perception") %>%
-  filter(author != "Aman")
-```
-
-```{r meta perception sensitivity}
-meta_perc_sens <- metagen(g,
-                    st_err,
-                    data = dat_dom_perc_sens,
-                    studlab = paste(study),
-                    comb.fixed = F,
-                    comb.random = T,
-                    method.tau = "PM",
-                    hakn = T,
-                    prediction = T, 
-                    sm = "SMD")
-```
-
-```{r meta funnel perception sensitivity, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS11_meta_funnel_perc_sens_2.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_perc_sens, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Drug class
-
-Again, run subgroup analyses individually first (code not displayed).
-
-```{r class subanalysis, include=FALSE}
-#antiepileptic
-dat_dom_antiepi <- dat_study_class %>%
-  filter(drug_class == "Antiepileptic")
-meta_antiepi_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_antiepi,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#antipsychotic
-dat_dom_antipsych <- dat_study_class %>%
-  filter(drug_class == "Antipsychotic")
-meta_antipsych_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_antipsych,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#antidepressant
-dat_dom_antidep <- dat_study_class %>%
-  filter(drug_class == "Antidepressant")
-meta_antidep_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_antidep,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#respiratory
-dat_dom_resp <- dat_study_class %>%
-  filter(drug_class == "Respiratory")
-meta_resp_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_resp,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#opioid analgesic
-dat_dom_opi <- dat_study_class %>%
-  filter(drug_class == "Opioid analgesic")
-meta_opi_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_opi,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#Urological
-dat_dom_uro <- dat_study_class %>%
-  filter(drug_class == "Urological")
-meta_uro_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_uro,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-```
-
-**Antiepileptic**
-```{r meta funnel Antiepileptic, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS17_meta_funnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antiepi_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers Antiepileptic}
-eggers.test(x = meta_antiepi_mod1)
-eggers_antiepi <- eggers.test(x = meta_antiepi_mod1)
-```
-
-p<0.1, therefore Duval and Tweedie's trim and fill method was used to quantify the magnitude of bias.
-
-```{r meta trimfill Antiepileptic, results = 'hide', warning = FALSE, message = FALSE}
-meta_antiepi_mod1_trim <- trimfill.meta(meta_antiepi_mod1)
-
-png(file='figS18_meta_trimfunnel_antiepi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antiepi_mod1_trim, xlab = "Hedges' g")
-dev.off()
-```
-
-**Antipsychotic**
-```{r meta funnel Antipsychotic, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS19_meta_funnel_antipsych_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antipsych_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers Antipsychotic}
-eggers.test(x = meta_antipsych_mod1)
-eggers_antipsych <- eggers.test(x = meta_antipsych_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Antidepressant**
-```{r meta funnel Antidepressant, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS20_meta_funnel_antidep_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_antidep_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Respiratory**
-```{r meta funnel Respiratory, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS21_meta_funnel_resp_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_resp_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Opioid analgesic**
-```{r meta funnel Opioid analgesic, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS22_meta_funnel_opi_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_opi_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-**Urological**
-```{r meta funnel Urological, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS22_meta_funnel_uro_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_uro_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
-#### Length of administration
-
-Again, run subgroup analyses individually first (code not displayed).
-
-```{r duration subanalysis, include=FALSE}
-#long-term
-dat_dom_long <- dat_study_duration %>%
-  filter(duration == "Current + long-term")
-meta_long_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_long,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#acute
-dat_dom_acute <- dat_study_duration %>%
-  filter(duration == "Current + acute")
-meta_acute_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_acute,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-
-#historical
-dat_dom_hist <- dat_study_duration %>%
-  filter(duration == "Historical")
-meta_hist_mod1 <- metagen(g,
-                    st_err,
-                    data = dat_dom_hist,
-                    studlab = paste(author, year),
-                    comb.fixed = F,
-                    hakn = T,
-                    comb.random = T,
-                    method.tau = "PM",
-                    sm = "SMD")
-```
-
-**Long-term**
-```{r meta funnel Long-term, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS23_meta_funnel_long_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_long_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers Long-term}
-eggers.test(x = meta_long_mod1)
-eggers_long <- eggers.test(x = meta_long_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Acute**
-```{r meta funnel Acute, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS24_meta_funnel_acute_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_acute_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-Egger's:
-```{r meta eggers Acute}
-eggers.test(x = meta_acute_mod1)
-eggers_acute <- eggers.test(x = meta_acute_mod1)
-```
-
-p>0.1, nothing further required.
-
-**Historical**
-```{r meta funnel Historical, results = 'hide', warning = FALSE, message = FALSE}
-png(file='figS25_meta_funnel_hist_1.png', width = 8, height = 6, units = "in", res = 300)
-funnel.meta(meta_hist_mod1, xlab = "Hedges' g")
-dev.off()
-```
-
-____
-
 ### Results
 
 **Whole analysis**
 
-k | g | LL | UL | p | tau^2^ | I^2^
----- | ---- | ---- | ---- | ---- | ---- | ----
-`r meta_all_mod1[["k"]]` |`r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["pval.random"]]` | `r meta_all_mod1[["tau2"]]` | `r meta_all_mod1[["I2"]]*100`%
+k | g | LL | UL | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
+`r meta_all_mod1[["k"]]` |`r meta_all_mod1[["TE.random"]]` |`r meta_all_mod1[["lower.random"]]` | `r meta_all_mod1[["upper.random"]]` | `r meta_all_mod1[["pval.random"]]` | `r meta_all_mod1[["tau2"]]` | `r meta_all_mod1[["I2"]]*100`% | `r meta_all_mod1[["Q"]]`
 
-**Sub-analysis table**
+**Sub-analysis table (combining with random-effects)**
 
 
-Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^
----- | ---- | ---- | ---- | ---- | ---- | ---- 
-`r class_subgroup_mod1[["bylevs"]][[1]]` | `r class_subgroup_mod1[["k.w"]][[1]]` | `r class_subgroup_mod1[["TE.random.w"]][[1]]` | `r class_subgroup_mod1[["lower.random.w"]][[1]]` - `r class_subgroup_mod1[["upper.random.w"]][[1]]` | `r class_subgroup_mod1[["pval.random.w"]][[1]]` | `r class_subgroup_mod1[["tau2.w"]][[1]]` | `r class_subgroup_mod1[["I2.w"]][[1]]*100`
-`r class_subgroup_mod1[["bylevs"]][[2]]` | `r class_subgroup_mod1[["k.w"]][[2]]` | `r class_subgroup_mod1[["TE.random.w"]][[2]]` | `r class_subgroup_mod1[["lower.random.w"]][[2]]` - `r class_subgroup_mod1[["upper.random.w"]][[2]]` | `r class_subgroup_mod1[["pval.random.w"]][[2]]` | `r class_subgroup_mod1[["tau2.w"]][[2]]` | `r class_subgroup_mod1[["I2.w"]][[2]]*100`
-`r class_subgroup_mod1[["bylevs"]][[3]]` | `r class_subgroup_mod1[["k.w"]][[3]]` | `r class_subgroup_mod1[["TE.random.w"]][[3]]` | `r class_subgroup_mod1[["lower.random.w"]][[3]]` - `r class_subgroup_mod1[["upper.random.w"]][[3]]` | `r class_subgroup_mod1[["pval.random.w"]][[3]]` | `r class_subgroup_mod1[["tau2.w"]][[3]]` | `r class_subgroup_mod1[["I2.w"]][[3]]*100`
-`r class_subgroup_mod1[["bylevs"]][[4]]` | `r class_subgroup_mod1[["k.w"]][[4]]` | `r class_subgroup_mod1[["TE.random.w"]][[4]]` | `r class_subgroup_mod1[["lower.random.w"]][[4]]` - `r class_subgroup_mod1[["upper.random.w"]][[4]]` | `r class_subgroup_mod1[["pval.random.w"]][[4]]` | `r class_subgroup_mod1[["tau2.w"]][[4]]` | `r class_subgroup_mod1[["I2.w"]][[4]]*100`
-`r class_subgroup_mod1[["bylevs"]][[5]]` | `r class_subgroup_mod1[["k.w"]][[5]]` | `r class_subgroup_mod1[["TE.random.w"]][[5]]` | `r class_subgroup_mod1[["lower.random.w"]][[5]]` - `r class_subgroup_mod1[["upper.random.w"]][[5]]` | `r class_subgroup_mod1[["pval.random.w"]][[5]]` | `r class_subgroup_mod1[["tau2.w"]][[5]]` | `r class_subgroup_mod1[["I2.w"]][[5]]*100`
-`r class_subgroup_mod1[["bylevs"]][[6]]` | `r class_subgroup_mod1[["k.w"]][[6]]` | `r class_subgroup_mod1[["TE.random.w"]][[6]]` | `r class_subgroup_mod1[["lower.random.w"]][[6]]` - `r class_subgroup_mod1[["upper.random.w"]][[6]]` | `r class_subgroup_mod1[["pval.random.w"]][[6]]` | `r class_subgroup_mod1[["tau2.w"]][[6]]` | `r class_subgroup_mod1[["I2.w"]][[6]]*100`
-`r class_subgroup_mod1[["bylevs"]][[7]]` | `r class_subgroup_mod1[["k.w"]][[7]]` | `r class_subgroup_mod1[["TE.random.w"]][[7]]` | `r class_subgroup_mod1[["lower.random.w"]][[7]]` - `r class_subgroup_mod1[["upper.random.w"]][[7]]` | `r class_subgroup_mod1[["pval.random.w"]][[7]]` | `r class_subgroup_mod1[["tau2.w"]][[7]]` | `r class_subgroup_mod1[["I2.w"]][[7]]*100`
-`r potency_subgroup_mod1[["bylevs"]][[1]]` | `r potency_subgroup_mod1[["k.w"]][[1]]` | `r potency_subgroup_mod1[["TE.random.w"]][[1]]` | `r potency_subgroup_mod1[["lower.random.w"]][[1]]` - `r potency_subgroup_mod1[["upper.random.w"]][[1]]` | `r potency_subgroup_mod1[["pval.random.w"]][[1]]` | `r potency_subgroup_mod1[["tau2.w"]][[1]]` | `r potency_subgroup_mod1[["I2.w"]][[1]]*100`
-`r potency_subgroup_mod1[["bylevs"]][[2]]` | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` - `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["I2.w"]][[2]]*100`
-`r duration_subgroup_mod1[["bylevs"]][[1]]` | `r duration_subgroup_mod1[["k.w"]][[1]]` | `r duration_subgroup_mod1[["TE.random.w"]][[1]]` | `r duration_subgroup_mod1[["lower.random.w"]][[1]]` - `r duration_subgroup_mod1[["upper.random.w"]][[1]]` | `r duration_subgroup_mod1[["pval.random.w"]][[1]]` | `r duration_subgroup_mod1[["tau2.w"]][[1]]` | `r duration_subgroup_mod1[["I2.w"]][[1]]*100`
-`r duration_subgroup_mod1[["bylevs"]][[2]]` | `r duration_subgroup_mod1[["k.w"]][[2]]` | `r duration_subgroup_mod1[["TE.random.w"]][[2]]` | `r duration_subgroup_mod1[["lower.random.w"]][[2]]` - `r duration_subgroup_mod1[["upper.random.w"]][[2]]` | `r duration_subgroup_mod1[["pval.random.w"]][[2]]` | `r duration_subgroup_mod1[["tau2.w"]][[2]]` | `r duration_subgroup_mod1[["I2.w"]][[2]]*100`
-`r duration_subgroup_mod1[["bylevs"]][[3]]` | `r duration_subgroup_mod1[["k.w"]][[3]]` | `r duration_subgroup_mod1[["TE.random.w"]][[3]]` | `r duration_subgroup_mod1[["lower.random.w"]][[3]]` - `r duration_subgroup_mod1[["upper.random.w"]][[3]]` | `r duration_subgroup_mod1[["pval.random.w"]][[3]]` | `r duration_subgroup_mod1[["tau2.w"]][[3]]` | `r duration_subgroup_mod1[["I2.w"]][[3]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[1]]` | `r domain_subgroup_mod1[["k.w"]][[1]]` | `r domain_subgroup_mod1[["TE.random.w"]][[1]]` | `r domain_subgroup_mod1[["lower.random.w"]][[1]]` - `r domain_subgroup_mod1[["upper.random.w"]][[1]]` | `r domain_subgroup_mod1[["pval.random.w"]][[1]]` | `r domain_subgroup_mod1[["tau2.w"]][[1]]` | `r domain_subgroup_mod1[["I2.w"]][[1]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[2]]` | `r domain_subgroup_mod1[["k.w"]][[2]]` | `r domain_subgroup_mod1[["TE.random.w"]][[2]]` | `r domain_subgroup_mod1[["lower.random.w"]][[2]]` - `r domain_subgroup_mod1[["upper.random.w"]][[2]]` | `r domain_subgroup_mod1[["pval.random.w"]][[2]]` | `r domain_subgroup_mod1[["tau2.w"]][[2]]` | `r domain_subgroup_mod1[["I2.w"]][[2]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[3]]` | `r domain_subgroup_mod1[["k.w"]][[3]]` | `r domain_subgroup_mod1[["TE.random.w"]][[3]]` | `r domain_subgroup_mod1[["lower.random.w"]][[3]]` - `r domain_subgroup_mod1[["upper.random.w"]][[3]]` | `r domain_subgroup_mod1[["pval.random.w"]][[3]]` | `r domain_subgroup_mod1[["tau2.w"]][[3]]` | `r domain_subgroup_mod1[["I2.w"]][[3]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[4]]` | `r domain_subgroup_mod1[["k.w"]][[4]]` | `r domain_subgroup_mod1[["TE.random.w"]][[4]]` | `r domain_subgroup_mod1[["lower.random.w"]][[4]]` - `r domain_subgroup_mod1[["upper.random.w"]][[4]]` | `r domain_subgroup_mod1[["pval.random.w"]][[4]]` | `r domain_subgroup_mod1[["tau2.w"]][[4]]` | `r domain_subgroup_mod1[["I2.w"]][[4]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[5]]` | `r domain_subgroup_mod1[["k.w"]][[5]]` | `r domain_subgroup_mod1[["TE.random.w"]][[5]]` | `r domain_subgroup_mod1[["lower.random.w"]][[5]]` - `r domain_subgroup_mod1[["upper.random.w"]][[5]]` | `r domain_subgroup_mod1[["pval.random.w"]][[5]]` | `r domain_subgroup_mod1[["tau2.w"]][[5]]` | `r domain_subgroup_mod1[["I2.w"]][[5]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[6]]` | `r domain_subgroup_mod1[["k.w"]][[6]]` | `r domain_subgroup_mod1[["TE.random.w"]][[6]]` | `r domain_subgroup_mod1[["lower.random.w"]][[6]]` - `r domain_subgroup_mod1[["upper.random.w"]][[6]]` | `r domain_subgroup_mod1[["pval.random.w"]][[6]]` | `r domain_subgroup_mod1[["tau2.w"]][[6]]` | `r domain_subgroup_mod1[["I2.w"]][[6]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[7]]` | `r domain_subgroup_mod1[["k.w"]][[7]]` | `r domain_subgroup_mod1[["TE.random.w"]][[7]]` | `r domain_subgroup_mod1[["lower.random.w"]][[7]]` - `r domain_subgroup_mod1[["upper.random.w"]][[7]]` | `r domain_subgroup_mod1[["pval.random.w"]][[7]]` | `r domain_subgroup_mod1[["tau2.w"]][[7]]` | `r domain_subgroup_mod1[["I2.w"]][[7]]*100`
-`r domain_subgroup_mod1[["bylevs"]][[8]]` | `r domain_subgroup_mod1[["k.w"]][[8]]` | `r domain_subgroup_mod1[["TE.random.w"]][[8]]` | `r domain_subgroup_mod1[["lower.random.w"]][[8]]` - `r domain_subgroup_mod1[["upper.random.w"]][[8]]` | `r domain_subgroup_mod1[["pval.random.w"]][[8]]` | `r domain_subgroup_mod1[["tau2.w"]][[8]]` | `r domain_subgroup_mod1[["I2.w"]][[8]]*100`
+Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
+`r class_subgroup_mod1[["bylevs"]][[1]]` | `r class_subgroup_mod1[["k.w"]][[1]]` | `r class_subgroup_mod1[["TE.random.w"]][[1]]` | `r class_subgroup_mod1[["lower.random.w"]][[1]]` - `r class_subgroup_mod1[["upper.random.w"]][[1]]` | `r class_subgroup_mod1[["pval.random.w"]][[1]]` | `r class_subgroup_mod1[["tau2.w"]][[1]]` | `r class_subgroup_mod1[["I2.w"]][[1]]*100` | `r class_subgroup_mod1[["Q.w"]][[1]]` 
+`r class_subgroup_mod1[["bylevs"]][[2]]` | `r class_subgroup_mod1[["k.w"]][[2]]` | `r class_subgroup_mod1[["TE.random.w"]][[2]]` | `r class_subgroup_mod1[["lower.random.w"]][[2]]` - `r class_subgroup_mod1[["upper.random.w"]][[2]]` | `r class_subgroup_mod1[["pval.random.w"]][[2]]` | `r class_subgroup_mod1[["tau2.w"]][[2]]` | `r class_subgroup_mod1[["I2.w"]][[2]]*100` | `r class_subgroup_mod1[["Q.w"]][[2]]` 
+`r class_subgroup_mod1[["bylevs"]][[3]]` | `r class_subgroup_mod1[["k.w"]][[3]]` | `r class_subgroup_mod1[["TE.random.w"]][[3]]` | `r class_subgroup_mod1[["lower.random.w"]][[3]]` - `r class_subgroup_mod1[["upper.random.w"]][[3]]` | `r class_subgroup_mod1[["pval.random.w"]][[3]]` | `r class_subgroup_mod1[["tau2.w"]][[3]]` | `r class_subgroup_mod1[["I2.w"]][[3]]*100` | `r class_subgroup_mod1[["Q.w"]][[3]]` 
+`r class_subgroup_mod1[["bylevs"]][[4]]` | `r class_subgroup_mod1[["k.w"]][[4]]` | `r class_subgroup_mod1[["TE.random.w"]][[4]]` | `r class_subgroup_mod1[["lower.random.w"]][[4]]` - `r class_subgroup_mod1[["upper.random.w"]][[4]]` | `r class_subgroup_mod1[["pval.random.w"]][[4]]` | `r class_subgroup_mod1[["tau2.w"]][[4]]` | `r class_subgroup_mod1[["I2.w"]][[4]]*100` | `r class_subgroup_mod1[["Q.w"]][[4]]` 
+`r class_subgroup_mod1[["bylevs"]][[5]]` | `r class_subgroup_mod1[["k.w"]][[5]]` | `r class_subgroup_mod1[["TE.random.w"]][[5]]` | `r class_subgroup_mod1[["lower.random.w"]][[5]]` - `r class_subgroup_mod1[["upper.random.w"]][[5]]` | `r class_subgroup_mod1[["pval.random.w"]][[5]]` | `r class_subgroup_mod1[["tau2.w"]][[5]]` | `r class_subgroup_mod1[["I2.w"]][[5]]*100`  | `r class_subgroup_mod1[["Q.w"]][[5]]` 
+`r class_subgroup_mod1[["bylevs"]][[6]]` | `r class_subgroup_mod1[["k.w"]][[6]]` | `r class_subgroup_mod1[["TE.random.w"]][[6]]` | `r class_subgroup_mod1[["lower.random.w"]][[6]]` - `r class_subgroup_mod1[["upper.random.w"]][[6]]` | `r class_subgroup_mod1[["pval.random.w"]][[6]]` | `r class_subgroup_mod1[["tau2.w"]][[6]]` | `r class_subgroup_mod1[["I2.w"]][[6]]*100` | `r class_subgroup_mod1[["Q.w"]][[6]]` 
+`r class_subgroup_mod1[["bylevs"]][[7]]` | `r class_subgroup_mod1[["k.w"]][[7]]` | `r class_subgroup_mod1[["TE.random.w"]][[7]]` | `r class_subgroup_mod1[["lower.random.w"]][[7]]` - `r class_subgroup_mod1[["upper.random.w"]][[7]]` | `r class_subgroup_mod1[["pval.random.w"]][[7]]` | `r class_subgroup_mod1[["tau2.w"]][[7]]` | `r class_subgroup_mod1[["I2.w"]][[7]]*100` | `r class_subgroup_mod1[["Q.w"]][[7]]` 
+`r potency_subgroup_mod1[["bylevs"]][[1]]` | `r potency_subgroup_mod1[["k.w"]][[1]]` | `r potency_subgroup_mod1[["TE.random.w"]][[1]]` | `r potency_subgroup_mod1[["lower.random.w"]][[1]]` - `r potency_subgroup_mod1[["upper.random.w"]][[1]]` | `r potency_subgroup_mod1[["pval.random.w"]][[1]]` | `r potency_subgroup_mod1[["tau2.w"]][[1]]` | `r potency_subgroup_mod1[["I2.w"]][[1]]*100` | `r potency_subgroup_mod1[["Q.w"]][[1]]`
+`r potency_subgroup_mod1[["bylevs"]][[2]]` | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.random.w"]][[2]]` | `r potency_subgroup_mod1[["lower.random.w"]][[2]]` - `r potency_subgroup_mod1[["upper.random.w"]][[2]]` | `r potency_subgroup_mod1[["pval.random.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["I2.w"]][[2]]*100` | `r potency_subgroup_mod1[["Q.w"]][[2]]`
+`r duration_subgroup_mod1[["bylevs"]][[1]]` | `r duration_subgroup_mod1[["k.w"]][[1]]` | `r duration_subgroup_mod1[["TE.random.w"]][[1]]` | `r duration_subgroup_mod1[["lower.random.w"]][[1]]` - `r duration_subgroup_mod1[["upper.random.w"]][[1]]` | `r duration_subgroup_mod1[["pval.random.w"]][[1]]` | `r duration_subgroup_mod1[["tau2.w"]][[1]]` | `r duration_subgroup_mod1[["I2.w"]][[1]]*100` | `r duration_subgroup_mod1[["Q.w"]][[1]]`
+`r duration_subgroup_mod1[["bylevs"]][[2]]` | `r duration_subgroup_mod1[["k.w"]][[2]]` | `r duration_subgroup_mod1[["TE.random.w"]][[2]]` | `r duration_subgroup_mod1[["lower.random.w"]][[2]]` - `r duration_subgroup_mod1[["upper.random.w"]][[2]]` | `r duration_subgroup_mod1[["pval.random.w"]][[2]]` | `r duration_subgroup_mod1[["tau2.w"]][[2]]` | `r duration_subgroup_mod1[["I2.w"]][[2]]*100` | `r duration_subgroup_mod1[["Q.w"]][[2]]`
+`r duration_subgroup_mod1[["bylevs"]][[3]]` | `r duration_subgroup_mod1[["k.w"]][[3]]` | `r duration_subgroup_mod1[["TE.random.w"]][[3]]` | `r duration_subgroup_mod1[["lower.random.w"]][[3]]` - `r duration_subgroup_mod1[["upper.random.w"]][[3]]` | `r duration_subgroup_mod1[["pval.random.w"]][[3]]` | `r duration_subgroup_mod1[["tau2.w"]][[3]]` | `r duration_subgroup_mod1[["I2.w"]][[3]]*100` | `r duration_subgroup_mod1[["Q.w"]][[3]]`
+`r domain_subgroup_mod1[["bylevs"]][[1]]` | `r domain_subgroup_mod1[["k.w"]][[1]]` | `r domain_subgroup_mod1[["TE.random.w"]][[1]]` | `r domain_subgroup_mod1[["lower.random.w"]][[1]]` - `r domain_subgroup_mod1[["upper.random.w"]][[1]]` | `r domain_subgroup_mod1[["pval.random.w"]][[1]]` | `r domain_subgroup_mod1[["tau2.w"]][[1]]` | `r domain_subgroup_mod1[["I2.w"]][[1]]*100` | `r domain_subgroup_mod1[["Q.w"]][[1]]`
+`r domain_subgroup_mod1[["bylevs"]][[2]]` | `r domain_subgroup_mod1[["k.w"]][[2]]` | `r domain_subgroup_mod1[["TE.random.w"]][[2]]` | `r domain_subgroup_mod1[["lower.random.w"]][[2]]` - `r domain_subgroup_mod1[["upper.random.w"]][[2]]` | `r domain_subgroup_mod1[["pval.random.w"]][[2]]` | `r domain_subgroup_mod1[["tau2.w"]][[2]]` | `r domain_subgroup_mod1[["I2.w"]][[2]]*100` | `r domain_subgroup_mod1[["Q.w"]][[2]]`
+`r domain_subgroup_mod1[["bylevs"]][[3]]` | `r domain_subgroup_mod1[["k.w"]][[3]]` | `r domain_subgroup_mod1[["TE.random.w"]][[3]]` | `r domain_subgroup_mod1[["lower.random.w"]][[3]]` - `r domain_subgroup_mod1[["upper.random.w"]][[3]]` | `r domain_subgroup_mod1[["pval.random.w"]][[3]]` | `r domain_subgroup_mod1[["tau2.w"]][[3]]` | `r domain_subgroup_mod1[["I2.w"]][[3]]*100` | `r domain_subgroup_mod1[["Q.w"]][[3]]`
+`r domain_subgroup_mod1[["bylevs"]][[4]]` | `r domain_subgroup_mod1[["k.w"]][[4]]` | `r domain_subgroup_mod1[["TE.random.w"]][[4]]` | `r domain_subgroup_mod1[["lower.random.w"]][[4]]` - `r domain_subgroup_mod1[["upper.random.w"]][[4]]` | `r domain_subgroup_mod1[["pval.random.w"]][[4]]` | `r domain_subgroup_mod1[["tau2.w"]][[4]]` | `r domain_subgroup_mod1[["I2.w"]][[4]]*100` | `r domain_subgroup_mod1[["Q.w"]][[4]]`
+`r domain_subgroup_mod1[["bylevs"]][[5]]` | `r domain_subgroup_mod1[["k.w"]][[5]]` | `r domain_subgroup_mod1[["TE.random.w"]][[5]]` | `r domain_subgroup_mod1[["lower.random.w"]][[5]]` - `r domain_subgroup_mod1[["upper.random.w"]][[5]]` | `r domain_subgroup_mod1[["pval.random.w"]][[5]]` | `r domain_subgroup_mod1[["tau2.w"]][[5]]` | `r domain_subgroup_mod1[["I2.w"]][[5]]*100` | `r domain_subgroup_mod1[["Q.w"]][[5]]`
+`r domain_subgroup_mod1[["bylevs"]][[6]]` | `r domain_subgroup_mod1[["k.w"]][[6]]` | `r domain_subgroup_mod1[["TE.random.w"]][[6]]` | `r domain_subgroup_mod1[["lower.random.w"]][[6]]` - `r domain_subgroup_mod1[["upper.random.w"]][[6]]` | `r domain_subgroup_mod1[["pval.random.w"]][[6]]` | `r domain_subgroup_mod1[["tau2.w"]][[6]]` | `r domain_subgroup_mod1[["I2.w"]][[6]]*100` | `r domain_subgroup_mod1[["Q.w"]][[6]]`
+`r domain_subgroup_mod1[["bylevs"]][[7]]` | `r domain_subgroup_mod1[["k.w"]][[7]]` | `r domain_subgroup_mod1[["TE.random.w"]][[7]]` | `r domain_subgroup_mod1[["lower.random.w"]][[7]]` - `r domain_subgroup_mod1[["upper.random.w"]][[7]]` | `r domain_subgroup_mod1[["pval.random.w"]][[7]]` | `r domain_subgroup_mod1[["tau2.w"]][[7]]` | `r domain_subgroup_mod1[["I2.w"]][[7]]*100` | `r domain_subgroup_mod1[["Q.w"]][[7]]`
+`r domain_subgroup_mod1[["bylevs"]][[8]]` | `r domain_subgroup_mod1[["k.w"]][[8]]` | `r domain_subgroup_mod1[["TE.random.w"]][[8]]` | `r domain_subgroup_mod1[["lower.random.w"]][[8]]` - `r domain_subgroup_mod1[["upper.random.w"]][[8]]` | `r domain_subgroup_mod1[["pval.random.w"]][[8]]` | `r domain_subgroup_mod1[["tau2.w"]][[8]]` | `r domain_subgroup_mod1[["I2.w"]][[8]]*100` | `r domain_subgroup_mod1[["Q.w"]][[8]]`
 
+**Sub-analysis table (combining with fixed-effects)**
+
+
+Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
+`r class_subgroup_mod1[["bylevs"]][[1]]` | `r class_subgroup_mod1[["k.w"]][[1]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[1]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[1]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[1]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[1]]` | `r class_subgroup_mod1[["tau2.w"]][[1]]` | `r class_subgroup_mod1[["I2.w"]][[1]]*100` | `r class_subgroup_mod1[["Q.w"]][[1]]` 
+`r class_subgroup_mod1[["bylevs"]][[2]]` | `r class_subgroup_mod1[["k.w"]][[2]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[2]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[2]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[2]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[2]]` | `r class_subgroup_mod1[["tau2.w"]][[2]]` | `r class_subgroup_mod1[["I2.w"]][[2]]*100` | `r class_subgroup_mod1[["Q.w"]][[2]]` 
+`r class_subgroup_mod1[["bylevs"]][[3]]` | `r class_subgroup_mod1[["k.w"]][[3]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[3]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[3]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[3]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[3]]` | `r class_subgroup_mod1[["tau2.w"]][[3]]` | `r class_subgroup_mod1[["I2.w"]][[3]]*100` | `r class_subgroup_mod1[["Q.w"]][[3]]` 
+`r class_subgroup_mod1[["bylevs"]][[4]]` | `r class_subgroup_mod1[["k.w"]][[4]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[4]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[4]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[4]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[4]]` | `r class_subgroup_mod1[["tau2.w"]][[4]]` | `r class_subgroup_mod1[["I2.w"]][[4]]*100` | `r class_subgroup_mod1[["Q.w"]][[4]]` 
+`r class_subgroup_mod1[["bylevs"]][[5]]` | `r class_subgroup_mod1[["k.w"]][[5]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[5]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[5]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[5]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[5]]` | `r class_subgroup_mod1[["tau2.w"]][[5]]` | `r class_subgroup_mod1[["I2.w"]][[5]]*100`  | `r class_subgroup_mod1[["Q.w"]][[5]]` 
+`r class_subgroup_mod1[["bylevs"]][[6]]` | `r class_subgroup_mod1[["k.w"]][[6]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[6]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[6]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[6]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[6]]` | `r class_subgroup_mod1[["tau2.w"]][[6]]` | `r class_subgroup_mod1[["I2.w"]][[6]]*100` | `r class_subgroup_mod1[["Q.w"]][[6]]` 
+`r class_subgroup_mod1[["bylevs"]][[7]]` | `r class_subgroup_mod1[["k.w"]][[7]]` | `r class_subgroup_mod1[["TE.fixed.w"]][[7]]` | `r class_subgroup_mod1[["lower.fixed.w"]][[7]]` - `r class_subgroup_mod1[["upper.fixed.w"]][[7]]` | `r class_subgroup_mod1[["pval.fixed.w"]][[7]]` | `r class_subgroup_mod1[["tau2.w"]][[7]]` | `r class_subgroup_mod1[["I2.w"]][[7]]*100` | `r class_subgroup_mod1[["Q.w"]][[7]]` 
+`r potency_subgroup_mod1[["bylevs"]][[1]]` | `r potency_subgroup_mod1[["k.w"]][[1]]` | `r potency_subgroup_mod1[["TE.fixed.w"]][[1]]` | `r potency_subgroup_mod1[["lower.fixed.w"]][[1]]` - `r potency_subgroup_mod1[["upper.fixed.w"]][[1]]` | `r potency_subgroup_mod1[["pval.fixed.w"]][[1]]` | `r potency_subgroup_mod1[["tau2.w"]][[1]]` | `r potency_subgroup_mod1[["I2.w"]][[1]]*100` | `r potency_subgroup_mod1[["Q.w"]][[1]]`
+`r potency_subgroup_mod1[["bylevs"]][[2]]` | `r potency_subgroup_mod1[["k.w"]][[2]]` | `r potency_subgroup_mod1[["TE.fixed.w"]][[2]]` | `r potency_subgroup_mod1[["lower.fixed.w"]][[2]]` - `r potency_subgroup_mod1[["upper.fixed.w"]][[2]]` | `r potency_subgroup_mod1[["pval.fixed.w"]][[2]]` | `r potency_subgroup_mod1[["tau2.w"]][[2]]` | `r potency_subgroup_mod1[["I2.w"]][[2]]*100` | `r potency_subgroup_mod1[["Q.w"]][[2]]`
+`r duration_subgroup_mod1[["bylevs"]][[1]]` | `r duration_subgroup_mod1[["k.w"]][[1]]` | `r duration_subgroup_mod1[["TE.fixed.w"]][[1]]` | `r duration_subgroup_mod1[["lower.fixed.w"]][[1]]` - `r duration_subgroup_mod1[["upper.fixed.w"]][[1]]` | `r duration_subgroup_mod1[["pval.fixed.w"]][[1]]` | `r duration_subgroup_mod1[["tau2.w"]][[1]]` | `r duration_subgroup_mod1[["I2.w"]][[1]]*100` | `r duration_subgroup_mod1[["Q.w"]][[1]]`
+`r duration_subgroup_mod1[["bylevs"]][[2]]` | `r duration_subgroup_mod1[["k.w"]][[2]]` | `r duration_subgroup_mod1[["TE.fixed.w"]][[2]]` | `r duration_subgroup_mod1[["lower.fixed.w"]][[2]]` - `r duration_subgroup_mod1[["upper.fixed.w"]][[2]]` | `r duration_subgroup_mod1[["pval.fixed.w"]][[2]]` | `r duration_subgroup_mod1[["tau2.w"]][[2]]` | `r duration_subgroup_mod1[["I2.w"]][[2]]*100` | `r duration_subgroup_mod1[["Q.w"]][[2]]`
+`r duration_subgroup_mod1[["bylevs"]][[3]]` | `r duration_subgroup_mod1[["k.w"]][[3]]` | `r duration_subgroup_mod1[["TE.fixed.w"]][[3]]` | `r duration_subgroup_mod1[["lower.fixed.w"]][[3]]` - `r duration_subgroup_mod1[["upper.fixed.w"]][[3]]` | `r duration_subgroup_mod1[["pval.fixed.w"]][[3]]` | `r duration_subgroup_mod1[["tau2.w"]][[3]]` | `r duration_subgroup_mod1[["I2.w"]][[3]]*100` | `r duration_subgroup_mod1[["Q.w"]][[3]]`
+`r domain_subgroup_mod1[["bylevs"]][[1]]` | `r domain_subgroup_mod1[["k.w"]][[1]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[1]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[1]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[1]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[1]]` | `r domain_subgroup_mod1[["tau2.w"]][[1]]` | `r domain_subgroup_mod1[["I2.w"]][[1]]*100` | `r domain_subgroup_mod1[["Q.w"]][[1]]`
+`r domain_subgroup_mod1[["bylevs"]][[2]]` | `r domain_subgroup_mod1[["k.w"]][[2]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[2]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[2]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[2]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[2]]` | `r domain_subgroup_mod1[["tau2.w"]][[2]]` | `r domain_subgroup_mod1[["I2.w"]][[2]]*100` | `r domain_subgroup_mod1[["Q.w"]][[2]]`
+`r domain_subgroup_mod1[["bylevs"]][[3]]` | `r domain_subgroup_mod1[["k.w"]][[3]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[3]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[3]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[3]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[3]]` | `r domain_subgroup_mod1[["tau2.w"]][[3]]` | `r domain_subgroup_mod1[["I2.w"]][[3]]*100` | `r domain_subgroup_mod1[["Q.w"]][[3]]`
+`r domain_subgroup_mod1[["bylevs"]][[4]]` | `r domain_subgroup_mod1[["k.w"]][[4]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[4]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[4]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[4]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[4]]` | `r domain_subgroup_mod1[["tau2.w"]][[4]]` | `r domain_subgroup_mod1[["I2.w"]][[4]]*100` | `r domain_subgroup_mod1[["Q.w"]][[4]]`
+`r domain_subgroup_mod1[["bylevs"]][[5]]` | `r domain_subgroup_mod1[["k.w"]][[5]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[5]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[5]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[5]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[5]]` | `r domain_subgroup_mod1[["tau2.w"]][[5]]` | `r domain_subgroup_mod1[["I2.w"]][[5]]*100` | `r domain_subgroup_mod1[["Q.w"]][[5]]`
+`r domain_subgroup_mod1[["bylevs"]][[6]]` | `r domain_subgroup_mod1[["k.w"]][[6]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[6]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[6]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[6]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[6]]` | `r domain_subgroup_mod1[["tau2.w"]][[6]]` | `r domain_subgroup_mod1[["I2.w"]][[6]]*100` | `r domain_subgroup_mod1[["Q.w"]][[6]]`
+`r domain_subgroup_mod1[["bylevs"]][[7]]` | `r domain_subgroup_mod1[["k.w"]][[7]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[7]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[7]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[7]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[7]]` | `r domain_subgroup_mod1[["tau2.w"]][[7]]` | `r domain_subgroup_mod1[["I2.w"]][[7]]*100` | `r domain_subgroup_mod1[["Q.w"]][[7]]`
+`r domain_subgroup_mod1[["bylevs"]][[8]]` | `r domain_subgroup_mod1[["k.w"]][[8]]` | `r domain_subgroup_mod1[["TE.fixed.w"]][[8]]` | `r domain_subgroup_mod1[["lower.fixed.w"]][[8]]` - `r domain_subgroup_mod1[["upper.fixed.w"]][[8]]` | `r domain_subgroup_mod1[["pval.fixed.w"]][[8]]` | `r domain_subgroup_mod1[["tau2.w"]][[8]]` | `r domain_subgroup_mod1[["I2.w"]][[8]]*100` | `r domain_subgroup_mod1[["Q.w"]][[8]]`
+
+
+**Sub-analysis: Test of subgroup differences**
+
+Sub-analysis | Q (random) | p (random) | Q (fixed) | p (fixed)
+--- | --- | --- |  --- | ---
+Class | `r class_subgroup_mod1[["Q.b.random"]]` | `r class_subgroup_mod1[["pval.Q.b.random"]]` | `r class_subgroup_mod1[["Q.b.fixed"]]` | `r class_subgroup_mod1[["pval.Q.b.fixed"]]` 
+Potency | `r potency_subgroup_mod1[["Q.b.random"]]` | `r potency_subgroup_mod1[["pval.Q.b.random"]]` | `r potency_subgroup_mod1[["Q.b.fixed"]]` | `r potency_subgroup_mod1[["pval.Q.b.fixed"]]` 
+Duration | `r duration_subgroup_mod1[["Q.b.random"]]` | `r duration_subgroup_mod1[["pval.Q.b.random"]]` | `r duration_subgroup_mod1[["Q.b.fixed"]]` | `r duration_subgroup_mod1[["pval.Q.b.fixed"]]` 
+Domain | `r domain_subgroup_mod1[["Q.b.random"]]` | `r domain_subgroup_mod1[["pval.Q.b.random"]]` | `r domain_subgroup_mod1[["Q.b.fixed"]]` | `r domain_subgroup_mod1[["pval.Q.b.fixed"]]` 
