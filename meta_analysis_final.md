@@ -461,7 +461,6 @@ k | g | LL | UL | p | tau^2^ | I^2^ | Q
 
 **Sub-analysis table (combining with random-effects)**
 
-
 Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
 ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
 Antiepileptic | 14 | -0.0322294 | -0.1743892 - 0.1099303 | 0.6324484 | 0.0048268 | 9.6687088 | 14.3914693 

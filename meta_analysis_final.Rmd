@@ -542,7 +542,6 @@ k | g | LL | UL | p | tau^2^ | I^2^ | Q
 
 **Sub-analysis table (combining with random-effects)**
 
-
 Sub-analysis | k | g | 95% CI | p | tau^2^ | I^2^ | Q
 ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- 
 `r class_subgroup_mod1[["bylevs"]][[1]]` | `r class_subgroup_mod1[["k.w"]][[1]]` | `r class_subgroup_mod1[["TE.random.w"]][[1]]` | `r class_subgroup_mod1[["lower.random.w"]][[1]]` - `r class_subgroup_mod1[["upper.random.w"]][[1]]` | `r class_subgroup_mod1[["pval.random.w"]][[1]]` | `r class_subgroup_mod1[["tau2.w"]][[1]]` | `r class_subgroup_mod1[["I2.w"]][[1]]*100` | `r class_subgroup_mod1[["Q.w"]][[1]]` 
