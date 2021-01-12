@@ -2,7 +2,7 @@
 
 A companion markdown file (and R markdown script) describing and implementing the analysis undertaken in Ghezzi et al. (In preparation). 
 
-Ghezzi E, Chan M, Kalisch Ellett LM, Ross TJ, Richardson K, Ni Ho J, Copley D, Steele C, & Keage HAD (2021). The effects of anticholinergic medications on cognition in children: a meta-analysis. Scientific Reports, 11, 219.
+Ghezzi E, Chan M, Kalisch Ellett LM, Ross TJ, Richardson K, Ni Ho J, Copley D, Steele C, & Keage HAD (2021). The effects of anticholinergic medications on cognition in children: a meta-analysis. Scientific Reports, 11, 219. https://doi.org/10.1038/s41598-020-80211-6
 
 # File descriptions
 1. "meta_analysis_final.md" - Markdown file explaining the data analysis and R script.
